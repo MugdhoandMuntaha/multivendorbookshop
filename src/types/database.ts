@@ -42,6 +42,7 @@ export interface Database {
           avatar_key?: string | null;
           updated_at?: string;
         };
+        Relationships: [];
       };
       vendors: {
         Row: {
@@ -85,6 +86,7 @@ export interface Database {
           shipping_fee_minor?: number;
           updated_at?: string;
         };
+        Relationships: [];
       };
       categories: {
         Row: {
@@ -110,6 +112,7 @@ export interface Database {
           parent_id?: string | null;
           sort_order?: number;
         };
+        Relationships: [];
       };
       books: {
         Row: {
@@ -162,6 +165,7 @@ export interface Database {
           search_tsv?: unknown | null;
           updated_at?: string;
         };
+        Relationships: [];
       };
       book_images: {
         Row: {
@@ -184,6 +188,7 @@ export interface Database {
           r2_key?: string;
           position?: number;
         };
+        Relationships: [];
       };
       carts: {
         Row: {
@@ -203,6 +208,7 @@ export interface Database {
           user_id?: string;
           updated_at?: string;
         };
+        Relationships: [];
       };
       cart_items: {
         Row: {
@@ -225,6 +231,7 @@ export interface Database {
           book_id?: string;
           qty?: number;
         };
+        Relationships: [];
       };
       wishlists: {
         Row: {
@@ -244,6 +251,7 @@ export interface Database {
           user_id?: string;
           book_id?: string;
         };
+        Relationships: [];
       };
       orders: {
         Row: {
@@ -290,6 +298,7 @@ export interface Database {
           shipping_address?: Json;
           updated_at?: string;
         };
+        Relationships: [];
       };
       order_items: {
         Row: {
@@ -333,6 +342,7 @@ export interface Database {
           tracking_number?: string | null;
           updated_at?: string;
         };
+        Relationships: [];
       };
       reviews: {
         Row: {
@@ -361,6 +371,7 @@ export interface Database {
           body?: string;
           updated_at?: string;
         };
+        Relationships: [];
       };
     };
     Views: Record<string, never>;

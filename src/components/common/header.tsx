@@ -1,9 +1,33 @@
 import Link from "next/link";
-import { BookOpen, ShoppingBag, Store, LogIn } from "lucide-react";
+import { BookOpen, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { getCurrentProfile } from "@/server/queries/auth";
+import { UserNav } from "./user-nav";
 
-export function Header() {
+export function HeaderFallback() {
+  return (
+    <header className="bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur">
+      <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <Link
+          href="/"
+          className="text-primary flex items-center gap-2 text-xl font-bold tracking-tight"
+        >
+          <BookOpen className="text-primary h-6 w-6" />
+          <span>BookMarket</span>
+          <Badge variant="outline" className="ml-1 text-xs font-normal">
+            Marketplace
+          </Badge>
+        </Link>
+        <div className="bg-muted h-8 w-24 animate-pulse rounded-md" />
+      </div>
+    </header>
+  );
+}
+
+export async function Header() {
+  const { profile } = await getCurrentProfile();
+
   return (
     <header className="bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur">
       <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -41,19 +65,8 @@ export function Header() {
           </Link>
         </nav>
 
-        {/* User / Action Buttons */}
+        {/* Cart & User Controls */}
         <div className="flex items-center gap-3">
-          <Link href="/vendor/apply">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="hidden items-center gap-1.5 sm:inline-flex"
-            >
-              <Store className="h-4 w-4" />
-              <span>Sell Books</span>
-            </Button>
-          </Link>
-
           <Link href="/cart">
             <Button variant="outline" size="sm" className="relative">
               <ShoppingBag className="h-4 w-4" />
@@ -61,12 +74,7 @@ export function Header() {
             </Button>
           </Link>
 
-          <Link href="/login">
-            <Button size="sm" className="items-center gap-1.5">
-              <LogIn className="h-4 w-4" />
-              <span>Sign In</span>
-            </Button>
-          </Link>
+          <UserNav profile={profile} />
         </div>
       </div>
     </header>
