@@ -1,0 +1,1 @@
+-- Multivendor Book Marketplace Seed Data Placeholder (will be expanded in Phase 2)
