@@ -4,10 +4,16 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:admin": "pnpm --filter rtds-admin dev",
+    "dev:all": "pnpm -r --parallel run dev",
     "build": "next build",
+    "build:admin": "pnpm --filter rtds-admin build",
+    "build:all": "pnpm -r run build",
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
+    "typecheck:admin": "pnpm --filter rtds-admin typecheck",
+    "typecheck:all": "pnpm -r run typecheck",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },

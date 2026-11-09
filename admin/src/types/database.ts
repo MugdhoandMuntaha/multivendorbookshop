@@ -1,0 +1,537 @@
+export type Json =
+  | string
+  | number
+  | boolean
+  | null
+  | { [key: string]: Json | undefined }
+  | Json[];
+
+export type UserRole = "buyer" | "vendor" | "admin";
+export type VendorStatus = "pending" | "approved" | "suspended" | "rejected";
+export type BookCondition = "new" | "like_new" | "good" | "fair";
+export type BookStatus = "draft" | "active" | "archived";
+export type OrderStatus = "pending" | "processing" | "completed" | "cancelled";
+export type PaymentStatus = "pending" | "paid" | "failed" | "refunded";
+export type FulfillmentStatus =
+  "pending" | "shipped" | "delivered" | "cancelled";
+
+export interface Database {
+  public: {
+    Tables: {
+      profiles: {
+        Row: {
+          id: string;
+          role: UserRole;
+          full_name: string;
+          avatar_key: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id: string;
+          role?: UserRole;
+          full_name: string;
+          avatar_key?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          role?: UserRole;
+          full_name?: string;
+          avatar_key?: string | null;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      vendors: {
+        Row: {
+          id: string;
+          owner_id: string;
+          shop_name: string;
+          slug: string;
+          description: string | null;
+          logo_key: string | null;
+          banner_key: string | null;
+          status: VendorStatus;
+          commission_bps: number;
+          shipping_fee_minor: number;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          owner_id: string;
+          shop_name: string;
+          slug: string;
+          description?: string | null;
+          logo_key?: string | null;
+          banner_key?: string | null;
+          status?: VendorStatus;
+          commission_bps?: number;
+          shipping_fee_minor?: number;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          owner_id?: string;
+          shop_name?: string;
+          slug?: string;
+          description?: string | null;
+          logo_key?: string | null;
+          banner_key?: string | null;
+          status?: VendorStatus;
+          commission_bps?: number;
+          shipping_fee_minor?: number;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      categories: {
+        Row: {
+          id: string;
+          name: string;
+          slug: string;
+          parent_id: string | null;
+          sort_order: number;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          name: string;
+          slug: string;
+          parent_id?: string | null;
+          sort_order?: number;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          name?: string;
+          slug?: string;
+          parent_id?: string | null;
+          sort_order?: number;
+        };
+        Relationships: [];
+      };
+      books: {
+        Row: {
+          id: string;
+          vendor_id: string;
+          title: string;
+          author: string;
+          isbn: string | null;
+          description: string | null;
+          category_id: string;
+          condition: BookCondition;
+          price_minor: number;
+          currency: string;
+          stock: number;
+          status: BookStatus;
+          search_tsv: unknown | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          vendor_id: string;
+          title: string;
+          author: string;
+          isbn?: string | null;
+          description?: string | null;
+          category_id: string;
+          condition?: BookCondition;
+          price_minor: number;
+          currency?: string;
+          stock?: number;
+          status?: BookStatus;
+          search_tsv?: unknown | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          vendor_id?: string;
+          title?: string;
+          author?: string;
+          isbn?: string | null;
+          description?: string | null;
+          category_id?: string;
+          condition?: BookCondition;
+          price_minor?: number;
+          currency?: string;
+          stock?: number;
+          status?: BookStatus;
+          search_tsv?: unknown | null;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      book_images: {
+        Row: {
+          id: string;
+          book_id: string;
+          r2_key: string;
+          position: number;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          book_id: string;
+          r2_key: string;
+          position?: number;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          book_id?: string;
+          r2_key?: string;
+          position?: number;
+        };
+        Relationships: [];
+      };
+      carts: {
+        Row: {
+          id: string;
+          user_id: string;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      cart_items: {
+        Row: {
+          id: string;
+          cart_id: string;
+          book_id: string;
+          qty: number;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          cart_id: string;
+          book_id: string;
+          qty?: number;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          cart_id?: string;
+          book_id?: string;
+          qty?: number;
+        };
+        Relationships: [];
+      };
+      wishlists: {
+        Row: {
+          id: string;
+          user_id: string;
+          book_id: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          book_id: string;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          book_id?: string;
+        };
+        Relationships: [];
+      };
+      orders: {
+        Row: {
+          id: string;
+          buyer_id: string;
+          subtotal_minor: number;
+          shipping_minor: number;
+          total_minor: number;
+          currency: string;
+          status: OrderStatus;
+          payment_status: PaymentStatus;
+          payment_provider: string;
+          payment_reference: string | null;
+          shipping_address: Json;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          buyer_id: string;
+          subtotal_minor: number;
+          shipping_minor?: number;
+          total_minor: number;
+          currency?: string;
+          status?: OrderStatus;
+          payment_status?: PaymentStatus;
+          payment_provider?: string;
+          payment_reference?: string | null;
+          shipping_address: Json;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          buyer_id?: string;
+          subtotal_minor?: number;
+          shipping_minor?: number;
+          total_minor?: number;
+          currency?: string;
+          status?: OrderStatus;
+          payment_status?: PaymentStatus;
+          payment_provider?: string;
+          payment_reference?: string | null;
+          shipping_address?: Json;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      order_items: {
+        Row: {
+          id: string;
+          order_id: string;
+          book_id: string;
+          vendor_id: string;
+          qty: number;
+          unit_price_minor: number;
+          commission_bps: number;
+          commission_amount_minor: number;
+          fulfillment_status: FulfillmentStatus;
+          tracking_number: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          order_id: string;
+          book_id: string;
+          vendor_id: string;
+          qty: number;
+          unit_price_minor: number;
+          commission_bps?: number;
+          commission_amount_minor?: number;
+          fulfillment_status?: FulfillmentStatus;
+          tracking_number?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          order_id?: string;
+          book_id?: string;
+          vendor_id?: string;
+          qty?: number;
+          unit_price_minor?: number;
+          commission_bps?: number;
+          commission_amount_minor?: number;
+          fulfillment_status?: FulfillmentStatus;
+          tracking_number?: string | null;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      reviews: {
+        Row: {
+          id: string;
+          book_id: string;
+          buyer_id: string;
+          rating: number;
+          body: string;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          book_id: string;
+          buyer_id: string;
+          rating: number;
+          body: string;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          book_id?: string;
+          buyer_id?: string;
+          rating?: number;
+          body?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      storefront_settings: {
+        Row: {
+          id: string;
+          site_name: string;
+          tagline: string | null;
+          announcement_text: string | null;
+          announcement_enabled: boolean;
+          helpline_phone: string | null;
+          helpline_hours: string | null;
+          free_shipping_threshold_minor: number;
+          flat_shipping_rate_minor: number;
+          emergency_alert: string | null;
+          emergency_alert_enabled: boolean;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          site_name?: string;
+          tagline?: string | null;
+          announcement_text?: string | null;
+          announcement_enabled?: boolean;
+          helpline_phone?: string | null;
+          helpline_hours?: string | null;
+          free_shipping_threshold_minor?: number;
+          flat_shipping_rate_minor?: number;
+          emergency_alert?: string | null;
+          emergency_alert_enabled?: boolean;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          site_name?: string;
+          tagline?: string | null;
+          announcement_text?: string | null;
+          announcement_enabled?: boolean;
+          helpline_phone?: string | null;
+          helpline_hours?: string | null;
+          free_shipping_threshold_minor?: number;
+          flat_shipping_rate_minor?: number;
+          emergency_alert?: string | null;
+          emergency_alert_enabled?: boolean;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      hero_slides: {
+        Row: {
+          id: string;
+          title: string;
+          subtitle: string | null;
+          badge_text: string | null;
+          cta_text: string;
+          cta_link: string;
+          image_r2_key: string | null;
+          bg_gradient: string | null;
+          sort_order: number;
+          is_active: boolean;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          title: string;
+          subtitle?: string | null;
+          badge_text?: string | null;
+          cta_text?: string;
+          cta_link?: string;
+          image_r2_key?: string | null;
+          bg_gradient?: string | null;
+          sort_order?: number;
+          is_active?: boolean;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          title?: string;
+          subtitle?: string | null;
+          badge_text?: string | null;
+          cta_text?: string;
+          cta_link?: string;
+          image_r2_key?: string | null;
+          bg_gradient?: string | null;
+          sort_order?: number;
+          is_active?: boolean;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      curated_shelves: {
+        Row: {
+          id: string;
+          title: string;
+          subtitle: string | null;
+          category_id: string | null;
+          shelf_type: string;
+          icon_name: string;
+          max_items: number;
+          sort_order: number;
+          is_active: boolean;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          title: string;
+          subtitle?: string | null;
+          category_id?: string | null;
+          shelf_type?: string;
+          icon_name?: string;
+          max_items?: number;
+          sort_order?: number;
+          is_active?: boolean;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          title?: string;
+          subtitle?: string | null;
+          category_id?: string | null;
+          shelf_type?: string;
+          icon_name?: string;
+          max_items?: number;
+          sort_order?: number;
+          is_active?: boolean;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+    };
+    Views: Record<string, never>;
+    Functions: {
+      create_order_atomic: {
+        Args: {
+          p_buyer_id: string;
+          p_items: Json;
+          p_shipping_address: Json;
+          p_payment_provider: string;
+        };
+        Returns: string;
+      };
+      is_admin: {
+        Args: Record<string, never>;
+        Returns: boolean;
+      };
+      get_my_vendor_id: {
+        Args: Record<string, never>;
+        Returns: string | null;
+      };
+    };
+    Enums: {
+      user_role: UserRole;
+      vendor_status: VendorStatus;
+      book_condition: BookCondition;
+      book_status: BookStatus;
+      order_status: OrderStatus;
+      payment_status: PaymentStatus;
+      fulfillment_status: FulfillmentStatus;
+    };
+  };
+}
