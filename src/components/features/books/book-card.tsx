@@ -34,7 +34,7 @@ export function BookCard({ book }: { book: BookRow }) {
             />
           </Link>
 
-          {/* Discount Pill Badge (Rokomari / RTDS style) */}
+          {/* Discount Pill Badge (RTDS High-Yield style) */}
           {discountPercent > 0 && (
             <Badge className="absolute top-2.5 left-2.5 bg-red-600 px-2 py-0.5 text-[10px] font-bold text-white shadow-sm hover:bg-red-700">
               -{discountPercent}% OFF

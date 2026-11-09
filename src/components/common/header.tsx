@@ -22,7 +22,7 @@ export function HeaderFallback() {
           className="flex items-center gap-2 text-xl font-bold tracking-tight text-red-600"
         >
           <BookOpen className="h-6 w-6 text-red-600" />
-          <span>BookMarket</span>
+          <span>RTDS Bookshop</span>
         </Link>
         <div className="bg-muted h-9 w-48 animate-pulse rounded-lg" />
       </div>
@@ -35,17 +35,18 @@ export async function Header() {
 
   return (
     <header className="bg-background/98 sticky top-0 z-50 w-full border-b shadow-2xs backdrop-blur">
-      {/* 1. Top Announcement Bar (Rokomari & RTDS style) */}
+      {/* 1. Top Announcement Bar (Bangladeshi Helpline & Delivery Info) */}
       <div className="border-b border-slate-800 bg-slate-900 px-4 py-1.5 text-xs text-slate-200">
         <div className="container mx-auto flex max-w-7xl items-center justify-between">
           <div className="flex items-center gap-4 text-[11px]">
             <span className="flex items-center gap-1.5 font-medium">
               <PhoneCall className="h-3 w-3 text-red-400" />
-              <span>Helpline: 09612-000000 (9 AM - 10 PM)</span>
+              <span>হেল্পলাইন: ০৯৬১২-০০৭৮৩৭ (সকাল ৯টা - রাত ১০টা)</span>
             </span>
             <span className="hidden text-slate-500 sm:inline-block">|</span>
             <span className="hidden font-medium text-amber-300 sm:inline-block">
-              ⚡ Free shipping across Bangladesh on orders over $35 / ৳1500
+              ⚡ সারা দেশে ক্যাশ অন ডেলিভারি | ৳১,০০০ টাকার অর্ডারে ফ্রি
+              ডেলিভারি
             </span>
           </div>
 
@@ -55,13 +56,13 @@ export async function Header() {
               className="flex items-center gap-1 font-medium text-amber-300 transition-colors hover:text-white"
             >
               <Store className="h-3 w-3" />
-              <span>Sell Books (ভেন্ডর হোন)</span>
+              <span>বই বিক্রি করুন (ভেন্ডর হোন)</span>
             </Link>
           </div>
         </div>
       </div>
 
-      {/* 2. Main Header with Rokomari-style Central Omnisearch */}
+      {/* 2. Main Header with RTDS Omnisearch */}
       <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         {/* Brand Logo */}
         <Link
@@ -73,15 +74,15 @@ export async function Header() {
           </div>
           <div className="flex flex-col leading-none">
             <span className="text-foreground text-xl font-black">
-              Book<span className="text-red-600">Market</span>
+              RTDS <span className="text-red-600">Bookshop</span>
             </span>
             <span className="text-muted-foreground text-[10px] font-medium tracking-normal">
-              Rokomari & RTDS Style
+              Official Book Marketplace
             </span>
           </div>
         </Link>
 
-        {/* Central Search Bar (The Core Discovery Engine) */}
+        {/* Central Search Bar */}
         <form
           action="/books"
           method="GET"
@@ -90,19 +91,21 @@ export async function Header() {
           <div className="bg-muted/20 focus-within:bg-background relative flex w-full items-center rounded-xl border-2 border-red-600/30 transition-all focus-within:border-red-600">
             <select
               name="category"
-              className="text-muted-foreground border-border max-w-[130px] cursor-pointer truncate border-r bg-transparent px-3 py-2 text-xs font-semibold focus:outline-none"
+              className="text-muted-foreground border-border max-w-[140px] cursor-pointer truncate border-r bg-transparent px-3 py-2 text-xs font-semibold focus:outline-none"
             >
-              <option value="">All Categories</option>
-              <option value="fiction">Fiction</option>
-              <option value="academic">Academic & HSC</option>
-              <option value="medical">Medical (RTDS)</option>
-              <option value="rare">Rare & Vintage</option>
+              <option value="">সকল ক্যাটাগরি</option>
+              <option value="medical">মেডিকেল ভর্তি প্রস্তুতি</option>
+              <option value="engineering">ইঞ্জিনিয়ারিং ও ভার্সিটি</option>
+              <option value="academic">এইচএসসি ও এসএসসি</option>
+              <option value="fiction">সাহিত্য ও উপন্যাস</option>
+              <option value="islamic">ইসলামি সাহিত্য</option>
+              <option value="rare">দুষ্প্রাপ্য ও পুরাতন বই</option>
             </select>
 
             <input
               type="text"
               name="q"
-              placeholder="বই, লেখক বা প্রকাশনীর নাম দিয়ে খুঁজুন... (Search books, authors, ISBNs)"
+              placeholder="বইয়ের নাম, লেখক বা বিষয় দিয়ে অনুসন্ধান করুন... (Search books, authors, ISBNs)"
               className="text-foreground placeholder:text-muted-foreground/70 w-full bg-transparent px-3 py-2 text-xs focus:outline-none sm:text-sm"
             />
 
@@ -112,7 +115,7 @@ export async function Header() {
               className="m-1 h-8 shrink-0 gap-1.5 rounded-lg bg-red-600 px-4 font-medium text-white shadow-sm hover:bg-red-700"
             >
               <Search className="h-4 w-4" />
-              <span className="hidden text-xs lg:inline">Search</span>
+              <span className="hidden text-xs lg:inline">অনুসন্ধান</span>
             </Button>
           </div>
         </form>
@@ -134,7 +137,7 @@ export async function Header() {
             >
               <ShoppingBag className="h-4 w-4 text-red-600" />
               <span className="text-foreground hidden text-xs font-bold sm:inline">
-                Cart
+                কার্ট (Cart)
               </span>
               <Badge className="flex h-4 min-w-[16px] items-center justify-center rounded-full bg-red-600 px-1.5 py-0 text-[10px] font-bold text-white">
                 0
@@ -146,7 +149,7 @@ export async function Header() {
         </div>
       </div>
 
-      {/* 3. Category Strip (Aspect Series & Rokomari Mega-Shelf) */}
+      {/* 3. Category Strip (RTDS Mega-Shelf) */}
       <div className="bg-muted/40 hidden border-t sm:block">
         <div className="text-muted-foreground container mx-auto flex max-w-7xl scrollbar-none items-center gap-6 overflow-x-auto px-4 py-2 text-xs font-semibold sm:px-6 lg:px-8">
           <Link
@@ -163,14 +166,21 @@ export async function Header() {
             href="/books?category=medical"
             className="shrink-0 font-bold text-red-600 transition-colors hover:text-red-600"
           >
-            🩺 Medical & HSC (RTDS/Aspect)
+            🩺 মেডিকেল ভর্তি প্রস্তুতি (RTDS Medical)
+          </Link>
+
+          <Link
+            href="/books?category=engineering"
+            className="shrink-0 transition-colors hover:text-red-600"
+          >
+            📐 ইঞ্জিনিয়ারিং ও ভার্সিটি
           </Link>
 
           <Link
             href="/books?category=fiction"
             className="shrink-0 transition-colors hover:text-red-600"
           >
-            উপন্যাস ও গল্প (Fiction)
+            উপন্যাস ও সাহিত্য (Fiction)
           </Link>
 
           <Link
@@ -181,24 +191,24 @@ export async function Header() {
           </Link>
 
           <Link
-            href="/books?category=academic"
+            href="/books?category=islamic"
             className="shrink-0 transition-colors hover:text-red-600"
           >
-            বিশ্ববিদ্যালয় ভর্তি ও বিসিএস
+            ইসলামি বই (Islamic Books)
           </Link>
 
           <Link
             href="/books?category=rare"
             className="shrink-0 transition-colors hover:text-red-600"
           >
-            দুর্লভ ও ফার্স্ট এডিশন (Rare)
+            দুষ্প্রাপ্য ও পুরাতন বই (Rare Books)
           </Link>
 
           <Link
             href="/vendors"
             className="text-foreground ml-auto shrink-0 font-bold transition-colors hover:text-red-600"
           >
-            🏪 Independent Bookshops (ভেন্ডরসমূহ)
+            🏪 অনুমোদিত বুকশপ ও প্রকাশনী
           </Link>
         </div>
       </div>

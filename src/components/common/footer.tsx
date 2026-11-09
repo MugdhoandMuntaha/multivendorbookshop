@@ -24,30 +24,32 @@ export function Footer() {
                 <BookOpen className="h-5 w-5" />
               </div>
               <span>
-                Book<span className="text-red-500">Market</span>
+                RTDS <span className="text-red-500">Bookshop</span>
               </span>
             </Link>
             <p className="max-w-sm text-xs leading-relaxed text-slate-400">
-              The premier multivendor book platform in Bangladesh bringing
-              together independent bookshops, medical publishers (RTDS, Aspect
-              Series), rare collectors, and nationwide readers in one unified
-              marketplace.
+              The official dedicated multivendor book marketplace of RTDS
+              Platform in Bangladesh. Connecting top medical admission guides,
+              university test series, academic bookshops, and passionate readers
+              across 64 districts in one unified platform.
             </p>
 
             <div className="space-y-2 pt-2 text-xs">
               <div className="flex items-center gap-2.5 text-slate-300">
                 <PhoneCall className="h-4 w-4 shrink-0 text-red-500" />
                 <span className="font-semibold">
-                  09612-000000 / 01700-000000 (9 AM - 10 PM)
+                  09612-007837 / 01700-000000 (সকাল ৯টা - রাত ১০টা)
                 </span>
               </div>
               <div className="flex items-center gap-2.5 text-slate-300">
                 <Mail className="h-4 w-4 shrink-0 text-red-500" />
-                <span>support@bookmarket.com.bd</span>
+                <span>support@rtdsbookshop.com / info@rtdslive.com</span>
               </div>
               <div className="flex items-center gap-2.5 text-slate-300">
                 <MapPin className="h-4 w-4 shrink-0 text-red-500" />
-                <span>Banglabazar / Nilkhet Book Hub, Dhaka, Bangladesh</span>
+                <span>
+                  RTDS Central Hub, Farmgate / Nilkhet, Dhaka, Bangladesh
+                </span>
               </div>
             </div>
           </div>
@@ -60,18 +62,26 @@ export function Footer() {
             <ul className="space-y-2 text-xs text-slate-400">
               <li>
                 <Link
-                  href="/books?category=academic"
+                  href="/books?category=medical"
                   className="transition-colors hover:text-white"
                 >
-                  মেডিকেল ও বিসিএস প্রস্তুতি
+                  মেডিকেল ও ডেন্টাল ভর্তি সহায়িকা
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/books?category=medical"
+                  href="/books?category=engineering"
                   className="transition-colors hover:text-white"
                 >
-                  Aspect Series & RTDS Books
+                  ইঞ্জিনিয়ারিং ও ভার্সিটি ভর্তি
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/books?category=academic"
+                  className="transition-colors hover:text-white"
+                >
+                  এইচএসসি ও বিশ্ববিদ্যালয় সিরিজ
                 </Link>
               </li>
               <li>
@@ -79,15 +89,7 @@ export function Footer() {
                   href="/books?category=fiction"
                   className="transition-colors hover:text-white"
                 >
-                  উপন্যাস ও গল্প সমগ্র
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/books?category=non-fiction"
-                  className="transition-colors hover:text-white"
-                >
-                  বিজ্ঞান, প্রযুক্তি ও ইতিহাস
+                  উপন্যাস ও সাহিত্য সমগ্র
                 </Link>
               </li>
               <li>
@@ -95,7 +97,7 @@ export function Footer() {
                   href="/books?category=rare"
                   className="transition-colors hover:text-white"
                 >
-                  দুর্লভ ও আউট অব প্রিন্ট বই
+                  দুষ্প্রাপ্য ও পুরাতন ক্লাসিক বই
                 </Link>
               </li>
             </ul>
@@ -120,7 +122,7 @@ export function Footer() {
                   href="/vendor/apply"
                   className="font-semibold text-amber-400 transition-colors hover:text-white"
                 >
-                  বই বিক্রয় করুন (Apply to Sell)
+                  বই বিক্রি করুন (Apply to Sell)
                 </Link>
               </li>
               <li>
@@ -158,7 +160,7 @@ export function Footer() {
               </div>
               <div className="flex items-start gap-2">
                 <CreditCard className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />
-                <span>বিকাশ, নগদ ও ব্যাংকিং কার্ড সাপোর্ট</span>
+                <span>বিকাশ, নগদ, রকেট ও কার্ড পেমেন্ট সাপোর্ট</span>
               </div>
             </div>
           </div>
@@ -167,8 +169,8 @@ export function Footer() {
         {/* Bottom Strip */}
         <div className="flex flex-col items-center justify-between gap-4 border-t border-slate-800 pt-6 text-xs text-slate-500 sm:flex-row">
           <p>
-            © 2026 BookMarket Platform. All rights reserved. Inspired by
-            Rokomari, Aspect Series & RTDS Live.
+            © 2026 RTDS Bookshop Platform. All rights reserved. Official Book
+            Marketplace of RTDS Platform.
           </p>
           <div className="flex items-center gap-4">
             <span>Unified Multi-Vendor Cart</span>

@@ -64,7 +64,7 @@ export async function createBook(input: BookInput): Promise<BookActionResult> {
         category_id: parsed.data.categoryId,
         condition: parsed.data.condition,
         price_minor: toMinorUnits(parsed.data.price),
-        currency: "USD",
+        currency: "BDT",
         stock: parsed.data.stock,
         status: parsed.data.status,
       })

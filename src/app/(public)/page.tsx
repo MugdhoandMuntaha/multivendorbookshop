@@ -20,15 +20,16 @@ export default async function HomePage() {
   const bestsellers = books.slice(0, 4);
   const admissionSpecial = books.filter(
     (b) =>
-      b.title.includes("Aspect") ||
       b.title.includes("RTDS") ||
       b.title.includes("Data-Intensive") ||
-      b.title.includes("SICP")
+      b.title.includes("SICP") ||
+      b.title.includes("Physics") ||
+      b.title.includes("Biology")
   );
   const literatureRare = books.filter(
     (b) =>
+      b.title.includes("লালসালু") ||
       b.title.includes("Dune") ||
-      b.title.includes("Gatsby") ||
       b.title.includes("Meditations") ||
       b.title.includes("Solitude") ||
       b.title.includes("Neuromancer")
@@ -39,7 +40,7 @@ export default async function HomePage() {
       {/* 1. Hero Promotional Banner & Trust Bar */}
       <HeroBanner />
 
-      {/* 2. Trending Bestsellers Shelf (Rokomari Bestseller Style) */}
+      {/* 2. Trending Bestsellers Shelf */}
       <section className="space-y-6">
         <div className="flex items-center justify-between border-b pb-3">
           <div className="flex items-center gap-2.5">
@@ -51,8 +52,7 @@ export default async function HomePage() {
                 সর্বাধিক বিক্রিত বইসমূহ (Trending Bestsellers)
               </h2>
               <p className="text-muted-foreground text-xs">
-                Top rated books chosen by thousands of readers across the
-                platform
+                দেশজুড়ে হাজারো পাঠকের পছন্দের তালিকায় থাকা সেরা বইসমূহ
               </p>
             </div>
           </div>
@@ -63,7 +63,7 @@ export default async function HomePage() {
               size="sm"
               className="gap-1 text-xs font-bold text-red-600 hover:text-red-700"
             >
-              <span>View All</span>
+              <span>সকল বই দেখুন</span>
               <ArrowRight className="h-3.5 w-3.5" />
             </Button>
           </Link>
@@ -76,7 +76,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 3. Aspect Series & RTDS Live Academic / Admission Shelf */}
+      {/* 3. RTDS Live Academic & Admission Shelf */}
       <section className="space-y-6 rounded-3xl border border-amber-500/20 bg-gradient-to-br from-amber-500/10 via-red-500/5 to-transparent p-6 shadow-xs sm:p-8">
         <div className="flex items-center justify-between border-b border-amber-500/20 pb-3">
           <div className="flex items-center gap-2.5">
@@ -86,16 +86,15 @@ export default async function HomePage() {
             <div>
               <div className="flex items-center gap-2">
                 <h2 className="text-foreground text-xl font-black tracking-tight sm:text-2xl">
-                  মেডিকেল ও বিশ্ববিদ্যালয় ভর্তি প্রস্তুতি (RTDS & Aspect
-                  Series)
+                  মেডিকেল ও বিশ্ববিদ্যালয় ভর্তি প্রস্তুতি (RTDS Master Series)
                 </h2>
                 <Badge className="bg-red-600 text-[10px] font-bold text-white uppercase">
-                  High Yield
+                  Official Guides
                 </Badge>
               </div>
               <p className="text-muted-foreground text-xs">
-                Official question banks, full subject bundles, and medical
-                practice papers
+                RTDS অফিসিয়াল প্রশ্নব্যাংক, শর্টকাট টেকনিক ও পূর্ণাঙ্গ মডেল
+                টেস্ট পেপার
               </p>
             </div>
           </div>
@@ -105,7 +104,7 @@ export default async function HomePage() {
               size="sm"
               className="gap-1 bg-amber-500 text-xs font-bold text-slate-950 shadow-xs hover:bg-amber-600"
             >
-              <span>Explore Sets</span>
+              <span>সকল সিরিজ দেখুন</span>
               <ArrowRight className="h-3.5 w-3.5" />
             </Button>
           </Link>
@@ -130,11 +129,11 @@ export default async function HomePage() {
             </div>
             <div>
               <h2 className="text-foreground text-xl font-black tracking-tight sm:text-2xl">
-                সাহিত্য, দর্শন ও দুর্লভ সংগ্রহ (Literature & Rare Collectibles)
+                সাহিত্য, দর্শন ও ধ্রুপদী সংগ্রহ (Literature & Classics)
               </h2>
               <p className="text-muted-foreground text-xs">
-                First edition reproductions, collector clothbound editions, and
-                vintage paperbacks
+                ধ্রুপদী বাংলা উপন্যাস, নোবেলজয়ী আন্তর্জাতিক সাহিত্য ও
+                সংগ্রাহকদের বিশেষ বাঁধাইকৃত সংস্করণ
               </p>
             </div>
           </div>
@@ -145,7 +144,7 @@ export default async function HomePage() {
               size="sm"
               className="gap-1 text-xs font-bold text-blue-600 hover:text-blue-700"
             >
-              <span>View All</span>
+              <span>সকল সংগ্রহ</span>
               <ArrowRight className="h-3.5 w-3.5" />
             </Button>
           </Link>
@@ -160,7 +159,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 5. Featured Independent Bookshops & Publishers Showcase (Multivendor Core) */}
+      {/* 5. Featured Independent Bookshops & Publishers Showcase */}
       <section className="space-y-6">
         <div className="flex items-center justify-between border-b pb-3">
           <div className="flex items-center gap-2.5">
@@ -169,11 +168,11 @@ export default async function HomePage() {
             </div>
             <div>
               <h2 className="text-foreground text-xl font-black tracking-tight sm:text-2xl">
-                শীর্ষস্থানীয় স্বাধীন বুকশপসমূহ (Featured Bookshops)
+                অনুমোদিত প্রকাশনী ও বুকশপসমূহ (Featured Bookshops)
               </h2>
               <p className="text-muted-foreground text-xs">
-                Browse dedicated storefronts from vetted publishers and
-                antiquarian collectors
+                বাংলাবাজার, নীলক্ষেত ও সেন্ট্রাল রিপোজিটরি থেকে যাচাইকৃত
+                স্বতন্ত্র বুকশপ
               </p>
             </div>
           </div>
@@ -184,7 +183,7 @@ export default async function HomePage() {
               size="sm"
               className="gap-1 text-xs font-bold"
             >
-              <span>All 25+ Bookshops</span>
+              <span>সকল বুকশপ দেখুন</span>
               <ArrowRight className="h-3.5 w-3.5" />
             </Button>
           </Link>
@@ -198,25 +197,25 @@ export default async function HomePage() {
                 RT
               </div>
               <Badge className="bg-emerald-600 text-[10px] font-bold text-white">
-                Verified Depot
+                Official Depot
               </Badge>
             </div>
             <div>
               <h3 className="text-foreground text-base font-bold">
-                RTDS & Aspect Official Depot
+                RTDS Publications Central Depot
               </h3>
               <p className="text-muted-foreground mt-1 line-clamp-2 text-xs">
-                Official medical admission question bank publisher and HSC
-                science series repository.
+                RTDS প্ল্যাটফর্মের অফিসিয়াল প্রকাশনা ও মেডিকেল মাস্টার সিরিজের
+                কেন্দ্রীয় সরবরাহ কেন্দ্র।
               </p>
             </div>
             <div className="flex items-center justify-between border-t pt-2 text-xs">
-              <span className="text-muted-foreground">150+ Titles listed</span>
+              <span className="text-muted-foreground">150+ বই উপলব্ধ</span>
               <Link
-                href="/vendors/rtds-aspect-depot"
+                href="/vendors/rtds-publications-depot"
                 className="font-bold text-red-600 hover:underline"
               >
-                Visit Shop →
+                বুকশপ দেখুন →
               </Link>
             </div>
           </div>
@@ -225,28 +224,28 @@ export default async function HomePage() {
           <div className="bg-card hover:border-primary/40 space-y-4 rounded-2xl border p-6 shadow-xs transition-all hover:shadow-md">
             <div className="flex items-start justify-between">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-600/10 text-lg font-black text-amber-600">
-                OP
+                BB
               </div>
               <Badge className="bg-blue-600 text-[10px] font-bold text-white">
-                Antiquarian
+                Heritage Shop
               </Badge>
             </div>
             <div>
               <h3 className="text-foreground text-base font-bold">
-                The Old Paper Mill
+                Banglabazar Boi Bhaban
               </h3>
               <p className="text-muted-foreground mt-1 line-clamp-2 text-xs">
-                Rare first editions, signed literary masterpieces, and restored
-                classical folios since 1984.
+                বাংলাবাজারের ঐতিহ্যবাহী প্রকাশনা, ধ্রুপদী সাহিত্য, ইতিহাস ও
+                আন্তর্জাতিক অনুবাদের বিশাল সংগ্রহশালা।
               </p>
             </div>
             <div className="flex items-center justify-between border-t pt-2 text-xs">
-              <span className="text-muted-foreground">85+ Rare Titles</span>
+              <span className="text-muted-foreground">300+ বই উপলব্ধ</span>
               <Link
-                href="/vendors/the-old-paper-mill"
+                href="/vendors/banglabazar-boi-bhaban"
                 className="font-bold text-red-600 hover:underline"
               >
-                Visit Shop →
+                বুকশপ দেখুন →
               </Link>
             </div>
           </div>
@@ -255,7 +254,7 @@ export default async function HomePage() {
           <div className="bg-card hover:border-primary/40 space-y-4 rounded-2xl border p-6 shadow-xs transition-all hover:shadow-md">
             <div className="flex items-start justify-between">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-600/10 text-lg font-black text-indigo-600">
-                BH
+                NE
               </div>
               <Badge className="bg-emerald-600 text-[10px] font-bold text-white">
                 Curated Shop
@@ -263,27 +262,27 @@ export default async function HomePage() {
             </div>
             <div>
               <h3 className="text-foreground text-base font-bold">
-                Beacon Hill Bookshop
+                Nilkhet Engineering Corner
               </h3>
               <p className="text-muted-foreground mt-1 line-clamp-2 text-xs">
-                Curated philosophy, modern literature, architecture, and
-                technology monographs.
+                নীলক্ষেত বুক মার্কেট থেকে কম্পিউটার সায়েন্স, ইলেকট্রিক্যাল ও
+                ভার্সিটি টেক্সটবইয়ের নির্ভরযোগ্য শপ।
               </p>
             </div>
             <div className="flex items-center justify-between border-t pt-2 text-xs">
-              <span className="text-muted-foreground">320+ Books</span>
+              <span className="text-muted-foreground">220+ বই উপলব্ধ</span>
               <Link
-                href="/vendors/beacon-hill-books"
+                href="/vendors/nilkhet-engineering-corner"
                 className="font-bold text-red-600 hover:underline"
               >
-                Visit Shop →
+                বুকশপ দেখুন →
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 6. Genre & Subject Exploration Grid (Rokomari Category Style) */}
+      {/* 6. Genre & Subject Exploration Grid */}
       <section className="space-y-6">
         <div className="flex items-center justify-between border-b pb-3">
           <div className="flex items-center gap-2.5">
@@ -295,7 +294,8 @@ export default async function HomePage() {
                 বিষয়ভিত্তিক বইয়ের বিভাগ (Browse by Subject)
               </h2>
               <p className="text-muted-foreground text-xs">
-                Quickly locate books by curriculum, subject, or reading interest
+                আপনার পছন্দের বিষয় বা পরীক্ষার বিভাগ নির্বাচন করে দ্রুত বই
+                খুঁজুন
               </p>
             </div>
           </div>
@@ -306,7 +306,7 @@ export default async function HomePage() {
               size="sm"
               className="gap-1 text-xs font-bold"
             >
-              <span>All Categories</span>
+              <span>সকল বিভাগ</span>
               <ArrowRight className="h-3.5 w-3.5" />
             </Button>
           </Link>
@@ -315,40 +315,40 @@ export default async function HomePage() {
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
           {[
             {
-              name: "মেডিকেল ও বিসিএস",
-              slug: "academic-reference",
+              name: "মেডিকেল ভর্তি প্রস্তুতি",
+              slug: "medical-engineering-admission",
               icon: "🩺",
-              count: "120+ Books",
+              count: "150+ Books",
             },
             {
-              name: "উপন্যাস ও গল্প",
-              slug: "fiction",
+              name: "উপন্যাস ও সাহিত্য",
+              slug: "fiction-literature",
               icon: "📖",
               count: "450+ Books",
             },
             {
               name: "বিজ্ঞান ও প্রযুক্তি",
-              slug: "computer-science-tech",
+              slug: "computer-science-engineering",
               icon: "💻",
-              count: "80+ Books",
+              count: "120+ Books",
             },
             {
               name: "ইতিহাস ও ঐতিহ্য",
-              slug: "history-warfare",
+              slug: "history-heritage",
               icon: "🏛️",
               count: "95+ Books",
             },
             {
-              name: "দর্শন ও আত্মউন্নয়ন",
-              slug: "philosophy-ideas",
-              icon: "🧠",
-              count: "60+ Books",
+              name: "ইসলামি সাহিত্য",
+              slug: "islamic-theological",
+              icon: "🕌",
+              count: "180+ Books",
             },
             {
-              name: "দুর্লভ ও ক্লাসিক",
-              slug: "rare-collectibles",
+              name: "দুষ্প্রাপ্য ও ক্লাসিক",
+              slug: "philosophy-society",
               icon: "✨",
-              count: "40+ Books",
+              count: "70+ Books",
             },
           ].map((cat) => (
             <Link

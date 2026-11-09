@@ -53,7 +53,7 @@ export default function AdminDashboardPage() {
             <DollarSign className="text-muted-foreground h-4 w-4" />
           </CardHeader>
           <div className="px-6 pb-4">
-            <div className="text-2xl font-bold">$0.00</div>
+            <div className="text-2xl font-bold">৳ 0</div>
             <CardDescription className="text-xs">
               Gross Merchandise Value
             </CardDescription>
@@ -68,7 +68,7 @@ export default function AdminDashboardPage() {
             <ShieldCheck className="h-4 w-4 text-green-500" />
           </CardHeader>
           <div className="px-6 pb-4">
-            <div className="text-2xl font-bold">$0.00</div>
+            <div className="text-2xl font-bold">৳ 0</div>
             <CardDescription className="text-xs">
               10% Platform fee
             </CardDescription>

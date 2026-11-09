@@ -6,16 +6,24 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 /**
- * Format money stored as integer minor units (e.g. cents, paisa).
- * Never use floats for monetary calculations.
+ * Format money stored as integer minor units (e.g. paisa/cents).
+ * Dedicated to Bangladeshi Taka (৳ BDT) marketplace formatting.
  */
 export function formatPrice(
   amountMinor: number,
-  currency: string = "USD",
-  locale: string = "en-US"
+  currency: string = "BDT",
+  locale: string = "en-BD"
 ): string {
-  // Minor units to major units for Intl formatter
   const majorAmount = amountMinor / 100;
+  if (currency.toUpperCase() === "BDT") {
+    const hasFractions = majorAmount % 1 !== 0;
+    const formatted = new Intl.NumberFormat("en-BD", {
+      minimumFractionDigits: hasFractions ? 2 : 0,
+      maximumFractionDigits: 2,
+    }).format(majorAmount);
+    return `৳ ${formatted}`;
+  }
+
   return new Intl.NumberFormat(locale, {
     style: "currency",
     currency: currency.toUpperCase(),
@@ -24,7 +32,7 @@ export function formatPrice(
 }
 
 /**
- * Convert user decimal input into integer minor units (e.g. 19.99 -> 1999)
+ * Convert user decimal input into integer minor units (e.g. 450.50 -> 45050 paisa)
  */
 export function toMinorUnits(amount: number): number {
   return Math.round(amount * 100);

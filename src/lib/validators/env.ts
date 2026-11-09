@@ -22,7 +22,7 @@ const envSchema = z.object({
 
   // App Config
   NEXT_PUBLIC_APP_URL: z.string().url().default("http://localhost:3000"),
-  NEXT_PUBLIC_DEFAULT_CURRENCY: z.string().length(3).default("USD"),
+  NEXT_PUBLIC_DEFAULT_CURRENCY: z.string().length(3).default("BDT"),
 });
 
 export type Env = z.infer<typeof envSchema>;

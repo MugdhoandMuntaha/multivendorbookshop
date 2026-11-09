@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS public.books (
     category_id UUID NOT NULL REFERENCES public.categories(id) ON DELETE RESTRICT,
     condition public.book_condition NOT NULL DEFAULT 'good',
     price_minor INTEGER NOT NULL CHECK (price_minor >= 0),
-    currency VARCHAR(3) NOT NULL DEFAULT 'USD',
+    currency VARCHAR(3) NOT NULL DEFAULT 'BDT',
     stock INTEGER NOT NULL DEFAULT 0 CHECK (stock >= 0),
     status public.book_status NOT NULL DEFAULT 'draft',
     search_tsv TSVECTOR,
@@ -140,7 +140,7 @@ CREATE TABLE IF NOT EXISTS public.orders (
     subtotal_minor INTEGER NOT NULL CHECK (subtotal_minor >= 0),
     shipping_minor INTEGER NOT NULL DEFAULT 0 CHECK (shipping_minor >= 0),
     total_minor INTEGER NOT NULL CHECK (total_minor >= 0),
-    currency VARCHAR(3) NOT NULL DEFAULT 'USD',
+    currency VARCHAR(3) NOT NULL DEFAULT 'BDT',
     status public.order_status NOT NULL DEFAULT 'pending',
     payment_status public.payment_status NOT NULL DEFAULT 'pending',
     payment_provider TEXT NOT NULL DEFAULT 'mock',
@@ -334,7 +334,7 @@ BEGIN
         currency, status, payment_status, payment_provider, shipping_address
     ) VALUES (
         p_buyer_id, v_subtotal_minor, v_shipping_minor, v_total_minor,
-        'USD', 'pending', 'pending', p_payment_provider, p_shipping_address
+        'BDT', 'pending', 'pending', p_payment_provider, p_shipping_address
     )
     RETURNING id INTO v_order_id;
 
@@ -497,31 +497,29 @@ CREATE POLICY "Buyers can update own reviews" ON public.reviews FOR UPDATE USING
 -- -------------------------------------------------------------------------
 DO $$
 DECLARE
+    v_admission_id UUID := '11111111-1111-1111-1111-111111111103';
+    v_academic_id UUID := '11111111-1111-1111-1111-111111111106';
     v_fiction_id UUID := '11111111-1111-1111-1111-111111111101';
     v_nonfiction_id UUID := '11111111-1111-1111-1111-111111111102';
-    v_academic_id UUID := '11111111-1111-1111-1111-111111111103';
     v_rare_id UUID := '11111111-1111-1111-1111-111111111104';
-    v_children_id UUID := '11111111-1111-1111-1111-111111111105';
+    v_islamic_id UUID := '11111111-1111-1111-1111-111111111105';
 BEGIN
     INSERT INTO public.categories (id, name, slug, parent_id, sort_order) VALUES
-        (v_fiction_id, 'Fiction', 'fiction', NULL, 1),
-        (v_nonfiction_id, 'Non-Fiction', 'non-fiction', NULL, 2),
-        (v_academic_id, 'Academic & Reference', 'academic-reference', NULL, 3),
-        (v_rare_id, 'Rare & Collectibles', 'rare-collectibles', NULL, 4),
-        (v_children_id, 'Young Adult & Children', 'children-ya', NULL, 5)
+        (v_admission_id, 'মেডিকেল ও ভর্তি সহায়িকা', 'medical-engineering-admission', NULL, 1),
+        (v_academic_id, 'এইচএসসি ও এসএসসি', 'academic-hsc-ssc', NULL, 2),
+        (v_fiction_id, 'উপন্যাস ও সাহিত্য', 'fiction-literature', NULL, 3),
+        (v_nonfiction_id, 'বিজ্ঞান ও প্রযুক্তি', 'computer-science-engineering', NULL, 4),
+        (v_islamic_id, 'ইসলামি সাহিত্য ও ধর্মদর্শন', 'islamic-theological', NULL, 5),
+        (v_rare_id, 'দুষ্প্রাপ্য ও পুরাতন ক্লাসিক', 'rare-collectibles', NULL, 6)
     ON CONFLICT (id) DO NOTHING;
 
     INSERT INTO public.categories (id, name, slug, parent_id, sort_order) VALUES
-        ('22222222-2222-2222-2222-222222222201', 'Classic Literature', 'classic-literature', v_fiction_id, 10),
-        ('22222222-2222-2222-2222-222222222202', 'Sci-Fi & Fantasy', 'sci-fi-fantasy', v_fiction_id, 11),
-        ('22222222-2222-2222-2222-222222222203', 'Mystery & Detective', 'mystery-detective', v_fiction_id, 12),
-        ('22222222-2222-2222-2222-222222222204', 'Historical Fiction', 'historical-fiction', v_fiction_id, 13),
-        ('22222222-2222-2222-2222-222222222205', 'History & Warfare', 'history-warfare', v_nonfiction_id, 20),
-        ('22222222-2222-2222-2222-222222222206', 'Philosophy & Ideas', 'philosophy-ideas', v_nonfiction_id, 21),
-        ('22222222-2222-2222-2222-222222222207', 'Computer Science & Tech', 'computer-science-tech', v_nonfiction_id, 22),
-        ('22222222-2222-2222-2222-222222222208', 'Biography & Memoir', 'biography-memoir', v_nonfiction_id, 23),
-        ('22222222-2222-2222-2222-222222222209', 'First Editions', 'first-editions', v_rare_id, 30),
-        ('22222222-2222-2222-2222-222222222210', 'Signed & Inscribed', 'signed-inscribed', v_rare_id, 31)
+        ('22222222-2222-2222-2222-222222222203', 'মেডিকেল ভর্তি প্রশ্নব্যাংক ও হ্যান্ডবুক', 'medical-question-banks', v_admission_id, 10),
+        ('22222222-2222-2222-2222-222222222204', 'প্রকৌশল ও বিশ্ববিদ্যালয় ভর্তি', 'engineering-varsity', v_admission_id, 11),
+        ('22222222-2222-2222-2222-222222222201', 'ধ্রুপদী বাংলা সাহিত্য', 'bangla-classics', v_fiction_id, 20),
+        ('22222222-2222-2222-2222-222222222202', 'সায়েন্স ফিকশন ও ফ্যান্টাসি', 'sci-fi-fantasy', v_fiction_id, 21),
+        ('22222222-2222-2222-2222-222222222207', 'কম্পিউটার সায়েন্স ও প্রোগ্রামিং', 'computer-science-tech', v_nonfiction_id, 30),
+        ('22222222-2222-2222-2222-222222222206', 'দর্শন ও চিন্তাধারা', 'philosophy-ideas', v_nonfiction_id, 31)
     ON CONFLICT (id) DO NOTHING;
 END $$;
 

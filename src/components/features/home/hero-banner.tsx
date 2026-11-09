@@ -25,7 +25,7 @@ export function HeroBanner() {
             <div className="flex flex-wrap items-center gap-2">
               <Badge className="border-none bg-white/20 px-3 py-1 text-xs font-semibold text-white backdrop-blur hover:bg-white/30">
                 <Sparkles className="mr-1.5 inline h-3.5 w-3.5 text-amber-300" />
-                Rokomari & RTDS Season Book Fair 2026
+                RTDS জাতীয় বইমেলা ও ভর্তি উৎসব ২০২৬
               </Badge>
               <span className="rounded-full bg-amber-400 px-2.5 py-0.5 text-xs font-bold tracking-wider text-slate-950 uppercase">
                 Up to 30% Off
@@ -33,12 +33,13 @@ export function HeroBanner() {
             </div>
 
             <h1 className="text-3xl leading-tight font-black tracking-tight sm:text-4xl lg:text-5xl">
-              Medical, Engineering & Rare Books from Independent Booksellers.
+              মেডিকেল, প্রকৌশল ও একাডেমিক বইয়ের বিশ্বস্ত মার্কেটপ্লেস
             </h1>
 
             <p className="max-w-xl text-sm leading-relaxed font-normal text-white/90 sm:text-base">
-              Order Aspect Series, RTDS Question Banks, Literature, and Rare
-              Classics from multiple independent publishers in a single cart.
+              RTDS মেডিকেল মাস্টার সিরিজ, ইঞ্জিনিয়ারিং ভর্তি সহায়িকা, একাডেমিক
+              গাইড এবং সাহিত্য এক কার্টে অর্ডার করুন সরাসরি নির্ভরযোগ্য প্রকাশক
+              ও বুকশপ থেকে।
             </p>
 
             <div className="flex flex-wrap items-center gap-3 pt-2">
@@ -48,7 +49,7 @@ export function HeroBanner() {
                   className="h-11 gap-2 rounded-xl bg-white px-6 font-bold text-red-600 shadow-lg hover:bg-slate-100"
                 >
                   <BookOpen className="h-4 w-4" />
-                  Explore Catalog
+                  বইয়ের তালিকা দেখুন (Catalog)
                 </Button>
               </Link>
 
@@ -58,7 +59,7 @@ export function HeroBanner() {
                   variant="outline"
                   className="h-11 gap-2 rounded-xl border-white/40 px-6 text-white backdrop-blur hover:bg-white/10"
                 >
-                  <span>Sell on Platform</span>
+                  <span>বই বিক্রি করুন (Sell Books)</span>
                   <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>
@@ -69,32 +70,32 @@ export function HeroBanner() {
           <div className="hidden grid-cols-2 gap-3.5 lg:col-span-5 lg:grid">
             <div className="space-y-2 rounded-2xl border border-white/20 bg-white/15 p-4 shadow-lg backdrop-blur-md">
               <span className="text-[10px] font-bold tracking-wider text-amber-300 uppercase">
-                Medical & HSC
+                মেডিকেল ও এইচএসসি
               </span>
               <p className="text-sm leading-snug font-bold text-white">
-                RTDS Master Biology & Aspect Physics Sets
+                RTDS মেডিকেল মাস্টার বায়োলজি ও ফিজিক্স সেট
               </p>
               <p className="text-xs text-white/80">
-                Available now with nationwide COD delivery
+                সারা দেশে দ্রুত ক্যাশ অন ডেলিভারি সুবিধা
               </p>
             </div>
 
             <div className="space-y-2 rounded-2xl border border-white/20 bg-white/15 p-4 shadow-lg backdrop-blur-md">
               <span className="text-[10px] font-bold tracking-wider text-amber-300 uppercase">
-                Rare & Classics
+                সাহিত্য ও দুষ্প্রাপ্য
               </span>
               <p className="text-sm leading-snug font-bold text-white">
-                First Edition Dunes & Archival Clothbounds
+                ধ্রুপদী বাংলা ও বিশ্ব সাহিত্যের সেরা সংস্করণ
               </p>
               <p className="text-xs text-white/80">
-                Verified antique bookshops across the country
+                আসল ও পাইরেসিমুক্ত নতুন ও রিকন্ডিশনড কপি
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 4 Trust & Service Indicators (Rokomari & Aspect Style) */}
+      {/* 4 Trust & Service Indicators */}
       <section className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
         <div className="bg-card/60 flex items-center gap-3 rounded-xl border p-3.5 shadow-2xs sm:p-4">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-red-500/10 text-red-600">
@@ -102,10 +103,10 @@ export function HeroBanner() {
           </div>
           <div>
             <h4 className="text-foreground text-xs font-bold sm:text-sm">
-              100% Genuine Print
+              ১০০% আসল বই (Genuine)
             </h4>
             <p className="text-muted-foreground text-[11px]">
-              Original publisher copies
+              মূল প্রকাশনী ও বিশ্বস্ত কপি
             </p>
           </div>
         </div>
@@ -116,10 +117,10 @@ export function HeroBanner() {
           </div>
           <div>
             <h4 className="text-foreground text-xs font-bold sm:text-sm">
-              Nationwide COD
+              সারা দেশে ক্যাশ অন ডেলিভারি
             </h4>
             <p className="text-muted-foreground text-[11px]">
-              Cash on delivery available
+              ৬৪ জেলায় দ্রুততম হোম ডেলিভারি
             </p>
           </div>
         </div>
@@ -130,10 +131,10 @@ export function HeroBanner() {
           </div>
           <div>
             <h4 className="text-foreground text-xs font-bold sm:text-sm">
-              7 Days Return
+              ৭ দিনের রিপ্লেসমেন্ট
             </h4>
             <p className="text-muted-foreground text-[11px]">
-              Hassle-free replacement
+              ত্রুটিপূর্ণ বইয়ে সহজ পরিবর্তন
             </p>
           </div>
         </div>
@@ -144,10 +145,10 @@ export function HeroBanner() {
           </div>
           <div>
             <h4 className="text-foreground text-xs font-bold sm:text-sm">
-              Verified Bookshops
+              যাচাইকৃত বুকশপ ও ভেন্ডর
             </h4>
             <p className="text-muted-foreground text-[11px]">
-              Strict quality screening
+              নিরাপদ অনলাইন বুক শপিং
             </p>
           </div>
         </div>

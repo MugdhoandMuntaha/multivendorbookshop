@@ -49,7 +49,7 @@ export function BookForm({
       description: initialData?.description || "",
       categoryId: initialData?.categoryId || (categories[0]?.id ?? ""),
       condition: initialData?.condition || "good",
-      price: initialData?.price ? Number(initialData.price) : 10.0,
+      price: initialData?.price ? Number(initialData.price) : 450,
       stock: initialData?.stock !== undefined ? Number(initialData.stock) : 1,
       status: initialData?.status || "active",
       images: initialData?.images || [],
@@ -173,10 +173,10 @@ export function BookForm({
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-1.5">
-                <Label htmlFor="title">Book Title *</Label>
+                <Label htmlFor="title">Book Title (বইয়ের নাম) *</Label>
                 <Input
                   id="title"
-                  placeholder="e.g. Aspect Physics Admission Question Bank"
+                  placeholder="e.g. RTDS মেডিকেল মাস্টার বায়োলজি রিভিশন সেট"
                   {...register("title")}
                 />
                 {errors.title && (
@@ -188,10 +188,10 @@ export function BookForm({
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div className="space-y-1.5">
-                  <Label htmlFor="author">Author(s) *</Label>
+                  <Label htmlFor="author">Author(s) / লেখক বা প্রকাশনা *</Label>
                   <Input
                     id="author"
-                    placeholder="e.g. Frank Herbert or Editorial Board"
+                    placeholder="e.g. ড. হাসান ও RTDS টিম"
                     {...register("author")}
                   />
                   {errors.author && (
@@ -205,7 +205,7 @@ export function BookForm({
                   <Label htmlFor="isbn">ISBN (10 or 13 digits)</Label>
                   <Input
                     id="isbn"
-                    placeholder="e.g. 9780441172719"
+                    placeholder="e.g. 9789849281144"
                     {...register("isbn")}
                   />
                   {errors.isbn && (
@@ -217,11 +217,11 @@ export function BookForm({
               </div>
 
               <div className="space-y-1.5">
-                <Label htmlFor="description">Book Description *</Label>
+                <Label htmlFor="description">Book Description (বিবরণ) *</Label>
                 <Textarea
                   id="description"
                   rows={5}
-                  placeholder="Provide an overview of the book's edition, binding, table of contents, and condition notes..."
+                  placeholder="বইয়ের সংস্করণ, কন্ডিশন, সিলেবাস ও অধ্যায়ভিত্তিক বিষয়ের বিবরণ বিস্তারিত লিখুন..."
                   {...register("description")}
                 />
                 {errors.description && (
@@ -310,17 +310,17 @@ export function BookForm({
 
               {/* Price */}
               <div className="space-y-1.5">
-                <Label htmlFor="price">Listing Price ($ USD) *</Label>
+                <Label htmlFor="price">Listing Price (মূল্য - ৳ BDT) *</Label>
                 <Input
                   id="price"
                   type="number"
-                  step="0.01"
-                  min="0.01"
-                  placeholder="24.99"
+                  step="1"
+                  min="1"
+                  placeholder="450"
                   {...register("price", { valueAsNumber: true })}
                 />
                 <p className="text-muted-foreground text-[11px]">
-                  Stated in USD. Converted safely to minor units (cents) in
+                  Stated in BDT (৳). Converted safely to minor units (paisa) in
                   database.
                 </p>
                 {errors.price && (

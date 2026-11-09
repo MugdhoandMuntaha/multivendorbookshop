@@ -1,90 +1,89 @@
 -- =========================================================================
 -- Supabase Marketplace Seed Data (Categories, Vendors, Books, Reviews)
+-- Dedicated to RTDS Platform & Bangladeshi Book Marketplace (Currency: BDT)
 -- =========================================================================
 
 -- 1. Create Core Categories Hierarchy
 DO $$
 DECLARE
+    v_admission_id UUID := '11111111-1111-1111-1111-111111111103';
+    v_academic_id UUID := '11111111-1111-1111-1111-111111111106';
     v_fiction_id UUID := '11111111-1111-1111-1111-111111111101';
     v_nonfiction_id UUID := '11111111-1111-1111-1111-111111111102';
-    v_academic_id UUID := '11111111-1111-1111-1111-111111111103';
     v_rare_id UUID := '11111111-1111-1111-1111-111111111104';
-    v_children_id UUID := '11111111-1111-1111-1111-111111111105';
+    v_islamic_id UUID := '11111111-1111-1111-1111-111111111105';
 BEGIN
     -- Parent Categories
     INSERT INTO public.categories (id, name, slug, parent_id, sort_order) VALUES
-        (v_fiction_id, 'Fiction', 'fiction', NULL, 1),
-        (v_nonfiction_id, 'Non-Fiction', 'non-fiction', NULL, 2),
-        (v_academic_id, 'Academic & Reference', 'academic-reference', NULL, 3),
-        (v_rare_id, 'Rare & Collectibles', 'rare-collectibles', NULL, 4),
-        (v_children_id, 'Young Adult & Children', 'children-ya', NULL, 5)
+        (v_admission_id, 'মেডিকেল ও ভর্তি সহায়িকা', 'medical-engineering-admission', NULL, 1),
+        (v_academic_id, 'এইচএসসি ও এসএসসি', 'academic-hsc-ssc', NULL, 2),
+        (v_fiction_id, 'উপন্যাস ও সাহিত্য', 'fiction-literature', NULL, 3),
+        (v_nonfiction_id, 'বিজ্ঞান ও প্রযুক্তি', 'computer-science-engineering', NULL, 4),
+        (v_islamic_id, 'ইসলামি সাহিত্য ও ধর্মদর্শন', 'islamic-theological', NULL, 5),
+        (v_rare_id, 'দুষ্প্রাপ্য ও পুরাতন ক্লাসিক', 'rare-collectibles', NULL, 6)
+    ON CONFLICT (id) DO NOTHING;
+
+    -- Subcategories: Admission & Academic
+    INSERT INTO public.categories (id, name, slug, parent_id, sort_order) VALUES
+        ('22222222-2222-2222-2222-222222222203', 'মেডিকেল ভর্তি প্রশ্নব্যাংক ও হ্যান্ডবুক', 'medical-question-banks', v_admission_id, 10),
+        ('22222222-2222-2222-2222-222222222204', 'প্রকৌশল ও বিশ্ববিদ্যালয় ভর্তি', 'engineering-varsity', v_admission_id, 11)
     ON CONFLICT (id) DO NOTHING;
 
     -- Subcategories: Fiction
     INSERT INTO public.categories (id, name, slug, parent_id, sort_order) VALUES
-        ('22222222-2222-2222-2222-222222222201', 'Classic Literature', 'classic-literature', v_fiction_id, 10),
-        ('22222222-2222-2222-2222-222222222202', 'Sci-Fi & Fantasy', 'sci-fi-fantasy', v_fiction_id, 11),
-        ('22222222-2222-2222-2222-222222222203', 'Mystery & Detective', 'mystery-detective', v_fiction_id, 12),
-        ('22222222-2222-2222-2222-222222222204', 'Historical Fiction', 'historical-fiction', v_fiction_id, 13)
+        ('22222222-2222-2222-2222-222222222201', 'ধ্রুপদী বাংলা সাহিত্য', 'bangla-classics', v_fiction_id, 20),
+        ('22222222-2222-2222-2222-222222222202', 'সায়েন্স ফিকশন ও ফ্যান্টাসি', 'sci-fi-fantasy', v_fiction_id, 21)
     ON CONFLICT (id) DO NOTHING;
 
-    -- Subcategories: Non-Fiction
+    -- Subcategories: Tech & Science
     INSERT INTO public.categories (id, name, slug, parent_id, sort_order) VALUES
-        ('22222222-2222-2222-2222-222222222205', 'History & Warfare', 'history-warfare', v_nonfiction_id, 20),
-        ('22222222-2222-2222-2222-222222222206', 'Philosophy & Ideas', 'philosophy-ideas', v_nonfiction_id, 21),
-        ('22222222-2222-2222-2222-222222222207', 'Computer Science & Tech', 'computer-science-tech', v_nonfiction_id, 22),
-        ('22222222-2222-2222-2222-222222222208', 'Biography & Memoir', 'biography-memoir', v_nonfiction_id, 23)
-    ON CONFLICT (id) DO NOTHING;
-
-    -- Subcategories: Rare
-    INSERT INTO public.categories (id, name, slug, parent_id, sort_order) VALUES
-        ('22222222-2222-2222-2222-222222222209', 'First Editions', 'first-editions', v_rare_id, 30),
-        ('22222222-2222-2222-2222-222222222210', 'Signed & Inscribed', 'signed-inscribed', v_rare_id, 31)
+        ('22222222-2222-2222-2222-222222222207', 'কম্পিউটার সায়েন্স ও প্রোগ্রামিং', 'computer-science-tech', v_nonfiction_id, 30),
+        ('22222222-2222-2222-2222-222222222206', 'দর্শন ও চিন্তাধারা', 'philosophy-ideas', v_nonfiction_id, 31)
     ON CONFLICT (id) DO NOTHING;
 END $$;
 
 -- 2. Mock User Profiles for Vendors, Admins, and Buyers
 INSERT INTO public.profiles (id, full_name, role) VALUES
-    ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', 'Alice Marketplace Admin', 'admin'),
-    ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', 'Arthur Hastings (Old Paper Mill)', 'vendor'),
-    ('cccccccc-cccc-cccc-cccc-cccccccccccc', 'Clara Oswald (Beacon Hill Books)', 'vendor'),
-    ('dddddddd-dddd-dddd-dddd-dddddddddddd', 'David Scholar (Academic Exchange)', 'buyer'),
-    ('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', 'Emily Reader (Book Collector)', 'buyer')
+    ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', 'RTDS Platform Administrator', 'admin'),
+    ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', 'RTDS Central Depot Manager', 'vendor'),
+    ('cccccccc-cccc-cccc-cccc-cccccccccccc', 'Banglabazar Boi Bhaban Officer', 'vendor'),
+    ('dddddddd-dddd-dddd-dddd-dddddddddddd', 'Nilkhet Book Corner', 'vendor'),
+    ('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', 'Tahmid Hasan (Medical Aspirant)', 'buyer')
 ON CONFLICT (id) DO UPDATE SET
     full_name = EXCLUDED.full_name,
     role = EXCLUDED.role;
 
--- 3. Mock Vendors
+-- 3. Mock Vendors (Dedicated to RTDS & Bangladeshi Book Markets)
 INSERT INTO public.vendors (id, owner_id, shop_name, slug, description, status, commission_bps, shipping_fee_minor) VALUES
     (
         '33333333-3333-3333-3333-333333333301',
         'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb',
-        'The Old Paper Mill',
-        'the-old-paper-mill',
-        'Purveyors of rare, vintage, and antiquarian books since 1984. Specializing in first editions and signed classics.',
+        'RTDS Publications Central Depot',
+        'rtds-publications-depot',
+        'Official central warehouse of RTDS Platform. Dedicated publisher of Medical Master Series, high-yield question banks, and complete admission guides.',
         'approved',
         1000, -- 10%
-        500   -- $5.00 flat shipping
+        7000  -- ৳ 70.00 flat courier shipping
     ),
     (
         '33333333-3333-3333-3333-333333333302',
         'cccccccc-cccc-cccc-cccc-cccccccccccc',
-        'Beacon Hill Bookshop',
-        'beacon-hill-books',
-        'An independent neighbourhood bookshop curating exceptional literary fiction, philosophy, and modern classics.',
+        'Banglabazar Boi Bhaban',
+        'banglabazar-boi-bhaban',
+        'Dhaka Banglabazar premier independent bookhub specializing in Bengali classics, history, literature, and rare first editions.',
         'approved',
         1000, -- 10%
-        399   -- $3.99 flat shipping
+        7000  -- ৳ 70.00 flat courier shipping
     ),
     (
         '33333333-3333-3333-3333-333333333303',
         'dddddddd-dddd-dddd-dddd-dddddddddddd',
-        'Academic Book Exchange',
-        'academic-exchange',
-        'University textbooks, scholarly monographs, and computer science references in like-new and good conditions.',
-        'pending', -- Pending vendor application
+        'Nilkhet Engineering Corner',
+        'nilkhet-engineering-corner',
+        'Nilkhet Dhaka specialized supplier for CSE textbooks, electrical engineering, competitive programming, and algorithm references.',
+        'approved',
         1000,
-        450
+        7000
     )
 ON CONFLICT (id) DO UPDATE SET
     shop_name = EXCLUDED.shop_name,
@@ -92,163 +91,165 @@ ON CONFLICT (id) DO UPDATE SET
     description = EXCLUDED.description,
     status = EXCLUDED.status;
 
--- 4. Mock Books Catalog
+-- 4. Mock Books Catalog (Currency: BDT)
 INSERT INTO public.books (id, vendor_id, title, author, isbn, description, category_id, condition, price_minor, currency, stock, status) VALUES
-    -- Books from Vendor 1: The Old Paper Mill (Approved)
+    -- Books from Vendor 1: RTDS Publications Depot
     (
-        '44444444-4444-4444-4444-444444444401',
+        '44444444-4444-4444-4444-444444444409',
         '33333333-3333-3333-3333-333333333301',
-        'Dune (First Edition Reproduction)',
-        'Frank Herbert',
-        '9780441172719',
-        'Classic science fiction masterpiece with embossed spine, pristine dust jacket, and archival preservation sleeve.',
-        '22222222-2222-2222-2222-222222222202',
-        'like_new',
-        4500, -- $45.00
-        'USD',
-        4,
+        'RTDS Master Physics: Medical & Engineering Question Bank',
+        'RTDS Editorial Board',
+        '9789849281144',
+        'Comprehensive question bank with chapter-wise shortcut formulas, past 20 years medical admission solutions, and model test papers.',
+        '22222222-2222-2222-2222-222222222203',
+        'new',
+        65000, -- ৳ 650.00
+        'BDT',
+        40,
         'active'
     ),
     (
-        '44444444-4444-4444-4444-444444444402',
+        '44444444-4444-4444-4444-444444444410',
         '33333333-3333-3333-3333-333333333301',
-        'The Great Gatsby (1953 Scribner Printing)',
-        'F. Scott Fitzgerald',
-        '9780743273565',
-        'Early printing of Fitzgerald''s tragic portrait of the Jazz Age. Minor shelf wear on corner cloth, interior unmarked.',
+        'RTDS Medical Master Biology: Final Revision Set',
+        'Dr. Hasan & RTDS Faculty Team',
+        '9789849281199',
+        'Complete medical biology handbook, high-yield diagrams, and memory mnemonics for medical admission test candidates.',
+        '22222222-2222-2222-2222-222222222203',
+        'new',
+        58000, -- ৳ 580.00
+        'BDT',
+        50,
+        'active'
+    ),
+    (
+        '44444444-4444-4444-4444-444444444411',
+        '33333333-3333-3333-3333-333333333301',
+        'RTDS Chemistry Formula & Admission Shortcut Handbook',
+        'Dr. Mahbub & RTDS Team',
+        '9789849281151',
+        'Organic and inorganic reactions, periodic trends, and shortcut numerical problem-solving formulas for competitive tests.',
+        '22222222-2222-2222-2222-222222222203',
+        'new',
+        48000, -- ৳ 480.00
+        'BDT',
+        35,
+        'active'
+    ),
+    -- Books from Vendor 2: Banglabazar Boi Bhaban
+    (
+        '44444444-4444-4444-4444-444444444401',
+        '33333333-3333-3333-3333-333333333302',
+        'Dune (Deluxe Hardcover Collector''s Edition)',
+        'Frank Herbert',
+        '9780441172719',
+        'Archival clothbound edition of the seminal science fiction masterpiece with full-color map inserts and gilded edges.',
+        '22222222-2222-2222-2222-222222222202',
+        'new',
+        125000, -- ৳ 1,250.00
+        'BDT',
+        6,
+        'active'
+    ),
+    (
+        '44444444-4444-4444-4444-444444444412',
+        '33333333-3333-3333-3333-333333333302',
+        'লালসালু (Lalsalu - Heritage Hardcover)',
+        'সৈয়দ ওয়ালীউল্লাহ (Syed Waliullah)',
+        '9789844120341',
+        'বাংলা সাহিত্যের কালজয়ী উপন্যাস। উন্নত মুদ্রণ ও বাঁধাইকৃত বিশেষ সংস্করণ।',
         '22222222-2222-2222-2222-222222222201',
-        'good',
-        6500, -- $65.00
-        'USD',
-        1,
+        'new',
+        26000, -- ৳ 260.00
+        'BDT',
+        25,
         'active'
     ),
     (
         '44444444-4444-4444-4444-444444444403',
-        '33333333-3333-3333-3333-333333333301',
-        'Meditations (Hardcover Clothbound)',
+        '33333333-3333-3333-3333-333333333302',
+        'Meditations (Crimson Clothbound)',
         'Marcus Aurelius',
         '9780140449334',
-        'Personal writings of the Roman Emperor translated by Gregory Hays. Gilt lettering on crimson cloth.',
+        'Stoic philosophy and royal personal reflections translated with critical notes and biographical preface.',
         '22222222-2222-2222-2222-222222222206',
         'new',
-        2800, -- $28.00
-        'USD',
-        8,
+        45000, -- ৳ 450.00
+        'BDT',
+        12,
         'active'
     ),
-    (
-        '44444444-4444-4444-4444-444444444404',
-        '33333333-3333-3333-3333-333333333301',
-        'The Adventures of Sherlock Holmes',
-        'Arthur Conan Doyle',
-        '9780141034355',
-        'Vintage edition containing the 12 original Baker Street mysteries with classic Sidney Paget illustrations.',
-        '22222222-2222-2222-2222-222222222203',
-        'fair',
-        1850, -- $18.50
-        'USD',
-        3,
-        'active'
-    ),
-    -- Books from Vendor 2: Beacon Hill Bookshop (Approved)
+    -- Books from Vendor 3: Nilkhet Engineering Corner
     (
         '44444444-4444-4444-4444-444444444405',
-        '33333333-3333-3333-3333-333333333302',
+        '33333333-3333-3333-3333-333333333303',
         'Designing Data-Intensive Applications',
         'Martin Kleppmann',
         '9781449373320',
         'The definitive handbook on distributed systems, storage engines, stream processing, and data reliability.',
         '22222222-2222-2222-2222-222222222207',
         'new',
-        4200, -- $42.00
-        'USD',
-        12,
-        'active'
-    ),
-    (
-        '44444444-4444-4444-4444-444444444406',
-        '33333333-3333-3333-3333-333333333302',
-        'Neuromancer',
-        'William Gibson',
-        '9780441569595',
-        'The seminal cyberpunk classic that won the Hugo, Nebula, and Philip K. Dick awards.',
-        '22222222-2222-2222-2222-222222222202',
-        'like_new',
-        1600, -- $16.00
-        'USD',
-        5,
+        85000, -- ৳ 850.00
+        'BDT',
+        18,
         'active'
     ),
     (
         '44444444-4444-4444-4444-444444444407',
-        '33333333-3333-3333-3333-333333333302',
-        'Structure and Interpretation of Computer Programs',
+        '33333333-3333-3333-3333-333333333303',
+        'Structure and Interpretation of Computer Programs (SICP)',
         'Harold Abelson, Gerald Jay Sussman',
         '9780262510875',
         'MIT Press classic text on computer programming and computational problem-solving using Scheme.',
         '22222222-2222-2222-2222-222222222207',
         'good',
-        5500, -- $55.00
-        'USD',
-        2,
-        'active'
-    ),
-    (
-        '44444444-4444-4444-4444-444444444408',
-        '33333333-3333-3333-3333-333333333302',
-        'One Hundred Years of Solitude',
-        'Gabriel García Márquez',
-        '9780060883287',
-        'The brilliant multi-generational story of the Buendía family in the fictional town of Macondo.',
-        '22222222-2222-2222-2222-222222222201',
-        'like_new',
-        2100, -- $21.00
-        'USD',
-        7,
+        92000, -- ৳ 920.00
+        'BDT',
+        4,
         'active'
     )
 ON CONFLICT (id) DO UPDATE SET
     title = EXCLUDED.title,
     price_minor = EXCLUDED.price_minor,
+    currency = EXCLUDED.currency,
     stock = EXCLUDED.stock,
     status = EXCLUDED.status;
 
 -- 5. Mock Book Images (R2 Keys)
 INSERT INTO public.book_images (book_id, r2_key, position) VALUES
+    ('44444444-4444-4444-4444-444444444409', 'books/rtds-physics.webp', 0),
+    ('44444444-4444-4444-4444-444444444410', 'books/rtds-biology.webp', 0),
+    ('44444444-4444-4444-4444-444444444411', 'books/rtds-chemistry.webp', 0),
     ('44444444-4444-4444-4444-444444444401', 'books/dune-cover-1.webp', 0),
-    ('44444444-4444-4444-4444-444444444401', 'books/dune-spine-2.webp', 1),
-    ('44444444-4444-4444-4444-444444444402', 'books/gatsby-1953.webp', 0),
-    ('44444444-4444-4444-4444-444444444403', 'books/meditations-cloth.webp', 0),
+    ('44444444-4444-4444-4444-444444444412', 'books/lalsalu.webp', 0),
+    ('44444444-4444-4444-4444-444444444403', 'books/meditations.webp', 0),
     ('44444444-4444-4444-4444-444444444405', 'books/ddia-oreilly.webp', 0),
-    ('44444444-4444-4444-4444-444444444406', 'books/neuromancer-cover.webp', 0),
-    ('44444444-4444-4444-4444-444444444407', 'books/sicp-mit.webp', 0),
-    ('44444444-4444-4444-4444-444444444408', 'books/marquez-solitude.webp', 0)
+    ('44444444-4444-4444-4444-444444444407', 'books/sicp.webp', 0)
 ON CONFLICT DO NOTHING;
 
--- 6. Mock Completed Order & Verified Review
+-- 6. Mock Completed Order & Verified Review (BDT)
 DO $$
 DECLARE
     v_sample_order_id UUID := '55555555-5555-5555-5555-555555555501';
-    v_buyer_id UUID := 'eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee'; -- Emily Reader
-    v_book_id UUID := '44444444-4444-4444-4444-444444444405'; -- DDIA book
-    v_vendor_id UUID := '33333333-3333-3333-3333-333333333302'; -- Beacon Hill
+    v_buyer_id UUID := 'eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee'; -- Tahmid Hasan
+    v_book_id UUID := '44444444-4444-4444-4444-444444444410'; -- RTDS Biology
+    v_vendor_id UUID := '33333333-3333-3333-3333-333333333301'; -- RTDS Depot
 BEGIN
-    -- Create paid order
+    -- Create paid order (58000 + 7000 shipping = 65000 paisa / ৳ 650)
     INSERT INTO public.orders (
         id, buyer_id, subtotal_minor, shipping_minor, total_minor,
         currency, status, payment_status, payment_provider, shipping_address
     ) VALUES (
         v_sample_order_id,
         v_buyer_id,
-        4200,
-        399,
-        4599,
-        'USD',
+        58000,
+        7000,
+        65000,
+        'BDT',
         'completed',
         'paid',
-        'mock',
-        '{"name": "Emily Reader", "street": "42 Beacon St", "city": "Boston", "state": "MA", "zip": "02108"}'::jsonb
+        'bkash',
+        '{"name": "Tahmid Hasan", "phone": "01712345678", "street": "Road 4, Sector 11, Uttara", "city": "Dhaka", "division": "Dhaka", "postcode": "1230"}'::jsonb
     ) ON CONFLICT (id) DO NOTHING;
 
     -- Create order item
@@ -260,11 +261,11 @@ BEGIN
         v_book_id,
         v_vendor_id,
         1,
-        4200,
+        58000,
         1000,
-        420,
+        5800,
         'delivered',
-        'USPS9400111899223344556677'
+        'STEADFAST-BD-948271'
     ) ON CONFLICT DO NOTHING;
 
     -- Create verified buyer review
@@ -274,6 +275,6 @@ BEGIN
         v_book_id,
         v_buyer_id,
         5,
-        'Arrived in pristine condition exactly as described. One of the best software engineering books ever written!'
+        'অরিজিনাল RTDS প্রকাশনীর বই পেয়েছি। মেডিকেল ভর্তি পরীক্ষার জন্য হাই-ইল্ড ডায়াগ্রাম এবং বিগত বছরের ব্যাখ্যামূলক প্রশ্নোত্তরগুলো অসাধারণ!'
     ) ON CONFLICT (book_id, buyer_id) DO NOTHING;
 END $$;

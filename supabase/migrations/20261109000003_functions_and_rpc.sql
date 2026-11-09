@@ -136,7 +136,7 @@ BEGIN
         v_subtotal_minor,
         v_shipping_minor,
         v_total_minor,
-        'USD',
+        'BDT',
         'pending',
         'pending',
         p_payment_provider,

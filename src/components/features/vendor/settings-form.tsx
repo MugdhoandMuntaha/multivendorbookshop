@@ -113,13 +113,15 @@ export function VendorSettingsForm({ initialData }: SettingsFormProps) {
             </div>
 
             <div className="space-y-1.5">
-              <Label htmlFor="shippingFee">Flat Shipping Fee ($ USD) *</Label>
+              <Label htmlFor="shippingFee">
+                Flat Shipping Fee (ডেলিভারি চার্জ - ৳ BDT) *
+              </Label>
               <Input
                 id="shippingFee"
                 type="number"
-                step="0.01"
+                step="1"
                 min="0"
-                placeholder="3.50"
+                placeholder="70"
                 {...register("shippingFee", { valueAsNumber: true })}
               />
               {errors.shippingFee && (

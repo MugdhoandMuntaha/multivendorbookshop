@@ -42,7 +42,7 @@ export function VendorApplyForm({ initialShopName = "" }: ApplyFormProps) {
       shopName: initialShopName,
       slug: "",
       description: "",
-      shippingFee: 3.5, // Standard local flat delivery
+      shippingFee: 70, // Standard local flat delivery in BDT (৳ 70)
       phone: "",
       logoKey: "",
       bannerKey: "",
@@ -131,10 +131,10 @@ export function VendorApplyForm({ initialShopName = "" }: ApplyFormProps) {
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div className="space-y-1.5">
-              <Label htmlFor="shopName">Shop Name *</Label>
+              <Label htmlFor="shopName">Shop Name (বুকশপের নাম) *</Label>
               <Input
                 id="shopName"
-                placeholder="e.g. Nilkhet Rare Books"
+                placeholder="e.g. নীলক্ষেত বুক হাউস (Nilkhet Book House)"
                 {...register("shopName")}
                 onChange={handleShopNameChange}
               />
@@ -154,7 +154,7 @@ export function VendorApplyForm({ initialShopName = "" }: ApplyFormProps) {
                 <input
                   id="slug"
                   className="bg-transparent px-2.5 py-1 text-sm outline-none"
-                  placeholder="nilkhet-rare-books"
+                  placeholder="nilkhet-book-house"
                   {...register("slug")}
                 />
               </div>
@@ -168,10 +168,12 @@ export function VendorApplyForm({ initialShopName = "" }: ApplyFormProps) {
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div className="space-y-1.5">
-              <Label htmlFor="phone">Contact Phone Number *</Label>
+              <Label htmlFor="phone">
+                Contact Phone Number (মোবাইল নম্বর) *
+              </Label>
               <Input
                 id="phone"
-                placeholder="e.g. +8801712345678"
+                placeholder="e.g. 01712-345678"
                 {...register("phone")}
               />
               {errors.phone && (
@@ -182,13 +184,15 @@ export function VendorApplyForm({ initialShopName = "" }: ApplyFormProps) {
             </div>
 
             <div className="space-y-1.5">
-              <Label htmlFor="shippingFee">Flat Shipping Fee ($ USD) *</Label>
+              <Label htmlFor="shippingFee">
+                Flat Shipping Fee (ডেলিভারি চার্জ - ৳ BDT) *
+              </Label>
               <Input
                 id="shippingFee"
                 type="number"
-                step="0.01"
+                step="1"
                 min="0"
-                placeholder="3.50"
+                placeholder="70"
                 {...register("shippingFee", { valueAsNumber: true })}
               />
               {errors.shippingFee && (
