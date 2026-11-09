@@ -385,6 +385,14 @@ export interface Database {
         };
         Returns: string;
       };
+      is_admin: {
+        Args: Record<string, never>;
+        Returns: boolean;
+      };
+      get_my_vendor_id: {
+        Args: Record<string, never>;
+        Returns: string | null;
+      };
     };
     Enums: {
       user_role: UserRole;
