@@ -1,29 +1,37 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { Store, BookOpen, Package, Settings } from "lucide-react";
-import { requireRole } from "@/server/queries/auth";
+import { requireUser, getCurrentProfile } from "@/server/queries/auth";
+import { getCurrentVendor } from "@/server/queries/vendor";
 
 export default async function VendorPortalLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const { profile } = await requireRole(
-    ["vendor", "admin"],
-    "/vendor/dashboard"
-  );
+  await requireUser("/vendor/dashboard");
+  const [{ profile }, vendor] = await Promise.all([
+    getCurrentProfile(),
+    getCurrentVendor(),
+  ]);
+
+  // If user is neither a vendor/admin nor has applied for vendor, guide them to application
+  if (!vendor && profile?.role !== "vendor" && profile?.role !== "admin") {
+    redirect("/vendor/apply");
+  }
 
   return (
     <div className="container mx-auto max-w-7xl px-4 py-8">
       <div className="flex flex-col gap-8 md:flex-row">
         {/* Vendor Sidebar */}
         <aside className="w-full shrink-0 space-y-4 md:w-64">
-          <div className="bg-card space-y-1 rounded-xl border p-4">
+          <div className="bg-card space-y-1 rounded-xl border p-4 shadow-sm">
             <div className="text-foreground flex items-center gap-2 font-bold">
               <Store className="text-primary h-5 w-5" />
-              <span>Vendor Portal</span>
+              <span>{vendor?.shop_name || "Vendor Portal"}</span>
             </div>
             <p className="text-muted-foreground truncate text-xs">
-              {profile?.full_name}
+              {profile?.full_name} ({vendor?.status || profile?.role})
             </p>
           </div>
 
@@ -60,7 +68,7 @@ export default async function VendorPortalLayout({
         </aside>
 
         {/* Vendor Main Content Area */}
-        <main className="flex-1">{children}</main>
+        <main className="min-w-0 flex-1">{children}</main>
       </div>
     </div>
   );

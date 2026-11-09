@@ -29,3 +29,20 @@ export function formatPrice(
 export function toMinorUnits(amount: number): number {
   return Math.round(amount * 100);
 }
+
+/**
+ * Resolves a Cloudflare R2 object key into a public CDN URL.
+ */
+export function getR2ImageUrl(r2Key: string | null | undefined): string {
+  if (!r2Key) {
+    return "/placeholder-book.svg";
+  }
+  if (r2Key.startsWith("http://") || r2Key.startsWith("https://")) {
+    return r2Key;
+  }
+  const publicBase =
+    process.env.NEXT_PUBLIC_R2_PUBLIC_URL?.replace(/\/$/, "") ||
+    "https://pub-aeaa730b76614ca59dda803402a739a3.r2.dev";
+  const cleanKey = r2Key.startsWith("/") ? r2Key.slice(1) : r2Key;
+  return `${publicBase}/${cleanKey}`;
+}
