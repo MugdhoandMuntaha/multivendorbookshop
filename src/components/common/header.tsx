@@ -9,19 +9,18 @@ import {
   Menu,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { getCurrentProfile } from "@/server/queries/auth";
 import { UserNav } from "./user-nav";
 
 export function HeaderFallback() {
   return (
-    <header className="bg-background sticky top-0 z-50 w-full border-b shadow-xs">
+    <header className="sticky top-0 z-50 w-full border-b border-emerald-100 bg-white/90 shadow-xs">
       <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link
           href="/"
-          className="flex items-center gap-2 text-xl font-bold tracking-tight text-red-600"
+          className="flex items-center gap-2 text-xl font-bold tracking-tight text-emerald-700"
         >
-          <BookOpen className="h-6 w-6 text-red-600" />
+          <BookOpen className="h-6 w-6 text-emerald-600" />
           <span>RTDS Bookshop</span>
         </Link>
         <div className="bg-muted h-9 w-48 animate-pulse rounded-lg" />
@@ -34,16 +33,16 @@ export async function Header() {
   const { profile } = await getCurrentProfile();
 
   return (
-    <header className="bg-background/98 sticky top-0 z-50 w-full border-b shadow-2xs backdrop-blur">
-      {/* 1. Top Announcement Bar (Bangladeshi Helpline & Delivery Info) */}
-      <div className="border-b border-slate-800 bg-slate-900 px-4 py-1.5 text-xs text-slate-200">
+    <header className="sticky top-0 z-50 w-full border-b border-emerald-100/80 bg-white/95 shadow-sm backdrop-blur-md">
+      {/* 1. Top Announcement Bar (Deep Emerald & Gold Accents) */}
+      <div className="border-b border-emerald-900/80 bg-emerald-950 px-4 py-1.5 text-xs text-emerald-100">
         <div className="container mx-auto flex max-w-7xl items-center justify-between">
           <div className="flex items-center gap-4 text-[11px]">
             <span className="flex items-center gap-1.5 font-medium">
-              <PhoneCall className="h-3 w-3 text-red-400" />
+              <PhoneCall className="h-3 w-3 text-emerald-400" />
               <span>হেল্পলাইন: ০৯৬১২-০০৭৮৩৭ (সকাল ৯টা - রাত ১০টা)</span>
             </span>
-            <span className="hidden text-slate-500 sm:inline-block">|</span>
+            <span className="hidden text-emerald-700 sm:inline-block">|</span>
             <span className="hidden font-medium text-amber-300 sm:inline-block">
               ⚡ সারা দেশে ক্যাশ অন ডেলিভারি | ৳১,০০০ টাকার অর্ডারে ফ্রি
               ডেলিভারি
@@ -53,45 +52,45 @@ export async function Header() {
           <div className="flex items-center gap-3 text-[11px]">
             <Link
               href="/vendor/apply"
-              className="flex items-center gap-1 font-medium text-amber-300 transition-colors hover:text-white"
+              className="flex items-center gap-1.5 font-semibold text-emerald-300 transition-colors hover:text-white"
             >
-              <Store className="h-3 w-3" />
+              <Store className="h-3 w-3 text-emerald-400" />
               <span>বই বিক্রি করুন (ভেন্ডর হোন)</span>
             </Link>
           </div>
         </div>
       </div>
 
-      {/* 2. Main Header with RTDS Omnisearch */}
+      {/* 2. Main Header with Neomorphic Omnisearch */}
       <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-        {/* Brand Logo */}
+        {/* Brand Logo with Neomorphic Tactile Container */}
         <Link
           href="/"
-          className="flex shrink-0 items-center gap-2 text-2xl font-black tracking-tight text-red-600"
+          className="flex shrink-0 items-center gap-2.5 text-2xl font-black tracking-tight"
         >
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-red-600 text-white shadow-md">
+          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-700 text-white shadow-[3px_3px_10px_rgba(5,150,105,0.25),-2px_-2px_6px_rgba(255,255,255,0.8)]">
             <BookOpen className="h-5 w-5" />
           </div>
           <div className="flex flex-col leading-none">
-            <span className="text-foreground text-xl font-black">
-              RTDS <span className="text-red-600">Bookshop</span>
+            <span className="text-xl font-black tracking-tight text-slate-900">
+              RTDS <span className="text-emerald-600">Bookshop</span>
             </span>
-            <span className="text-muted-foreground text-[10px] font-medium tracking-normal">
+            <span className="text-[10px] font-semibold tracking-wide text-emerald-700">
               Official Book Marketplace
             </span>
           </div>
         </Link>
 
-        {/* Central Search Bar */}
+        {/* Central Search Bar (Neomorphic Recessed Inset Container) */}
         <form
           action="/books"
           method="GET"
           className="relative hidden max-w-2xl flex-1 items-center md:flex"
         >
-          <div className="bg-muted/20 focus-within:bg-background relative flex w-full items-center rounded-xl border-2 border-red-600/30 transition-all focus-within:border-red-600">
+          <div className="neo-input-recessed flex w-full items-center rounded-2xl px-1 py-1">
             <select
               name="category"
-              className="text-muted-foreground border-border max-w-[140px] cursor-pointer truncate border-r bg-transparent px-3 py-2 text-xs font-semibold focus:outline-none"
+              className="max-w-[140px] cursor-pointer truncate border-r border-emerald-100 bg-transparent px-3 py-1.5 text-xs font-semibold text-emerald-900 focus:outline-none"
             >
               <option value="">সকল ক্যাটাগরি</option>
               <option value="medical">মেডিকেল ভর্তি প্রস্তুতি</option>
@@ -106,25 +105,28 @@ export async function Header() {
               type="text"
               name="q"
               placeholder="বইয়ের নাম, লেখক বা বিষয় দিয়ে অনুসন্ধান করুন... (Search books, authors, ISBNs)"
-              className="text-foreground placeholder:text-muted-foreground/70 w-full bg-transparent px-3 py-2 text-xs focus:outline-none sm:text-sm"
+              className="w-full bg-transparent px-3 py-1.5 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none sm:text-sm"
             />
 
-            <Button
+            <button
               type="submit"
-              size="sm"
-              className="m-1 h-8 shrink-0 gap-1.5 rounded-lg bg-red-600 px-4 font-medium text-white shadow-sm hover:bg-red-700"
+              className="neo-button-green m-0.5 flex h-9 shrink-0 items-center gap-1.5 rounded-xl px-4 text-xs font-bold"
             >
               <Search className="h-4 w-4" />
-              <span className="hidden text-xs lg:inline">অনুসন্ধান</span>
-            </Button>
+              <span className="hidden lg:inline">অনুসন্ধান</span>
+            </button>
           </div>
         </form>
 
-        {/* Right User Actions */}
+        {/* Right User Actions (Neomorphic Soft Light Buttons) */}
         <div className="flex shrink-0 items-center gap-2 sm:gap-3">
           <Link href="/buyer/wishlist" className="hidden sm:inline-flex">
-            <Button variant="ghost" size="sm" className="relative p-2.5">
-              <Heart className="text-muted-foreground h-4 w-4 transition-colors hover:text-red-600" />
+            <Button
+              variant="ghost"
+              size="sm"
+              className="neo-button-light relative h-9 w-9 rounded-xl p-0 hover:text-emerald-700"
+            >
+              <Heart className="h-4 w-4 text-emerald-700" />
               <span className="sr-only">Wishlist</span>
             </Button>
           </Link>
@@ -133,15 +135,13 @@ export async function Header() {
             <Button
               variant="outline"
               size="sm"
-              className="border-primary/20 relative h-9 gap-2 px-3 font-semibold hover:border-red-600"
+              className="neo-button-light relative h-9 gap-2 rounded-xl border-emerald-200/80 px-3.5 font-bold text-emerald-800"
             >
-              <ShoppingBag className="h-4 w-4 text-red-600" />
-              <span className="text-foreground hidden text-xs font-bold sm:inline">
-                কার্ট (Cart)
-              </span>
-              <Badge className="flex h-4 min-w-[16px] items-center justify-center rounded-full bg-red-600 px-1.5 py-0 text-[10px] font-bold text-white">
+              <ShoppingBag className="h-4 w-4 text-emerald-600" />
+              <span className="hidden text-xs sm:inline">কার্ট</span>
+              <span className="flex h-4 min-w-[16px] items-center justify-center rounded-full bg-emerald-600 px-1.5 text-[10px] font-bold text-white shadow-xs">
                 0
-              </Badge>
+              </span>
             </Button>
           </Link>
 
@@ -149,64 +149,64 @@ export async function Header() {
         </div>
       </div>
 
-      {/* 3. Category Strip (RTDS Mega-Shelf) */}
-      <div className="bg-muted/40 hidden border-t sm:block">
-        <div className="text-muted-foreground container mx-auto flex max-w-7xl scrollbar-none items-center gap-6 overflow-x-auto px-4 py-2 text-xs font-semibold sm:px-6 lg:px-8">
+      {/* 3. Category Strip (Soft Mint Neomorphic Shelf Strip) */}
+      <div className="hidden border-t border-emerald-100/60 bg-gradient-to-r from-emerald-50/50 via-white to-emerald-50/50 sm:block">
+        <div className="container mx-auto flex max-w-7xl scrollbar-none items-center gap-6 overflow-x-auto px-4 py-2.5 text-xs font-semibold text-slate-700 sm:px-6 lg:px-8">
           <Link
             href="/categories"
-            className="text-foreground flex shrink-0 items-center gap-1.5 font-bold hover:text-red-600"
+            className="flex shrink-0 items-center gap-1.5 font-bold text-emerald-800 hover:text-emerald-600"
           >
-            <Menu className="h-3.5 w-3.5 text-red-600" />
+            <Menu className="h-3.5 w-3.5 text-emerald-600" />
             <span>সকল বই (All Categories)</span>
           </Link>
 
-          <span className="text-border">|</span>
+          <span className="text-emerald-200">|</span>
 
           <Link
             href="/books?category=medical"
-            className="shrink-0 font-bold text-red-600 transition-colors hover:text-red-600"
+            className="shrink-0 font-bold text-emerald-700 transition-colors hover:text-emerald-900"
           >
             🩺 মেডিকেল ভর্তি প্রস্তুতি (RTDS Medical)
           </Link>
 
           <Link
             href="/books?category=engineering"
-            className="shrink-0 transition-colors hover:text-red-600"
+            className="shrink-0 transition-colors hover:text-emerald-700"
           >
             📐 ইঞ্জিনিয়ারিং ও ভার্সিটি
           </Link>
 
           <Link
             href="/books?category=fiction"
-            className="shrink-0 transition-colors hover:text-red-600"
+            className="shrink-0 transition-colors hover:text-emerald-700"
           >
             উপন্যাস ও সাহিত্য (Fiction)
           </Link>
 
           <Link
             href="/books?category=non-fiction"
-            className="shrink-0 transition-colors hover:text-red-600"
+            className="shrink-0 transition-colors hover:text-emerald-700"
           >
             ইতিহাস ও দর্শন (Non-Fiction)
           </Link>
 
           <Link
             href="/books?category=islamic"
-            className="shrink-0 transition-colors hover:text-red-600"
+            className="shrink-0 transition-colors hover:text-emerald-700"
           >
             ইসলামি বই (Islamic Books)
           </Link>
 
           <Link
             href="/books?category=rare"
-            className="shrink-0 transition-colors hover:text-red-600"
+            className="shrink-0 transition-colors hover:text-emerald-700"
           >
-            দুষ্প্রাপ্য ও পুরাতন বই (Rare Books)
+            দুষ্প্রাপ্য ও পুরাতন বই (Rare)
           </Link>
 
           <Link
             href="/vendors"
-            className="text-foreground ml-auto shrink-0 font-bold transition-colors hover:text-red-600"
+            className="ml-auto shrink-0 font-bold text-emerald-800 transition-colors hover:text-emerald-600"
           >
             🏪 অনুমোদিত বুকশপ ও প্রকাশনী
           </Link>

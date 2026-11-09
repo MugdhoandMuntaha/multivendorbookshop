@@ -49,72 +49,80 @@
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  /* Soft Ambient Off-White for Neomorphic Layering */
+  --background: oklch(0.985 0.006 155);
+  --foreground: oklch(0.18 0.02 155);
+
+  /* Pure White Floating Cards */
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --card-foreground: oklch(0.18 0.02 155);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --popover-foreground: oklch(0.18 0.02 155);
+
+  /* Bangladeshi Emerald & Mint Green Aesthetic */
+  --primary: oklch(0.55 0.17 152);
+  --primary-foreground: oklch(1 0 0);
+
+  --secondary: oklch(0.96 0.025 152);
+  --secondary-foreground: oklch(0.28 0.08 152);
+
+  --muted: oklch(0.965 0.01 155);
+  --muted-foreground: oklch(0.48 0.03 155);
+
+  --accent: oklch(0.95 0.035 152);
+  --accent-foreground: oklch(0.25 0.09 152);
+
+  --destructive: oklch(0.58 0.22 25);
+
+  --border: oklch(0.93 0.012 155);
+  --input: oklch(0.93 0.012 155);
+  --ring: oklch(0.58 0.16 152);
+
+  --chart-1: oklch(0.55 0.17 152);
+  --chart-2: oklch(0.65 0.14 165);
+  --chart-3: oklch(0.75 0.11 140);
+  --chart-4: oklch(0.45 0.15 155);
+  --chart-5: oklch(0.35 0.12 150);
+
+  --radius: 0.875rem;
+
+  --sidebar: oklch(0.985 0.008 152);
+  --sidebar-foreground: oklch(0.18 0.02 155);
+  --sidebar-primary: oklch(0.55 0.17 152);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.95 0.03 152);
+  --sidebar-accent-foreground: oklch(0.25 0.09 152);
+  --sidebar-border: oklch(0.93 0.012 155);
+  --sidebar-ring: oklch(0.58 0.16 152);
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --background: oklch(0.15 0.02 155);
+  --foreground: oklch(0.98 0.005 155);
+  --card: oklch(0.19 0.025 155);
+  --card-foreground: oklch(0.98 0.005 155);
+  --popover: oklch(0.19 0.025 155);
+  --popover-foreground: oklch(0.98 0.005 155);
+  --primary: oklch(0.68 0.18 152);
+  --primary-foreground: oklch(0.12 0.03 155);
+  --secondary: oklch(0.24 0.035 152);
+  --secondary-foreground: oklch(0.96 0.02 152);
+  --muted: oklch(0.22 0.02 155);
+  --muted-foreground: oklch(0.72 0.02 155);
+  --accent: oklch(0.25 0.04 152);
+  --accent-foreground: oklch(0.98 0.01 152);
+  --destructive: oklch(0.68 0.19 25);
+  --border: oklch(0.28 0.025 155);
+  --input: oklch(0.28 0.025 155);
+  --ring: oklch(0.68 0.18 152);
+  --sidebar: oklch(0.18 0.025 155);
+  --sidebar-foreground: oklch(0.98 0.005 155);
+  --sidebar-primary: oklch(0.68 0.18 152);
+  --sidebar-primary-foreground: oklch(0.12 0.03 155);
+  --sidebar-accent: oklch(0.25 0.04 152);
+  --sidebar-accent-foreground: oklch(0.98 0.01 152);
+  --sidebar-border: oklch(0.28 0.025 155);
+  --sidebar-ring: oklch(0.68 0.18 152);
 }
 
 @layer base {
@@ -127,4 +135,105 @@
   html {
     @apply font-sans;
   }
+}
+
+/* =========================================================================
+   Neomorphic (Soft UI) Tactile Utilities for White & Green Aesthetic
+   ========================================================================= */
+
+/* Soft floating card with dual light-source highlights & ambient drop */
+.neo-card {
+  background: var(--card);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow:
+    6px 6px 16px -2px rgba(16, 185, 129, 0.05),
+    4px 4px 10px rgba(0, 0, 0, 0.03),
+    -4px -4px 12px rgba(255, 255, 255, 0.95);
+  border-radius: 1rem;
+}
+
+/* Elevated hover with tactile pushback */
+.neo-card-hover {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.neo-card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    8px 12px 24px -4px rgba(16, 185, 129, 0.12),
+    4px 6px 12px rgba(0, 0, 0, 0.04),
+    -6px -6px 16px rgba(255, 255, 255, 1);
+}
+
+/* Tactile neomorphic pill button */
+.neo-button-green {
+  background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+  color: #ffffff;
+  box-shadow:
+    4px 4px 12px rgba(5, 150, 105, 0.25),
+    -2px -2px 8px rgba(255, 255, 255, 0.7);
+  transition: all 0.2s ease;
+}
+.neo-button-green:hover {
+  background: linear-gradient(135deg, #047857 0%, #059669 100%);
+  box-shadow:
+    6px 6px 16px rgba(5, 150, 105, 0.35),
+    -3px -3px 10px rgba(255, 255, 255, 0.9);
+  transform: translateY(-1px);
+}
+.neo-button-green:active {
+  transform: translateY(1px);
+  box-shadow:
+    inset 2px 2px 6px rgba(0, 0, 0, 0.2),
+    inset -2px -2px 6px rgba(255, 255, 255, 0.2);
+}
+
+/* Neomorphic light soft button */
+.neo-button-light {
+  background: #ffffff;
+  color: #065f46;
+  border: 1px solid rgba(16, 185, 129, 0.15);
+  box-shadow:
+    4px 4px 10px rgba(0, 0, 0, 0.03),
+    -3px -3px 8px rgba(255, 255, 255, 0.95);
+  transition: all 0.2s ease;
+}
+.neo-button-light:hover {
+  border-color: rgba(16, 185, 129, 0.35);
+  color: #047857;
+  box-shadow:
+    5px 5px 14px rgba(16, 185, 129, 0.08),
+    -4px -4px 10px rgba(255, 255, 255, 1);
+  transform: translateY(-1px);
+}
+.neo-button-light:active {
+  transform: translateY(1px);
+  box-shadow:
+    inset 2px 2px 5px rgba(0, 0, 0, 0.04),
+    inset -2px -2px 5px rgba(255, 255, 255, 0.8);
+}
+
+/* Inset Soft Trough Input */
+.neo-input-recessed {
+  background: #fbfdfc;
+  box-shadow:
+    inset 2px 2px 5px rgba(0, 0, 0, 0.03),
+    inset -2px -2px 6px rgba(255, 255, 255, 0.85);
+  border: 1.5px solid rgba(16, 185, 129, 0.2);
+  transition: all 0.2s ease;
+}
+.neo-input-recessed:focus-within {
+  border-color: #059669;
+  box-shadow:
+    0 0 0 3px rgba(16, 185, 129, 0.15),
+    inset 1px 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+/* Soft Mint Neomorphic Pill Badge */
+.neo-pill-mint {
+  background: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+  box-shadow:
+    2px 2px 6px rgba(16, 185, 129, 0.06),
+    -2px -2px 6px rgba(255, 255, 255, 0.9);
 }

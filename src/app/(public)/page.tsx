@@ -42,16 +42,16 @@ export default async function HomePage() {
 
       {/* 2. Trending Bestsellers Shelf */}
       <section className="space-y-6">
-        <div className="flex items-center justify-between border-b pb-3">
-          <div className="flex items-center gap-2.5">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-red-600/10 text-red-600">
-              <Flame className="h-5 w-5 fill-red-600 text-red-600" />
+        <div className="flex items-center justify-between border-b border-emerald-100 pb-3.5">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-100/80 text-emerald-700 shadow-[inset_2px_2px_4px_rgba(0,0,0,0.04)]">
+              <Flame className="h-5 w-5 fill-emerald-600 text-emerald-600" />
             </div>
             <div>
-              <h2 className="text-foreground text-xl font-black tracking-tight sm:text-2xl">
+              <h2 className="text-xl font-black tracking-tight text-slate-900 sm:text-2xl">
                 সর্বাধিক বিক্রিত বইসমূহ (Trending Bestsellers)
               </h2>
-              <p className="text-muted-foreground text-xs">
+              <p className="text-xs text-slate-500">
                 দেশজুড়ে হাজারো পাঠকের পছন্দের তালিকায় থাকা সেরা বইসমূহ
               </p>
             </div>
@@ -61,7 +61,7 @@ export default async function HomePage() {
             <Button
               variant="ghost"
               size="sm"
-              className="gap-1 text-xs font-bold text-red-600 hover:text-red-700"
+              className="gap-1 text-xs font-bold text-emerald-700 hover:bg-emerald-50 hover:text-emerald-900"
             >
               <span>সকল বই দেখুন</span>
               <ArrowRight className="h-3.5 w-3.5" />
@@ -76,23 +76,23 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 3. RTDS Live Academic & Admission Shelf */}
-      <section className="space-y-6 rounded-3xl border border-amber-500/20 bg-gradient-to-br from-amber-500/10 via-red-500/5 to-transparent p-6 shadow-xs sm:p-8">
-        <div className="flex items-center justify-between border-b border-amber-500/20 pb-3">
-          <div className="flex items-center gap-2.5">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-500 font-black text-slate-950">
+      {/* 3. RTDS Live Academic & Admission Shelf (Neomorphic High-Yield Card) */}
+      <section className="space-y-6 rounded-3xl border border-emerald-200/60 bg-gradient-to-br from-emerald-500/10 via-teal-500/5 to-white/80 p-6 shadow-[6px_10px_24px_rgba(5,150,105,0.06)] backdrop-blur-md sm:p-8">
+        <div className="flex items-center justify-between border-b border-emerald-200/60 pb-3.5">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-600 text-white shadow-[2px_4px_10px_rgba(5,150,105,0.3)]">
               <GraduationCap className="h-5 w-5" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h2 className="text-foreground text-xl font-black tracking-tight sm:text-2xl">
+                <h2 className="text-xl font-black tracking-tight text-slate-900 sm:text-2xl">
                   মেডিকেল ও বিশ্ববিদ্যালয় ভর্তি প্রস্তুতি (RTDS Master Series)
                 </h2>
-                <Badge className="bg-red-600 text-[10px] font-bold text-white uppercase">
+                <Badge className="bg-emerald-600 px-2 py-0.5 text-[10px] font-bold text-white uppercase shadow-xs">
                   Official Guides
                 </Badge>
               </div>
-              <p className="text-muted-foreground text-xs">
+              <p className="text-xs text-slate-500">
                 RTDS অফিসিয়াল প্রশ্নব্যাংক, শর্টকাট টেকনিক ও পূর্ণাঙ্গ মডেল
                 টেস্ট পেপার
               </p>
@@ -100,13 +100,13 @@ export default async function HomePage() {
           </div>
 
           <Link href="/books?category=academic">
-            <Button
-              size="sm"
-              className="gap-1 bg-amber-500 text-xs font-bold text-slate-950 shadow-xs hover:bg-amber-600"
+            <button
+              type="button"
+              className="neo-button-green flex h-9 items-center gap-1.5 rounded-xl px-4 text-xs font-bold"
             >
               <span>সকল সিরিজ দেখুন</span>
               <ArrowRight className="h-3.5 w-3.5" />
-            </Button>
+            </button>
           </Link>
         </div>
 
@@ -122,16 +122,16 @@ export default async function HomePage() {
 
       {/* 4. Literature, Classics & Rare Books Shelf */}
       <section className="space-y-6">
-        <div className="flex items-center justify-between border-b pb-3">
-          <div className="flex items-center gap-2.5">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600/10 text-blue-600">
-              <Sparkles className="h-5 w-5 text-blue-600" />
+        <div className="flex items-center justify-between border-b border-emerald-100 pb-3.5">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-100/80 text-emerald-700 shadow-[inset_2px_2px_4px_rgba(0,0,0,0.04)]">
+              <Sparkles className="h-5 w-5 text-emerald-600" />
             </div>
             <div>
-              <h2 className="text-foreground text-xl font-black tracking-tight sm:text-2xl">
+              <h2 className="text-xl font-black tracking-tight text-slate-900 sm:text-2xl">
                 সাহিত্য, দর্শন ও ধ্রুপদী সংগ্রহ (Literature & Classics)
               </h2>
-              <p className="text-muted-foreground text-xs">
+              <p className="text-xs text-slate-500">
                 ধ্রুপদী বাংলা উপন্যাস, নোবেলজয়ী আন্তর্জাতিক সাহিত্য ও
                 সংগ্রাহকদের বিশেষ বাঁধাইকৃত সংস্করণ
               </p>
@@ -142,7 +142,7 @@ export default async function HomePage() {
             <Button
               variant="ghost"
               size="sm"
-              className="gap-1 text-xs font-bold text-blue-600 hover:text-blue-700"
+              className="gap-1 text-xs font-bold text-emerald-700 hover:bg-emerald-50 hover:text-emerald-900"
             >
               <span>সকল সংগ্রহ</span>
               <ArrowRight className="h-3.5 w-3.5" />
@@ -159,18 +159,18 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 5. Featured Independent Bookshops & Publishers Showcase */}
+      {/* 5. Featured Independent Bookshops & Publishers Showcase (Tactile Neomorphic Cards) */}
       <section className="space-y-6">
-        <div className="flex items-center justify-between border-b pb-3">
-          <div className="flex items-center gap-2.5">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-600/10 text-emerald-600">
+        <div className="flex items-center justify-between border-b border-emerald-100 pb-3.5">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-100/80 text-emerald-700 shadow-[inset_2px_2px_4px_rgba(0,0,0,0.04)]">
               <Store className="h-5 w-5 text-emerald-600" />
             </div>
             <div>
-              <h2 className="text-foreground text-xl font-black tracking-tight sm:text-2xl">
+              <h2 className="text-xl font-black tracking-tight text-slate-900 sm:text-2xl">
                 অনুমোদিত প্রকাশনী ও বুকশপসমূহ (Featured Bookshops)
               </h2>
-              <p className="text-muted-foreground text-xs">
+              <p className="text-xs text-slate-500">
                 বাংলাবাজার, নীলক্ষেত ও সেন্ট্রাল রিপোজিটরি থেকে যাচাইকৃত
                 স্বতন্ত্র বুকশপ
               </p>
@@ -181,7 +181,7 @@ export default async function HomePage() {
             <Button
               variant="ghost"
               size="sm"
-              className="gap-1 text-xs font-bold"
+              className="gap-1 text-xs font-bold text-emerald-800 hover:bg-emerald-50"
             >
               <span>সকল বুকশপ দেখুন</span>
               <ArrowRight className="h-3.5 w-3.5" />
@@ -191,29 +191,29 @@ export default async function HomePage() {
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
           {/* Vendor 1 */}
-          <div className="bg-card hover:border-primary/40 space-y-4 rounded-2xl border p-6 shadow-xs transition-all hover:shadow-md">
+          <div className="neo-card neo-card-hover space-y-4 p-6">
             <div className="flex items-start justify-between">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-red-600/10 text-lg font-black text-red-600">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-700 text-lg font-black text-white shadow-md">
                 RT
               </div>
-              <Badge className="bg-emerald-600 text-[10px] font-bold text-white">
+              <Badge className="bg-emerald-600 text-[10px] font-bold text-white shadow-xs">
                 Official Depot
               </Badge>
             </div>
             <div>
-              <h3 className="text-foreground text-base font-bold">
+              <h3 className="text-base font-bold text-slate-900">
                 RTDS Publications Central Depot
               </h3>
-              <p className="text-muted-foreground mt-1 line-clamp-2 text-xs">
+              <p className="mt-1 line-clamp-2 text-xs text-slate-500">
                 RTDS প্ল্যাটফর্মের অফিসিয়াল প্রকাশনা ও মেডিকেল মাস্টার সিরিজের
                 কেন্দ্রীয় সরবরাহ কেন্দ্র।
               </p>
             </div>
-            <div className="flex items-center justify-between border-t pt-2 text-xs">
-              <span className="text-muted-foreground">150+ বই উপলব্ধ</span>
+            <div className="flex items-center justify-between border-t border-emerald-100/60 pt-2.5 text-xs">
+              <span className="text-slate-500">150+ বই উপলব্ধ</span>
               <Link
                 href="/vendors/rtds-publications-depot"
-                className="font-bold text-red-600 hover:underline"
+                className="font-bold text-emerald-700 hover:underline"
               >
                 বুকশপ দেখুন →
               </Link>
@@ -221,29 +221,29 @@ export default async function HomePage() {
           </div>
 
           {/* Vendor 2 */}
-          <div className="bg-card hover:border-primary/40 space-y-4 rounded-2xl border p-6 shadow-xs transition-all hover:shadow-md">
+          <div className="neo-card neo-card-hover space-y-4 p-6">
             <div className="flex items-start justify-between">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-600/10 text-lg font-black text-amber-600">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-700 to-green-800 text-lg font-black text-white shadow-md">
                 BB
               </div>
-              <Badge className="bg-blue-600 text-[10px] font-bold text-white">
+              <Badge className="bg-teal-700 text-[10px] font-bold text-white shadow-xs">
                 Heritage Shop
               </Badge>
             </div>
             <div>
-              <h3 className="text-foreground text-base font-bold">
+              <h3 className="text-base font-bold text-slate-900">
                 Banglabazar Boi Bhaban
               </h3>
-              <p className="text-muted-foreground mt-1 line-clamp-2 text-xs">
+              <p className="mt-1 line-clamp-2 text-xs text-slate-500">
                 বাংলাবাজারের ঐতিহ্যবাহী প্রকাশনা, ধ্রুপদী সাহিত্য, ইতিহাস ও
                 আন্তর্জাতিক অনুবাদের বিশাল সংগ্রহশালা।
               </p>
             </div>
-            <div className="flex items-center justify-between border-t pt-2 text-xs">
-              <span className="text-muted-foreground">300+ বই উপলব্ধ</span>
+            <div className="flex items-center justify-between border-t border-emerald-100/60 pt-2.5 text-xs">
+              <span className="text-slate-500">300+ বই উপলব্ধ</span>
               <Link
                 href="/vendors/banglabazar-boi-bhaban"
-                className="font-bold text-red-600 hover:underline"
+                className="font-bold text-emerald-700 hover:underline"
               >
                 বুকশপ দেখুন →
               </Link>
@@ -251,29 +251,29 @@ export default async function HomePage() {
           </div>
 
           {/* Vendor 3 */}
-          <div className="bg-card hover:border-primary/40 space-y-4 rounded-2xl border p-6 shadow-xs transition-all hover:shadow-md">
+          <div className="neo-card neo-card-hover space-y-4 p-6">
             <div className="flex items-start justify-between">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-600/10 text-lg font-black text-indigo-600">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-teal-700 to-emerald-900 text-lg font-black text-white shadow-md">
                 NE
               </div>
-              <Badge className="bg-emerald-600 text-[10px] font-bold text-white">
+              <Badge className="bg-emerald-600 text-[10px] font-bold text-white shadow-xs">
                 Curated Shop
               </Badge>
             </div>
             <div>
-              <h3 className="text-foreground text-base font-bold">
+              <h3 className="text-base font-bold text-slate-900">
                 Nilkhet Engineering Corner
               </h3>
-              <p className="text-muted-foreground mt-1 line-clamp-2 text-xs">
+              <p className="mt-1 line-clamp-2 text-xs text-slate-500">
                 নীলক্ষেত বুক মার্কেট থেকে কম্পিউটার সায়েন্স, ইলেকট্রিক্যাল ও
                 ভার্সিটি টেক্সটবইয়ের নির্ভরযোগ্য শপ।
               </p>
             </div>
-            <div className="flex items-center justify-between border-t pt-2 text-xs">
-              <span className="text-muted-foreground">220+ বই উপলব্ধ</span>
+            <div className="flex items-center justify-between border-t border-emerald-100/60 pt-2.5 text-xs">
+              <span className="text-slate-500">220+ বই উপলব্ধ</span>
               <Link
                 href="/vendors/nilkhet-engineering-corner"
-                className="font-bold text-red-600 hover:underline"
+                className="font-bold text-emerald-700 hover:underline"
               >
                 বুকশপ দেখুন →
               </Link>
@@ -282,18 +282,18 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 6. Genre & Subject Exploration Grid */}
+      {/* 6. Genre & Subject Exploration Grid (Neomorphic Pill Tiles) */}
       <section className="space-y-6">
-        <div className="flex items-center justify-between border-b pb-3">
-          <div className="flex items-center gap-2.5">
-            <div className="bg-primary/10 text-primary flex h-8 w-8 items-center justify-center rounded-lg">
-              <Layers className="text-primary h-5 w-5" />
+        <div className="flex items-center justify-between border-b border-emerald-100 pb-3.5">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-100/80 text-emerald-700 shadow-[inset_2px_2px_4px_rgba(0,0,0,0.04)]">
+              <Layers className="h-5 w-5 text-emerald-600" />
             </div>
             <div>
-              <h2 className="text-foreground text-xl font-black tracking-tight sm:text-2xl">
+              <h2 className="text-xl font-black tracking-tight text-slate-900 sm:text-2xl">
                 বিষয়ভিত্তিক বইয়ের বিভাগ (Browse by Subject)
               </h2>
-              <p className="text-muted-foreground text-xs">
+              <p className="text-xs text-slate-500">
                 আপনার পছন্দের বিষয় বা পরীক্ষার বিভাগ নির্বাচন করে দ্রুত বই
                 খুঁজুন
               </p>
@@ -304,7 +304,7 @@ export default async function HomePage() {
             <Button
               variant="ghost"
               size="sm"
-              className="gap-1 text-xs font-bold"
+              className="gap-1 text-xs font-bold text-emerald-800 hover:bg-emerald-50"
             >
               <span>সকল বিভাগ</span>
               <ArrowRight className="h-3.5 w-3.5" />
@@ -312,7 +312,7 @@ export default async function HomePage() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+        <div className="grid grid-cols-2 gap-3.5 sm:grid-cols-3 lg:grid-cols-6">
           {[
             {
               name: "মেডিকেল ভর্তি প্রস্তুতি",
@@ -354,15 +354,15 @@ export default async function HomePage() {
             <Link
               key={cat.slug}
               href={`/categories/${cat.slug}`}
-              className="bg-card group flex flex-col items-center justify-center rounded-2xl border p-4 text-center transition-all hover:border-red-600 hover:shadow-md"
+              className="neo-card neo-card-hover group flex flex-col items-center justify-center p-5 text-center"
             >
-              <span className="mb-2 text-2xl transition-transform group-hover:scale-110">
+              <span className="mb-2 text-2xl transition-transform duration-200 group-hover:scale-115">
                 {cat.icon}
               </span>
-              <h4 className="text-foreground text-xs font-bold transition-colors group-hover:text-red-600">
+              <h4 className="text-xs font-bold text-slate-800 transition-colors group-hover:text-emerald-700">
                 {cat.name}
               </h4>
-              <span className="text-muted-foreground mt-0.5 text-[10px]">
+              <span className="mt-0.5 text-[10px] text-slate-400">
                 {cat.count}
               </span>
             </Link>

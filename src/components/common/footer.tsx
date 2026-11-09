@@ -11,7 +11,7 @@ import {
 
 export function Footer() {
   return (
-    <footer className="border-t bg-slate-900 py-12 text-sm text-slate-300">
+    <footer className="border-t border-emerald-950/40 bg-slate-950 py-12 text-sm text-slate-300">
       <div className="container mx-auto max-w-7xl space-y-10 px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-5">
           {/* Brand Info & Hotline */}
@@ -20,11 +20,11 @@ export function Footer() {
               href="/"
               className="flex items-center gap-2 text-xl font-black text-white"
             >
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-red-600 text-white">
+              <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-600 to-teal-700 text-white shadow-md">
                 <BookOpen className="h-5 w-5" />
               </div>
               <span>
-                RTDS <span className="text-red-500">Bookshop</span>
+                RTDS <span className="text-emerald-400">Bookshop</span>
               </span>
             </Link>
             <p className="max-w-sm text-xs leading-relaxed text-slate-400">
@@ -36,17 +36,17 @@ export function Footer() {
 
             <div className="space-y-2 pt-2 text-xs">
               <div className="flex items-center gap-2.5 text-slate-300">
-                <PhoneCall className="h-4 w-4 shrink-0 text-red-500" />
+                <PhoneCall className="h-4 w-4 shrink-0 text-emerald-400" />
                 <span className="font-semibold">
                   09612-007837 / 01700-000000 (সকাল ৯টা - রাত ১০টা)
                 </span>
               </div>
               <div className="flex items-center gap-2.5 text-slate-300">
-                <Mail className="h-4 w-4 shrink-0 text-red-500" />
+                <Mail className="h-4 w-4 shrink-0 text-emerald-400" />
                 <span>support@rtdsbookshop.com / info@rtdslive.com</span>
               </div>
               <div className="flex items-center gap-2.5 text-slate-300">
-                <MapPin className="h-4 w-4 shrink-0 text-red-500" />
+                <MapPin className="h-4 w-4 shrink-0 text-emerald-400" />
                 <span>
                   RTDS Central Hub, Farmgate / Nilkhet, Dhaka, Bangladesh
                 </span>
@@ -56,22 +56,22 @@ export function Footer() {
 
           {/* Categories */}
           <div>
-            <h4 className="mb-3 text-xs font-bold tracking-wider text-white uppercase">
+            <h4 className="mb-3 text-xs font-bold tracking-wider text-emerald-400 uppercase">
               বইয়ের বিভাগসমূহ (Categories)
             </h4>
             <ul className="space-y-2 text-xs text-slate-400">
               <li>
                 <Link
                   href="/books?category=medical"
-                  className="transition-colors hover:text-white"
+                  className="transition-colors hover:text-emerald-300"
                 >
-                  মেডিকেল ও ডেন্টাল ভর্তি সহায়িকা
+                  মেডিকেল ও ডেন্টাল ভর্তি সহায়িকা
                 </Link>
               </li>
               <li>
                 <Link
                   href="/books?category=engineering"
-                  className="transition-colors hover:text-white"
+                  className="transition-colors hover:text-emerald-300"
                 >
                   ইঞ্জিনিয়ারিং ও ভার্সিটি ভর্তি
                 </Link>
@@ -79,7 +79,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/books?category=academic"
-                  className="transition-colors hover:text-white"
+                  className="transition-colors hover:text-emerald-300"
                 >
                   এইচএসসি ও বিশ্ববিদ্যালয় সিরিজ
                 </Link>
@@ -87,7 +87,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/books?category=fiction"
-                  className="transition-colors hover:text-white"
+                  className="transition-colors hover:text-emerald-300"
                 >
                   উপন্যাস ও সাহিত্য সমগ্র
                 </Link>
@@ -95,7 +95,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/books?category=rare"
-                  className="transition-colors hover:text-white"
+                  className="transition-colors hover:text-emerald-300"
                 >
                   দুষ্প্রাপ্য ও পুরাতন ক্লাসিক বই
                 </Link>
@@ -105,14 +105,14 @@ export function Footer() {
 
           {/* Vendors & Publishers */}
           <div>
-            <h4 className="mb-3 text-xs font-bold tracking-wider text-white uppercase">
+            <h4 className="mb-3 text-xs font-bold tracking-wider text-emerald-400 uppercase">
               ভেন্ডর ও প্রকাশনী (Publishers)
             </h4>
             <ul className="space-y-2 text-xs text-slate-400">
               <li>
                 <Link
                   href="/vendors"
-                  className="transition-colors hover:text-white"
+                  className="transition-colors hover:text-emerald-300"
                 >
                   সকল ভেন্ডর স্টোরফ্রন্ট
                 </Link>
@@ -120,7 +120,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/vendor/apply"
-                  className="font-semibold text-amber-400 transition-colors hover:text-white"
+                  className="font-semibold text-emerald-400 transition-colors hover:text-white"
                 >
                   বই বিক্রি করুন (Apply to Sell)
                 </Link>
@@ -128,7 +128,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/vendor/dashboard"
-                  className="transition-colors hover:text-white"
+                  className="transition-colors hover:text-emerald-300"
                 >
                   ভেন্ডর পোর্টাল লগইন
                 </Link>
@@ -136,7 +136,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/buyer/orders"
-                  className="transition-colors hover:text-white"
+                  className="transition-colors hover:text-emerald-300"
                 >
                   অর্ডার ট্র্যাকিং (Track Order)
                 </Link>
@@ -146,7 +146,7 @@ export function Footer() {
 
           {/* Trust & Guarantee */}
           <div>
-            <h4 className="mb-3 text-xs font-bold tracking-wider text-white uppercase">
+            <h4 className="mb-3 text-xs font-bold tracking-wider text-emerald-400 uppercase">
               নিরাপত্তা ও ডেলিভারি (Policies)
             </h4>
             <div className="space-y-3 text-xs text-slate-400">
@@ -167,17 +167,21 @@ export function Footer() {
         </div>
 
         {/* Bottom Strip */}
-        <div className="flex flex-col items-center justify-between gap-4 border-t border-slate-800 pt-6 text-xs text-slate-500 sm:flex-row">
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-slate-800/80 pt-6 text-xs text-slate-500 sm:flex-row">
           <p>
             © 2026 RTDS Bookshop Platform. All rights reserved. Official Book
             Marketplace of RTDS Platform.
           </p>
           <div className="flex items-center gap-4">
-            <span>Unified Multi-Vendor Cart</span>
+            <span className="text-emerald-400/80">
+              Unified Multi-Vendor Cart
+            </span>
             <span>•</span>
-            <span>Cloudflare R2 Object Storage</span>
+            <span className="text-emerald-400/80">
+              Cloudflare R2 Object Storage
+            </span>
             <span>•</span>
-            <span>Supabase SSR Engine</span>
+            <span className="text-emerald-400/80">Supabase SSR Engine</span>
           </div>
         </div>
       </div>

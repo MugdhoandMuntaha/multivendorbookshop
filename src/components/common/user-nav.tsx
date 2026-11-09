@@ -17,14 +17,19 @@ export function UserNav({ profile }: { profile: Profile | null }) {
           <Button
             variant="ghost"
             size="sm"
-            className="hidden items-center gap-1.5 sm:inline-flex"
+            className="hidden items-center gap-1.5 text-xs font-semibold text-emerald-800 hover:bg-emerald-50 hover:text-emerald-950 sm:inline-flex"
           >
-            <Store className="h-4 w-4" />
+            <Store className="h-4 w-4 text-emerald-600" />
             <span>Sell Books</span>
           </Button>
         </Link>
         <Link href="/login">
-          <Button size="sm">Sign In</Button>
+          <button
+            type="button"
+            className="neo-button-green flex h-9 items-center justify-center rounded-xl px-4 text-xs font-bold shadow-xs"
+          >
+            Sign In
+          </button>
         </Link>
       </div>
     );
@@ -38,16 +43,16 @@ export function UserNav({ profile }: { profile: Profile | null }) {
         : "secondary";
 
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex items-center gap-2.5">
       {/* Role-specific Quick Navigation */}
       {profile.role === "admin" && (
         <Link href="/admin/dashboard">
           <Button
             variant="outline"
             size="sm"
-            className="border-destructive/40 text-destructive hover:bg-destructive/10 hidden items-center gap-1.5 sm:inline-flex"
+            className="neo-button-light hidden items-center gap-1.5 rounded-xl border-red-200 text-xs font-bold text-red-600 hover:bg-red-50 sm:inline-flex"
           >
-            <ShieldAlert className="h-3.5 w-3.5" />
+            <ShieldAlert className="h-3.5 w-3.5 text-red-600" />
             <span>Admin</span>
           </Button>
         </Link>
@@ -55,14 +60,13 @@ export function UserNav({ profile }: { profile: Profile | null }) {
 
       {profile.role === "vendor" && (
         <Link href="/vendor/dashboard">
-          <Button
-            variant="outline"
-            size="sm"
-            className="hidden items-center gap-1.5 sm:inline-flex"
+          <button
+            type="button"
+            className="neo-button-light hidden h-9 items-center gap-1.5 rounded-xl px-3 text-xs font-bold sm:inline-flex"
           >
-            <Store className="text-primary h-3.5 w-3.5" />
+            <Store className="h-3.5 w-3.5 text-emerald-600" />
             <span>Vendor Portal</span>
-          </Button>
+          </button>
         </Link>
       )}
 
@@ -71,9 +75,9 @@ export function UserNav({ profile }: { profile: Profile | null }) {
           <Button
             variant="ghost"
             size="sm"
-            className="hidden items-center gap-1.5 sm:inline-flex"
+            className="hidden items-center gap-1.5 text-xs font-semibold text-emerald-800 hover:bg-emerald-50 sm:inline-flex"
           >
-            <Store className="h-3.5 w-3.5" />
+            <Store className="h-3.5 w-3.5 text-emerald-600" />
             <span>Become Vendor</span>
           </Button>
         </Link>
@@ -81,33 +85,41 @@ export function UserNav({ profile }: { profile: Profile | null }) {
 
       {/* Buyer Quick Links */}
       <Link href="/buyer/wishlist">
-        <Button variant="ghost" size="sm" className="hidden sm:inline-flex">
-          <Heart className="h-4 w-4" />
+        <Button
+          variant="ghost"
+          size="sm"
+          className="neo-button-light hidden h-9 w-9 rounded-xl p-0 hover:text-emerald-700 sm:inline-flex"
+        >
+          <Heart className="h-4 w-4 text-emerald-700" />
           <span className="sr-only">Wishlist</span>
         </Button>
       </Link>
 
       <Link href="/buyer/orders">
-        <Button variant="ghost" size="sm" className="hidden sm:inline-flex">
-          <Package className="h-4 w-4" />
+        <Button
+          variant="ghost"
+          size="sm"
+          className="neo-button-light hidden h-9 w-9 rounded-xl p-0 hover:text-emerald-700 sm:inline-flex"
+        >
+          <Package className="h-4 w-4 text-emerald-700" />
           <span className="sr-only">Orders</span>
         </Button>
       </Link>
 
       {/* User Info & Sign Out */}
-      <div className="flex items-center gap-2 border-l pl-2">
+      <div className="flex items-center gap-2 border-l border-emerald-100 pl-2.5">
         <div className="hidden flex-col text-right lg:flex">
-          <span className="max-w-[120px] truncate text-xs leading-tight font-semibold">
+          <span className="max-w-[120px] truncate text-xs leading-tight font-bold text-slate-800">
             {profile.full_name}
           </span>
-          <span className="text-muted-foreground text-[10px] capitalize">
+          <span className="text-[10px] font-medium text-emerald-600 capitalize">
             {profile.role}
           </span>
         </div>
 
         <Badge
           variant={roleBadgeVariant}
-          className="px-1.5 py-0.5 text-[10px] capitalize"
+          className="rounded-lg px-2 py-0.5 text-[10px] font-bold capitalize shadow-2xs"
         >
           {profile.role}
         </Badge>
@@ -117,7 +129,7 @@ export function UserNav({ profile }: { profile: Profile | null }) {
             type="submit"
             variant="ghost"
             size="sm"
-            className="text-muted-foreground hover:text-destructive h-8 w-8 p-2"
+            className="h-8 w-8 rounded-lg p-2 text-slate-400 transition-colors hover:bg-red-50 hover:text-red-600"
             title="Sign Out"
           >
             <LogOut className="h-4 w-4" />

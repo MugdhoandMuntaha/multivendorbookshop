@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { Star, ShoppingBag, Eye, Store } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { formatPrice } from "@/lib/utils";
 import { getR2PublicUrl } from "@/lib/r2/utils";
 import type { BookRow } from "@/server/queries/books";
@@ -20,10 +19,10 @@ export function BookCard({ book }: { book: BookRow }) {
   );
 
   return (
-    <div className="group bg-card hover:border-primary/40 relative flex flex-col justify-between rounded-2xl border p-3 shadow-xs transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
+    <div className="neo-card neo-card-hover group relative flex flex-col justify-between p-3.5 sm:p-4">
       <div>
-        {/* Book Cover Container with Aspect Ratio (3:4) */}
-        <div className="bg-muted/30 relative aspect-[3/4] w-full overflow-hidden rounded-xl">
+        {/* Book Cover Container with Aspect Ratio (3:4) & Tactile Rim */}
+        <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl border border-emerald-950/5 bg-slate-50 shadow-[inset_0_2px_4px_rgba(0,0,0,0.03)]">
           <Link href={`/books/${book.id}`} className="block h-full w-full">
             <Image
               src={coverUrl}
@@ -34,17 +33,17 @@ export function BookCard({ book }: { book: BookRow }) {
             />
           </Link>
 
-          {/* Discount Pill Badge (RTDS High-Yield style) */}
+          {/* Discount Pill Badge (Vibrant Emerald & White) */}
           {discountPercent > 0 && (
-            <Badge className="absolute top-2.5 left-2.5 bg-red-600 px-2 py-0.5 text-[10px] font-bold text-white shadow-sm hover:bg-red-700">
+            <Badge className="absolute top-2.5 left-2.5 bg-emerald-600 px-2 py-0.5 text-[10px] font-black text-white shadow-[0_2px_6px_rgba(5,150,105,0.35)] hover:bg-emerald-700">
               -{discountPercent}% OFF
             </Badge>
           )}
 
-          {/* Condition Badge */}
+          {/* Condition Badge (Neomorphic Mint Pill) */}
           <Badge
             variant="outline"
-            className="bg-background/90 absolute top-2.5 right-2.5 text-[10px] font-medium capitalize shadow-xs backdrop-blur"
+            className="absolute top-2.5 right-2.5 border-emerald-200/90 bg-white/95 text-[10px] font-semibold text-emerald-800 capitalize shadow-xs backdrop-blur-md"
           >
             {book.condition.replace("_", " ")}
           </Badge>
@@ -52,14 +51,13 @@ export function BookCard({ book }: { book: BookRow }) {
           {/* Hover Quick Actions */}
           <div className="absolute inset-x-2 bottom-2 flex items-center justify-center gap-2 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
             <Link href={`/books/${book.id}`} className="w-full">
-              <Button
-                size="sm"
-                variant="secondary"
-                className="text-foreground h-8 w-full gap-1.5 bg-white/95 text-xs shadow-md backdrop-blur hover:bg-white"
+              <button
+                type="button"
+                className="neo-button-light flex h-8 w-full items-center justify-center gap-1.5 rounded-xl text-xs font-bold shadow-md"
               >
-                <Eye className="text-primary h-3.5 w-3.5" />
-                <span>Look Inside</span>
-              </Button>
+                <Eye className="h-3.5 w-3.5 text-emerald-600" />
+                <span>একটু পড়ে দেখুন</span>
+              </button>
             </Link>
           </div>
         </div>
@@ -69,19 +67,19 @@ export function BookCard({ book }: { book: BookRow }) {
           {/* Vendor Tag */}
           <Link
             href={`/vendors/${vendorSlug}`}
-            className="text-muted-foreground hover:text-primary inline-flex max-w-full items-center gap-1 truncate text-[11px] transition-colors"
+            className="inline-flex max-w-full items-center gap-1 truncate text-[11px] font-medium text-emerald-700 transition-colors hover:text-emerald-900"
           >
-            <Store className="text-primary/70 h-3 w-3 shrink-0" />
+            <Store className="h-3 w-3 shrink-0 text-emerald-600" />
             <span className="truncate">{vendorName}</span>
           </Link>
 
           {/* Title */}
-          <h3 className="text-foreground group-hover:text-primary line-clamp-2 text-sm leading-snug font-semibold transition-colors">
+          <h3 className="line-clamp-2 text-sm leading-snug font-bold text-slate-900 transition-colors group-hover:text-emerald-700">
             <Link href={`/books/${book.id}`}>{book.title}</Link>
           </h3>
 
           {/* Author */}
-          <p className="text-muted-foreground truncate text-xs font-normal">
+          <p className="truncate text-xs font-normal text-slate-500">
             {book.author}
           </p>
 
@@ -89,40 +87,36 @@ export function BookCard({ book }: { book: BookRow }) {
           <div className="flex items-center gap-1.5 pt-0.5 text-xs">
             <div className="flex items-center text-amber-500">
               <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
-              <span className="text-foreground ml-1 text-xs font-semibold">
-                4.9
-              </span>
+              <span className="ml-1 text-xs font-bold text-slate-800">4.9</span>
             </div>
-            <span className="text-muted-foreground text-[11px]">
-              (48 reviews)
-            </span>
+            <span className="text-[11px] text-slate-400">(48 reviews)</span>
           </div>
         </div>
       </div>
 
       {/* Pricing & Add to Cart Footer */}
-      <div className="mt-3 flex items-center justify-between gap-2 border-t pt-3">
+      <div className="mt-3.5 flex items-center justify-between gap-2 border-t border-emerald-100/60 pt-3">
         <div>
           <div className="flex items-baseline gap-1.5">
-            <span className="text-primary text-base font-bold">
+            <span className="text-base font-black text-emerald-700">
               {formatPrice(book.price_minor, book.currency)}
             </span>
-            <span className="text-muted-foreground text-xs line-through">
+            <span className="text-xs text-slate-400 line-through">
               {formatPrice(originalPriceMinor, book.currency)}
             </span>
           </div>
-          <span className="block text-[10px] font-medium text-green-600">
-            In Stock ({book.stock} copies)
+          <span className="block text-[10px] font-semibold text-emerald-600">
+            স্টকে আছে ({book.stock} টি)
           </span>
         </div>
 
-        <Button
-          size="sm"
-          className="h-8 shrink-0 gap-1 rounded-lg px-3 text-xs shadow-xs"
+        <button
+          type="button"
+          className="neo-button-green flex h-8 shrink-0 items-center gap-1 rounded-xl px-3 text-xs font-bold"
         >
           <ShoppingBag className="h-3.5 w-3.5" />
-          <span>Cart</span>
-        </Button>
+          <span>কার্ট</span>
+        </button>
       </div>
     </div>
   );
