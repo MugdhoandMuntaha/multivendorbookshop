@@ -12,9 +12,17 @@ import { Badge } from "@/components/ui/badge";
 import { HeroBanner } from "@/components/features/home/hero-banner";
 import { BookCard } from "@/components/features/books/book-card";
 import { getFeaturedBooks } from "@/server/queries/books";
+import {
+  getActiveHeroSlides,
+  getActiveCuratedShelves,
+} from "@/server/queries/storefront";
 
 export default async function HomePage() {
-  const books = await getFeaturedBooks();
+  const [books, slides, shelves] = await Promise.all([
+    getFeaturedBooks(),
+    getActiveHeroSlides(),
+    getActiveCuratedShelves(),
+  ]);
 
   // Categorized slices for curated shelves
   const bestsellers = books.slice(0, 4);
@@ -38,7 +46,7 @@ export default async function HomePage() {
   return (
     <div className="mx-auto flex w-full max-w-7xl flex-col gap-14 px-4 py-8 sm:px-6 lg:px-8">
       {/* 1. Hero Promotional Banner & Trust Bar */}
-      <HeroBanner />
+      <HeroBanner slides={slides} />
 
       {/* 2. Trending Bestsellers Shelf */}
       <section className="space-y-6">

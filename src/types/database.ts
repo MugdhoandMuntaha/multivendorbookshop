@@ -373,6 +373,136 @@ export interface Database {
         };
         Relationships: [];
       };
+      storefront_settings: {
+        Row: {
+          id: string;
+          site_name: string;
+          tagline: string | null;
+          announcement_text: string | null;
+          announcement_enabled: boolean;
+          helpline_phone: string | null;
+          helpline_hours: string | null;
+          free_shipping_threshold_minor: number;
+          flat_shipping_rate_minor: number;
+          emergency_alert: string | null;
+          emergency_alert_enabled: boolean;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          site_name?: string;
+          tagline?: string | null;
+          announcement_text?: string | null;
+          announcement_enabled?: boolean;
+          helpline_phone?: string | null;
+          helpline_hours?: string | null;
+          free_shipping_threshold_minor?: number;
+          flat_shipping_rate_minor?: number;
+          emergency_alert?: string | null;
+          emergency_alert_enabled?: boolean;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          site_name?: string;
+          tagline?: string | null;
+          announcement_text?: string | null;
+          announcement_enabled?: boolean;
+          helpline_phone?: string | null;
+          helpline_hours?: string | null;
+          free_shipping_threshold_minor?: number;
+          flat_shipping_rate_minor?: number;
+          emergency_alert?: string | null;
+          emergency_alert_enabled?: boolean;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      hero_slides: {
+        Row: {
+          id: string;
+          title: string;
+          subtitle: string | null;
+          badge_text: string | null;
+          cta_text: string;
+          cta_link: string;
+          image_r2_key: string | null;
+          bg_gradient: string | null;
+          sort_order: number;
+          is_active: boolean;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          title: string;
+          subtitle?: string | null;
+          badge_text?: string | null;
+          cta_text?: string;
+          cta_link?: string;
+          image_r2_key?: string | null;
+          bg_gradient?: string | null;
+          sort_order?: number;
+          is_active?: boolean;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          title?: string;
+          subtitle?: string | null;
+          badge_text?: string | null;
+          cta_text?: string;
+          cta_link?: string;
+          image_r2_key?: string | null;
+          bg_gradient?: string | null;
+          sort_order?: number;
+          is_active?: boolean;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      curated_shelves: {
+        Row: {
+          id: string;
+          title: string;
+          subtitle: string | null;
+          category_id: string | null;
+          shelf_type: string;
+          icon_name: string;
+          max_items: number;
+          sort_order: number;
+          is_active: boolean;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          title: string;
+          subtitle?: string | null;
+          category_id?: string | null;
+          shelf_type?: string;
+          icon_name?: string;
+          max_items?: number;
+          sort_order?: number;
+          is_active?: boolean;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          title?: string;
+          subtitle?: string | null;
+          category_id?: string | null;
+          shelf_type?: string;
+          icon_name?: string;
+          max_items?: number;
+          sort_order?: number;
+          is_active?: boolean;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: Record<string, never>;
     Functions: {

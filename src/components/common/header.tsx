@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getCurrentProfile } from "@/server/queries/auth";
+import { getStorefrontSettings } from "@/server/queries/storefront";
 import { UserNav } from "./user-nav";
 
 export function HeaderFallback() {
@@ -30,36 +31,42 @@ export function HeaderFallback() {
 }
 
 export async function Header() {
-  const { profile } = await getCurrentProfile();
+  const [{ profile }, settings] = await Promise.all([
+    getCurrentProfile(),
+    getStorefrontSettings(),
+  ]);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-emerald-100/80 bg-white/95 shadow-sm backdrop-blur-md">
-      {/* 1. Top Announcement Bar (Deep Emerald & Gold Accents) */}
-      <div className="border-b border-emerald-900/80 bg-emerald-950 px-4 py-1.5 text-xs text-emerald-100">
-        <div className="container mx-auto flex max-w-7xl items-center justify-between">
-          <div className="flex items-center gap-4 text-[11px]">
-            <span className="flex items-center gap-1.5 font-medium">
-              <PhoneCall className="h-3 w-3 text-emerald-400" />
-              <span>হেল্পলাইন: ০৯৬১২-০০৭৮৩৭ (সকাল ৯টা - রাত ১০টা)</span>
-            </span>
-            <span className="hidden text-emerald-700 sm:inline-block">|</span>
-            <span className="hidden font-medium text-amber-300 sm:inline-block">
-              ⚡ সারা দেশে ক্যাশ অন ডেলিভারি | ৳১,০০০ টাকার অর্ডারে ফ্রি
-              ডেলিভারি
-            </span>
-          </div>
+      {/* 1. Top Announcement Bar (Controlled by Admin CMS) */}
+      {settings.announcement_enabled && (
+        <div className="border-b border-emerald-900/80 bg-emerald-950 px-4 py-1.5 text-xs text-emerald-100">
+          <div className="container mx-auto flex max-w-7xl items-center justify-between">
+            <div className="flex items-center gap-4 text-[11px]">
+              <span className="flex items-center gap-1.5 font-medium">
+                <PhoneCall className="h-3 w-3 text-emerald-400" />
+                <span>
+                  হেল্পলাইন: {settings.helpline_phone || "০৯৬১২-০০৭৮৩৭"} ({settings.helpline_hours || "সকাল ৯টা - রাত ১০টা"})
+                </span>
+              </span>
+              <span className="hidden text-emerald-700 sm:inline-block">|</span>
+              <span className="hidden font-medium text-amber-300 sm:inline-block">
+                {settings.announcement_text || "⚡ সারা দেশে ক্যাশ অন ডেলিভারি | ৳১,০০০ টাকার অর্ডারে ফ্রি ডেলিভারি"}
+              </span>
+            </div>
 
-          <div className="flex items-center gap-3 text-[11px]">
-            <Link
-              href="/vendor/apply"
-              className="flex items-center gap-1.5 font-semibold text-emerald-300 transition-colors hover:text-white"
-            >
-              <Store className="h-3 w-3 text-emerald-400" />
-              <span>বই বিক্রি করুন (ভেন্ডর হোন)</span>
-            </Link>
+            <div className="flex items-center gap-3 text-[11px]">
+              <Link
+                href="/vendor/apply"
+                className="flex items-center gap-1.5 font-semibold text-emerald-300 transition-colors hover:text-white"
+              >
+                <Store className="h-3 w-3 text-emerald-400" />
+                <span>বই বিক্রি করুন (ভেন্ডর হোন)</span>
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* 2. Main Header with Neomorphic Omnisearch */}
       <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
