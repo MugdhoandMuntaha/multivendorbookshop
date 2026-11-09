@@ -185,3 +185,4 @@ CREATE INDEX IF NOT EXISTS idx_orders_buyer ON public.orders(buyer_id);
 CREATE INDEX IF NOT EXISTS idx_order_items_order ON public.order_items(order_id);
 CREATE INDEX IF NOT EXISTS idx_order_items_vendor ON public.order_items(vendor_id);
 CREATE INDEX IF NOT EXISTS idx_reviews_book ON public.reviews(book_id);
+

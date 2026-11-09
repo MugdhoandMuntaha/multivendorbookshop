@@ -285,3 +285,4 @@ CREATE POLICY "Buyers can update own reviews"
 CREATE POLICY "Buyers or admins can delete reviews"
     ON public.reviews FOR DELETE
     USING (buyer_id = auth.uid() OR public.is_admin());
+
