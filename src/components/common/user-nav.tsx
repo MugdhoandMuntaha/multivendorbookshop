@@ -5,11 +5,14 @@ import { LogOut, Package, Store, ShieldAlert, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { signOut } from "@/server/actions/auth";
+import { useLanguage } from "@/lib/i18n/context";
 import type { Database } from "@/types/database";
 
 type Profile = Database["public"]["Tables"]["profiles"]["Row"];
 
 export function UserNav({ profile }: { profile: Profile | null }) {
+  const { t } = useLanguage();
+
   if (!profile) {
     return (
       <div className="flex items-center gap-2">
@@ -20,7 +23,7 @@ export function UserNav({ profile }: { profile: Profile | null }) {
             className="hidden items-center gap-1.5 text-xs font-semibold text-emerald-800 hover:bg-emerald-50 hover:text-emerald-950 sm:inline-flex"
           >
             <Store className="h-4 w-4 text-emerald-600" />
-            <span>Sell Books</span>
+            <span>{t.common.sellBooks}</span>
           </Button>
         </Link>
         <Link href="/login">
@@ -28,7 +31,7 @@ export function UserNav({ profile }: { profile: Profile | null }) {
             type="button"
             className="neo-button-green flex h-9 items-center justify-center rounded-xl px-4 text-xs font-bold shadow-xs"
           >
-            Sign In
+            {t.common.signIn}
           </button>
         </Link>
       </div>
@@ -53,7 +56,7 @@ export function UserNav({ profile }: { profile: Profile | null }) {
             className="neo-button-light hidden items-center gap-1.5 rounded-xl border-red-200 text-xs font-bold text-red-600 hover:bg-red-50 sm:inline-flex"
           >
             <ShieldAlert className="h-3.5 w-3.5 text-red-600" />
-            <span>Admin</span>
+            <span>{t.common.adminPortal}</span>
           </Button>
         </Link>
       )}
@@ -65,7 +68,7 @@ export function UserNav({ profile }: { profile: Profile | null }) {
             className="neo-button-light hidden h-9 items-center gap-1.5 rounded-xl px-3 text-xs font-bold sm:inline-flex"
           >
             <Store className="h-3.5 w-3.5 text-emerald-600" />
-            <span>Vendor Portal</span>
+            <span>{t.common.vendorPortal}</span>
           </button>
         </Link>
       )}
@@ -78,7 +81,7 @@ export function UserNav({ profile }: { profile: Profile | null }) {
             className="hidden items-center gap-1.5 text-xs font-semibold text-emerald-800 hover:bg-emerald-50 sm:inline-flex"
           >
             <Store className="h-3.5 w-3.5 text-emerald-600" />
-            <span>Become Vendor</span>
+            <span>{t.common.becomeVendor}</span>
           </Button>
         </Link>
       )}
@@ -91,7 +94,7 @@ export function UserNav({ profile }: { profile: Profile | null }) {
           className="neo-button-light hidden h-9 w-9 rounded-xl p-0 hover:text-emerald-700 sm:inline-flex"
         >
           <Heart className="h-4 w-4 text-emerald-700" />
-          <span className="sr-only">Wishlist</span>
+          <span className="sr-only">{t.common.wishlist}</span>
         </Button>
       </Link>
 
@@ -130,10 +133,10 @@ export function UserNav({ profile }: { profile: Profile | null }) {
             variant="ghost"
             size="sm"
             className="h-8 w-8 rounded-lg p-2 text-slate-400 transition-colors hover:bg-red-50 hover:text-red-600"
-            title="Sign Out"
+            title={t.common.signOut}
           >
             <LogOut className="h-4 w-4" />
-            <span className="sr-only">Sign out</span>
+            <span className="sr-only">{t.common.signOut}</span>
           </Button>
         </form>
       </div>

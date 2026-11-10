@@ -14,18 +14,21 @@ export function AnnouncementForm({ initialSettings }: AnnouncementFormProps) {
   const [saved, setSaved] = useState(false);
 
   const [siteName, setSiteName] = useState(initialSettings.site_name || "RTDS Bookshop");
-  const [tagline, setTagline] = useState(initialSettings.tagline || "");
+  const [tagline, setTagline] = useState(
+    initialSettings.tagline || "Official Book Marketplace of RTDS Platform"
+  );
   const [announcementText, setAnnouncementText] = useState(
-    initialSettings.announcement_text || ""
+    initialSettings.announcement_text ||
+      "⚡ Nationwide Cash on Delivery | Free shipping on orders over ৳1,000"
   );
   const [announcementEnabled, setAnnouncementEnabled] = useState(
     Boolean(initialSettings.announcement_enabled)
   );
   const [helplinePhone, setHelplinePhone] = useState(
-    initialSettings.helpline_phone || ""
+    initialSettings.helpline_phone || "09612-007837"
   );
   const [helplineHours, setHelplineHours] = useState(
-    initialSettings.helpline_hours || ""
+    initialSettings.helpline_hours || "9:00 AM - 10:00 PM"
   );
   const [freeShippingBdt, setFreeShippingBdt] = useState(
     (initialSettings.free_shipping_threshold_minor || 100000) / 100
@@ -73,10 +76,10 @@ export function AnnouncementForm({ initialSettings }: AnnouncementFormProps) {
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-xl font-black text-slate-900">
-            অ্যানাউন্সমেন্ট, হেল্পলাইন ও ডেলিভারি রেট
+            Announcement, Helpline & Shipping Rules
           </h2>
           <p className="text-xs text-slate-500">
-            স্টোরফ্রন্টের টপ বার, গ্রাহক হেল্পলাইন এবং শিপিং শর্তাবলী লাইভ আপডেট করুন
+            Real-time configuration for top ticker announcement bar, customer hotline, and delivery rates
           </p>
         </div>
 
@@ -88,25 +91,25 @@ export function AnnouncementForm({ initialSettings }: AnnouncementFormProps) {
           {saved ? (
             <>
               <Check className="h-4 w-4" />
-              <span>আপডেট সম্পন্ন হয়েছে!</span>
+              <span>Saved Successfully!</span>
             </>
           ) : (
             <>
               <Save className="h-4 w-4" />
-              <span>{loading ? "সংরক্ষণ করা হচ্ছে..." : "পরিবর্তন সংরক্ষণ করুন"}</span>
+              <span>{loading ? "Saving..." : "Save Changes"}</span>
             </>
           )}
         </button>
       </div>
 
-      {/* 1. Brand Identity */}
+      {/* 1. Platform Identity */}
       <div className="neo-card p-6 space-y-4">
         <h3 className="text-sm font-bold text-slate-900 border-b border-emerald-100 pb-2.5">
-          প্ল্যাটফর্ম পরিচয় (Platform Identity)
+          Platform Identity
         </h3>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div className="space-y-1.5">
-            <label className="text-xs font-bold text-slate-700">সাইটের নাম (Site Name)</label>
+            <label className="text-xs font-bold text-slate-700">Site Name</label>
             <input
               type="text"
               required
@@ -116,7 +119,7 @@ export function AnnouncementForm({ initialSettings }: AnnouncementFormProps) {
             />
           </div>
           <div className="space-y-1.5">
-            <label className="text-xs font-bold text-slate-700">ট্যাগলাইন (Tagline)</label>
+            <label className="text-xs font-bold text-slate-700">Tagline</label>
             <input
               type="text"
               value={tagline}
@@ -133,7 +136,7 @@ export function AnnouncementForm({ initialSettings }: AnnouncementFormProps) {
           <div className="flex items-center gap-2">
             <Bell className="h-4 w-4 text-emerald-600" />
             <h3 className="text-sm font-bold text-slate-900">
-              টপ অ্যানাউন্সমেন্ট টিকার (Top Announcement Bar)
+              Top Announcement Ticker
             </h3>
           </div>
           <label className="flex items-center gap-2 cursor-pointer">
@@ -143,23 +146,23 @@ export function AnnouncementForm({ initialSettings }: AnnouncementFormProps) {
               onChange={(e) => setAnnouncementEnabled(e.target.checked)}
               className="h-4 w-4 rounded accent-emerald-600"
             />
-            <span className="text-xs font-bold text-slate-700">টিকার সক্রিয় রাখুন</span>
+            <span className="text-xs font-bold text-slate-700">Enable Ticker</span>
           </label>
         </div>
 
         <div className="space-y-1.5">
           <label className="text-xs font-bold text-slate-700">
-            বিজ্ঞপ্তি বার্তা (Announcement Ticker Text)
+            Ticker Message Text
           </label>
           <input
             type="text"
             value={announcementText}
             onChange={(e) => setAnnouncementText(e.target.value)}
-            placeholder="⚡ সারা দেশে ক্যাশ অন ডেলিভারি | ৳১,০০০ টাকার অর্ডারে ফ্রি ডেলিভারি"
+            placeholder="⚡ Nationwide Cash on Delivery | Free shipping on orders over ৳1,000"
             className="neo-input-recessed w-full rounded-xl px-3.5 py-2 text-xs"
           />
           <p className="text-[11px] text-slate-400">
-            এই বার্তাটি স্টোরফ্রন্টের সর্বোচ্চ শীর্ষে ডিপ এমারেল্ড ব্যানারে প্রদর্শিত হবে।
+            This message appears on the topmost emerald banner across the customer storefront.
           </p>
         </div>
       </div>
@@ -169,52 +172,52 @@ export function AnnouncementForm({ initialSettings }: AnnouncementFormProps) {
         <div className="flex items-center gap-2 border-b border-emerald-100 pb-2.5">
           <PhoneCall className="h-4 w-4 text-emerald-600" />
           <h3 className="text-sm font-bold text-slate-900">
-            গ্রাহক সহায়তা ও হেল্পলাইন (Customer Helpline)
+            Customer Helpline & Support
           </h3>
         </div>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div className="space-y-1.5">
             <label className="text-xs font-bold text-slate-700">
-              হেল্পলাইন নম্বর (Phone Number)
+              Helpline Phone Number
             </label>
             <input
               type="text"
               value={helplinePhone}
               onChange={(e) => setHelplinePhone(e.target.value)}
-              placeholder="০৯৬১২-০০৭৮৩৭"
+              placeholder="09612-007837"
               className="neo-input-recessed w-full rounded-xl px-3.5 py-2 text-xs font-semibold text-emerald-800"
             />
           </div>
 
           <div className="space-y-1.5">
             <label className="text-xs font-bold text-slate-700">
-              অপারেটিং সময়সীমা (Service Hours)
+              Operating Hours
             </label>
             <input
               type="text"
               value={helplineHours}
               onChange={(e) => setHelplineHours(e.target.value)}
-              placeholder="সকাল ৯টা - রাত ১০টা"
+              placeholder="9:00 AM - 10:00 PM"
               className="neo-input-recessed w-full rounded-xl px-3.5 py-2 text-xs"
             />
           </div>
         </div>
       </div>
 
-      {/* 4. Delivery & Nationwide Shipping Rates */}
+      {/* 4. Delivery & Shipping Rates */}
       <div className="neo-card p-6 space-y-4">
         <div className="flex items-center gap-2 border-b border-emerald-100 pb-2.5">
           <Truck className="h-4 w-4 text-emerald-600" />
           <h3 className="text-sm font-bold text-slate-900">
-            ডেলিভারি চার্জ ও ফ্রি ডেলিভারি থ্রেশহোল্ড (Shipping Logic)
+            Nationwide Shipping Rates (BDT ৳)
           </h3>
         </div>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div className="space-y-1.5">
             <label className="text-xs font-bold text-slate-700">
-              ফ্রি ডেলিভারি ন্যূনতম অর্ডার (৳ BDT)
+              Free Delivery Minimum Order Threshold (৳ BDT)
             </label>
             <input
               type="number"
@@ -223,13 +226,13 @@ export function AnnouncementForm({ initialSettings }: AnnouncementFormProps) {
               className="neo-input-recessed w-full rounded-xl px-3.5 py-2 text-xs font-bold text-slate-900"
             />
             <p className="text-[11px] text-slate-400">
-              এই পরিমাণের সমপরিমাণ বা বেশি মূল্যের অর্ডারে স্বয়ংক্রিয়ভাবে শিপিং চার্জ ফ্রি হবে।
+              Orders equal to or exceeding this amount automatically receive free courier delivery.
             </p>
           </div>
 
           <div className="space-y-1.5">
             <label className="text-xs font-bold text-slate-700">
-              সারাদেশে স্ট্যান্ডার্ড ডেলিভারি চার্জ (৳ BDT)
+              Flat Delivery Fee (৳ BDT)
             </label>
             <input
               type="number"
@@ -238,7 +241,7 @@ export function AnnouncementForm({ initialSettings }: AnnouncementFormProps) {
               className="neo-input-recessed w-full rounded-xl px-3.5 py-2 text-xs font-bold text-slate-900"
             />
             <p className="text-[11px] text-slate-400">
-              কুরিয়ার (Steadfast/RedX/Pathao) পার্টনারদের মাধ্যমে হোম ডেলিভারির নির্ধারিত ফি।
+              Standard doorstep delivery rate charged via courier partners (Steadfast/Pathao/RedX).
             </p>
           </div>
         </div>

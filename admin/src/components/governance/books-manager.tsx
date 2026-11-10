@@ -56,10 +56,10 @@ export function BooksManager({ initialBooks }: BooksManagerProps) {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h2 className="text-xl font-black text-slate-900">
-            বই ক্যাটালগ ও লিস্টিং মডারেশন ({filteredBooks.length})
+            Book Catalog & Listing Moderation ({filteredBooks.length})
           </h2>
           <p className="text-xs text-slate-500">
-            সকল ভেন্ডরের বই লিস্টিং পর্যালোচনা ও স্ট্যাটাস পরিবর্তন করুন
+            Audit listings across all vendors, update publish status, or archive titles
           </p>
         </div>
 
@@ -69,7 +69,7 @@ export function BooksManager({ initialBooks }: BooksManagerProps) {
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="বই, লেখক বা ভেন্ডর দিয়ে খুঁজুন..."
+            placeholder="Search by title, author, or vendor..."
             className="neo-input-recessed w-full rounded-xl py-2 pl-9 pr-3 text-xs"
           />
         </div>
@@ -79,13 +79,13 @@ export function BooksManager({ initialBooks }: BooksManagerProps) {
         <table className="w-full text-left text-xs">
           <thead className="border-b border-emerald-100 text-slate-500">
             <tr>
-              <th className="pb-3 font-semibold">বই ও লেখক</th>
-              <th className="pb-3 font-semibold">ভেন্ডর</th>
-              <th className="pb-3 font-semibold">ক্যাটাগরি ও অবস্থা</th>
-              <th className="pb-3 font-semibold">মূল্য</th>
-              <th className="pb-3 font-semibold">স্টক</th>
-              <th className="pb-3 font-semibold">স্ট্যাটাস</th>
-              <th className="pb-3 font-semibold text-right">মডারেশন</th>
+              <th className="pb-3 font-semibold">Book & Author</th>
+              <th className="pb-3 font-semibold">Vendor</th>
+              <th className="pb-3 font-semibold">Category & Condition</th>
+              <th className="pb-3 font-semibold">Price</th>
+              <th className="pb-3 font-semibold">Stock</th>
+              <th className="pb-3 font-semibold">Status</th>
+              <th className="pb-3 font-semibold text-right">Moderation</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-emerald-50">
@@ -99,12 +99,12 @@ export function BooksManager({ initialBooks }: BooksManagerProps) {
                 </td>
 
                 <td className="py-3 font-medium text-emerald-800">
-                  {book.vendor?.shop_name || "স্বতন্ত্র ভেন্ডর"}
+                  {book.vendor?.shop_name || "Independent Bookseller"}
                 </td>
 
                 <td className="py-3">
                   <span className="inline-block rounded-md bg-slate-100 px-2 py-0.5 text-[10px] font-semibold text-slate-700">
-                    {book.category?.name || "সাধারণ"}
+                    {book.category?.name || "General"}
                   </span>
                   <span className="ml-1 text-[10px] text-slate-400 capitalize">
                     ({book.condition})
@@ -116,7 +116,7 @@ export function BooksManager({ initialBooks }: BooksManagerProps) {
                 </td>
 
                 <td className="py-3 font-semibold text-slate-800">
-                  {book.stock} কপি
+                  {book.stock} copies
                 </td>
 
                 <td className="py-3">
@@ -130,10 +130,10 @@ export function BooksManager({ initialBooks }: BooksManagerProps) {
                     }`}
                   >
                     {book.status === "active"
-                      ? "সক্রিয় (Active)"
+                      ? "Active"
                       : book.status === "draft"
-                        ? "খসড়া (Draft)"
-                        : "আর্কাইভ (Archived)"}
+                        ? "Draft"
+                        : "Archived"}
                   </span>
                 </td>
 
@@ -145,10 +145,10 @@ export function BooksManager({ initialBooks }: BooksManagerProps) {
                         disabled={updatingId === book.id}
                         onClick={() => handleStatusChange(book.id, "active")}
                         className="neo-button-green flex h-7 items-center gap-1 rounded-md px-2 text-[11px] font-bold"
-                        title="সরাসরি লাইভ করুন"
+                        title="Publish Live"
                       >
                         <CheckCircle className="h-3 w-3" />
-                        <span>লাইভ</span>
+                        <span>Publish</span>
                       </button>
                     )}
 
@@ -158,10 +158,10 @@ export function BooksManager({ initialBooks }: BooksManagerProps) {
                         disabled={updatingId === book.id}
                         onClick={() => handleStatusChange(book.id, "draft")}
                         className="neo-button-light flex h-7 items-center gap-1 rounded-md px-2 text-[11px] font-bold text-amber-700"
-                        title="ড্রাফট করুন"
+                        title="Revert to Draft"
                       >
                         <FileText className="h-3 w-3" />
-                        <span>ড্রাফট</span>
+                        <span>Draft</span>
                       </button>
                     )}
 
@@ -171,7 +171,7 @@ export function BooksManager({ initialBooks }: BooksManagerProps) {
                         disabled={updatingId === book.id}
                         onClick={() => handleStatusChange(book.id, "archived")}
                         className="neo-button-light flex h-7 items-center gap-1 rounded-md px-2 text-[11px] font-bold text-slate-500 hover:text-rose-600"
-                        title="আর্কাইভ করুন"
+                        title="Archive Listing"
                       >
                         <Archive className="h-3 w-3" />
                       </button>

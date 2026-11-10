@@ -8,8 +8,12 @@ import {
   Truck,
   CreditCard,
 } from "lucide-react";
+import { getServerLocale, getDictionary } from "@/lib/i18n/server";
 
-export function Footer() {
+export async function Footer() {
+  const locale = await getServerLocale();
+  const t = getDictionary(locale);
+
   return (
     <footer className="border-t border-emerald-950/40 bg-slate-950 py-12 text-sm text-slate-300">
       <div className="container mx-auto max-w-7xl space-y-10 px-4 sm:px-6 lg:px-8">
@@ -28,17 +32,14 @@ export function Footer() {
               </span>
             </Link>
             <p className="max-w-sm text-xs leading-relaxed text-slate-400">
-              The official dedicated multivendor book marketplace of RTDS
-              Platform in Bangladesh. Connecting top medical admission guides,
-              university test series, academic bookshops, and passionate readers
-              across 64 districts in one unified platform.
+              {t.footer.aboutText}
             </p>
 
             <div className="space-y-2 pt-2 text-xs">
               <div className="flex items-center gap-2.5 text-slate-300">
                 <PhoneCall className="h-4 w-4 shrink-0 text-emerald-400" />
                 <span className="font-semibold">
-                  09612-007837 / 01700-000000 (সকাল ৯টা - রাত ১০টা)
+                  09612-007837 / 01700-000000 ({t.common.serviceHours})
                 </span>
               </div>
               <div className="flex items-center gap-2.5 text-slate-300">
@@ -57,7 +58,7 @@ export function Footer() {
           {/* Categories */}
           <div>
             <h4 className="mb-3 text-xs font-bold tracking-wider text-emerald-400 uppercase">
-              বইয়ের বিভাগসমূহ (Categories)
+              {t.footer.categoriesHeader}
             </h4>
             <ul className="space-y-2 text-xs text-slate-400">
               <li>
@@ -65,7 +66,7 @@ export function Footer() {
                   href="/books?category=medical"
                   className="transition-colors hover:text-emerald-300"
                 >
-                  মেডিকেল ও ডেন্টাল ভর্তি সহায়িকা
+                  Medical & Dental Prep
                 </Link>
               </li>
               <li>
@@ -73,7 +74,7 @@ export function Footer() {
                   href="/books?category=engineering"
                   className="transition-colors hover:text-emerald-300"
                 >
-                  ইঞ্জিনিয়ারিং ও ভার্সিটি ভর্তি
+                  Engineering & Varsity Admission
                 </Link>
               </li>
               <li>
@@ -81,7 +82,7 @@ export function Footer() {
                   href="/books?category=academic"
                   className="transition-colors hover:text-emerald-300"
                 >
-                  এইচএসসি ও বিশ্ববিদ্যালয় সিরিজ
+                  HSC & University Series
                 </Link>
               </li>
               <li>
@@ -89,7 +90,7 @@ export function Footer() {
                   href="/books?category=fiction"
                   className="transition-colors hover:text-emerald-300"
                 >
-                  উপন্যাস ও সাহিত্য সমগ্র
+                  Literature & Novels
                 </Link>
               </li>
               <li>
@@ -97,16 +98,16 @@ export function Footer() {
                   href="/books?category=rare"
                   className="transition-colors hover:text-emerald-300"
                 >
-                  দুষ্প্রাপ্য ও পুরাতন ক্লাসিক বই
+                  Rare & Classic Editions
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Vendors & Publishers */}
+          {/* Quick Links */}
           <div>
             <h4 className="mb-3 text-xs font-bold tracking-wider text-emerald-400 uppercase">
-              ভেন্ডর ও প্রকাশনী (Publishers)
+              {t.footer.quickLinksHeader}
             </h4>
             <ul className="space-y-2 text-xs text-slate-400">
               <li>
@@ -114,23 +115,15 @@ export function Footer() {
                   href="/vendors"
                   className="transition-colors hover:text-emerald-300"
                 >
-                  সকল ভেন্ডর স্টোরফ্রন্ট
+                  Verified Bookstores
                 </Link>
               </li>
               <li>
                 <Link
                   href="/vendor/apply"
-                  className="font-semibold text-emerald-400 transition-colors hover:text-white"
-                >
-                  বই বিক্রি করুন (Apply to Sell)
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/vendor/dashboard"
                   className="transition-colors hover:text-emerald-300"
                 >
-                  ভেন্ডর পোর্টাল লগইন
+                  Join as Vendor
                 </Link>
               </li>
               <li>
@@ -138,50 +131,66 @@ export function Footer() {
                   href="/buyer/orders"
                   className="transition-colors hover:text-emerald-300"
                 >
-                  অর্ডার ট্র্যাকিং (Track Order)
+                  Order Tracking
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/login"
+                  className="transition-colors hover:text-emerald-300"
+                >
+                  Customer Login
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Trust & Guarantee */}
+          {/* Support & Nationwide Delivery */}
           <div>
             <h4 className="mb-3 text-xs font-bold tracking-wider text-emerald-400 uppercase">
-              নিরাপত্তা ও ডেলিভারি (Policies)
+              {t.footer.supportHeader}
             </h4>
             <div className="space-y-3 text-xs text-slate-400">
               <div className="flex items-start gap-2">
-                <Truck className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />
-                <span>সারাদেশে ৬৪ জেলায় দ্রুত ক্যাশ অন ডেলিভারি</span>
+                <Truck className="h-4 w-4 shrink-0 text-emerald-400" />
+                <span>
+                  {t.footer.deliveryInfo}
+                </span>
               </div>
               <div className="flex items-start gap-2">
-                <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />
-                <span>১০০% আসল ও পাইরেসি-মুক্ত বইয়ের নিশ্চয়তা</span>
+                <CreditCard className="h-4 w-4 shrink-0 text-emerald-400" />
+                <span>{t.footer.paymentMethods}</span>
               </div>
               <div className="flex items-start gap-2">
-                <CreditCard className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />
-                <span>বিকাশ, নগদ, রকেট ও কার্ড পেমেন্ট সাপোর্ট</span>
+                <ShieldCheck className="h-4 w-4 shrink-0 text-emerald-400" />
+                <span>100% Genuine Books & Secure Checkout</span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom Strip */}
-        <div className="flex flex-col items-center justify-between gap-4 border-t border-slate-800/80 pt-6 text-xs text-slate-500 sm:flex-row">
-          <p>
-            © 2026 RTDS Bookshop Platform. All rights reserved. Official Book
-            Marketplace of RTDS Platform.
-          </p>
-          <div className="flex items-center gap-4">
-            <span className="text-emerald-400/80">
-              Unified Multi-Vendor Cart
-            </span>
-            <span>•</span>
-            <span className="text-emerald-400/80">
-              Cloudflare R2 Object Storage
-            </span>
-            <span>•</span>
-            <span className="text-emerald-400/80">Supabase SSR Engine</span>
+        {/* Bottom Bar */}
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-slate-900 pt-8 text-xs text-slate-500 sm:flex-row">
+          <p>© {new Date().getFullYear()} {t.footer.rightsReserved}</p>
+          <div className="flex items-center gap-6">
+            <Link
+              href="/privacy"
+              className="transition-colors hover:text-slate-400"
+            >
+              {t.footer.privacy}
+            </Link>
+            <Link
+              href="/terms"
+              className="transition-colors hover:text-slate-400"
+            >
+              {t.footer.terms}
+            </Link>
+            <Link
+              href="/returns"
+              className="transition-colors hover:text-slate-400"
+            >
+              {t.footer.refundPolicy}
+            </Link>
           </div>
         </div>
       </div>

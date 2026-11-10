@@ -24,7 +24,7 @@ export function AdminHeader({ adminEmail, adminName }: AdminHeaderProps) {
       <div className="flex items-center gap-3">
         <div className="flex items-center gap-2 rounded-xl bg-emerald-50 px-3 py-1.5 text-xs font-bold text-emerald-800">
           <Activity className="h-3.5 w-3.5 text-emerald-600" />
-          <span>সিস্টেম লাইভ: সেন্ট্রাল রিপোজিটরি</span>
+          <span>System Live: Central Database</span>
         </div>
         <span className="rounded-lg border border-emerald-200 bg-white px-2 py-0.5 text-[11px] font-bold text-slate-700">
           BDT (৳)
@@ -55,7 +55,7 @@ export function AdminHeader({ adminEmail, adminName }: AdminHeaderProps) {
           title="Sign out of Admin Center"
         >
           <LogOut className="h-3.5 w-3.5" />
-          <span className="hidden sm:inline">লগআউট</span>
+          <span className="hidden sm:inline">Sign Out</span>
         </button>
       </div>
     </header>

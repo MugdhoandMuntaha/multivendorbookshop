@@ -53,14 +53,14 @@ export function VendorsManager({ initialVendors }: VendorsManagerProps) {
   async function handleCommissionChange(vendorId: string, currentBps: number) {
     const currentPercent = currentBps / 100;
     const input = prompt(
-      "ভেন্ডরের নতুন কমিশন হার লিখুন (শতাংশে %, যেমন: 10 বা 8.5):",
+      "Enter new vendor platform commission rate in % (e.g. 10 or 8.5):",
       String(currentPercent)
     );
     if (input === null) return;
 
     const percent = parseFloat(input);
     if (isNaN(percent) || percent < 0 || percent > 50) {
-      alert("অনুগ্রহ করে ০ থেকে ৫০% এর মধ্যে বৈধ সংখ্যা লিখুন।");
+      alert("Please enter a valid percentage between 0% and 50%.");
       return;
     }
 
@@ -83,10 +83,10 @@ export function VendorsManager({ initialVendors }: VendorsManagerProps) {
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-xl font-black text-slate-900">
-            ভেন্ডর ও কমিশন ব্যবস্থাপনা ({vendors.length})
+            Vendors & Commission Governance ({vendors.length})
           </h2>
           <p className="text-xs text-slate-500">
-            নতুন ভেন্ডর আবেদন যাচাই, দোকান অনুমোদন ও কাস্টম কমিশন হার নিয়ন্ত্রণ করুন
+            Review vendor applications, authorize store launches, and configure custom commission rates
           </p>
         </div>
       </div>
@@ -95,11 +95,11 @@ export function VendorsManager({ initialVendors }: VendorsManagerProps) {
         <table className="w-full text-left text-xs">
           <thead className="border-b border-emerald-100 text-slate-500">
             <tr>
-              <th className="pb-3 font-semibold">বুকশপ নাম</th>
-              <th className="pb-3 font-semibold">মালিক / প্রোফাইল</th>
-              <th className="pb-3 font-semibold">কমিশন রেট</th>
-              <th className="pb-3 font-semibold">বর্তমান অবস্থা</th>
-              <th className="pb-3 font-semibold text-right">কার্যক্রম (Actions)</th>
+              <th className="pb-3 font-semibold">Bookshop Name</th>
+              <th className="pb-3 font-semibold">Owner / Account</th>
+              <th className="pb-3 font-semibold">Commission Rate</th>
+              <th className="pb-3 font-semibold">Status</th>
+              <th className="pb-3 font-semibold text-right">Actions</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-emerald-50">
@@ -127,7 +127,7 @@ export function VendorsManager({ initialVendors }: VendorsManagerProps) {
                   </td>
 
                   <td className="py-3.5 font-medium text-slate-700">
-                    {vendor.owner?.full_name || "ভেন্ডর মালিক"}
+                    {vendor.owner?.full_name || "Vendor Owner"}
                   </td>
 
                   <td className="py-3.5">
@@ -137,7 +137,7 @@ export function VendorsManager({ initialVendors }: VendorsManagerProps) {
                         handleCommissionChange(vendor.id, vendor.commission_bps)
                       }
                       className="flex items-center gap-1.5 rounded-lg border border-emerald-200 bg-white px-2.5 py-1 text-xs font-bold text-emerald-800 hover:bg-emerald-50"
-                      title="কমিশন রেট পরিবর্তন করুন"
+                      title="Adjust Commission Rate"
                     >
                       <Percent className="h-3 w-3 text-emerald-600" />
                       <span>{vendor.commission_bps / 100}%</span>
@@ -155,10 +155,10 @@ export function VendorsManager({ initialVendors }: VendorsManagerProps) {
                       }`}
                     >
                       {isApproved
-                        ? "অনুমোদিত (Approved)"
+                        ? "Approved"
                         : isPending
-                          ? "পর্যালোচনাধীন (Pending)"
-                          : "স্থগিত (Suspended)"}
+                          ? "Pending Review"
+                          : "Suspended"}
                     </span>
                   </td>
 
@@ -175,7 +175,7 @@ export function VendorsManager({ initialVendors }: VendorsManagerProps) {
                             className="neo-button-green flex h-8 items-center gap-1 rounded-lg px-3 text-xs font-bold"
                           >
                             <CheckCircle2 className="h-3.5 w-3.5" />
-                            <span>অনুমোদন দিন</span>
+                            <span>Approve</span>
                           </button>
                           <button
                             type="button"
@@ -186,7 +186,7 @@ export function VendorsManager({ initialVendors }: VendorsManagerProps) {
                             className="neo-button-light flex h-8 items-center gap-1 rounded-lg px-2.5 text-xs font-bold text-rose-600"
                           >
                             <XCircle className="h-3.5 w-3.5" />
-                            <span>বাতিল</span>
+                            <span>Reject</span>
                           </button>
                         </>
                       )}
@@ -201,7 +201,7 @@ export function VendorsManager({ initialVendors }: VendorsManagerProps) {
                           className="neo-button-light flex h-8 items-center gap-1 rounded-lg px-3 text-xs font-bold text-rose-600 hover:bg-rose-50"
                         >
                           <AlertCircle className="h-3.5 w-3.5" />
-                          <span>স্থগিত করুন</span>
+                          <span>Suspend</span>
                         </button>
                       )}
 
@@ -215,7 +215,7 @@ export function VendorsManager({ initialVendors }: VendorsManagerProps) {
                           className="neo-button-light flex h-8 items-center gap-1 rounded-lg px-3 text-xs font-bold text-emerald-700 hover:bg-emerald-50"
                         >
                           <CheckCircle2 className="h-3.5 w-3.5" />
-                          <span>পুনরায় চালু করুন</span>
+                          <span>Reactivate</span>
                         </button>
                       )}
                     </div>

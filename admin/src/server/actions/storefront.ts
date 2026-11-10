@@ -271,3 +271,4 @@ export async function deleteCuratedShelfAction(id: string) {
   revalidatePath("/storefront/shelves");
   return { success: true };
 }
+

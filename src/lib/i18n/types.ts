@@ -1,0 +1,110 @@
+export type Locale = "en" | "bn";
+
+export interface Dictionary {
+  common: {
+    siteName: string;
+    tagline: string;
+    searchPlaceholder: string;
+    searchButton: string;
+    allCategories: string;
+    cart: string;
+    wishlist: string;
+    signIn: string;
+    signOut: string;
+    vendorPortal: string;
+    adminPortal: string;
+    sellBooks: string;
+    becomeVendor: string;
+    helpline: string;
+    serviceHours: string;
+    freeShippingNotice: string;
+    codAvailable: string;
+    inStock: string;
+    outOfStock: string;
+    addToCart: string;
+    lookInside: string;
+    reviews: string;
+    off: string;
+    items: string;
+    viewAll: string;
+    details: string;
+  };
+  header: {
+    announcement: string;
+    hotline: string;
+    sellBooksLink: string;
+    categories: {
+      all: string;
+      medical: string;
+      engineering: string;
+      academic: string;
+      fiction: string;
+      nonFiction: string;
+      islamic: string;
+      rare: string;
+      verifiedShops: string;
+    };
+  };
+  hero: {
+    badge: string;
+    guaranteed: string;
+    title: string;
+    subtitle: string;
+    browseCatalog: string;
+    sellBooks: string;
+    medicalShowcaseTitle: string;
+    medicalShowcaseDesc: string;
+    literatureShowcaseTitle: string;
+    literatureShowcaseDesc: string;
+    trust1Title: string;
+    trust1Desc: string;
+    trust2Title: string;
+    trust2Desc: string;
+    trust3Title: string;
+    trust3Desc: string;
+    trust4Title: string;
+    trust4Desc: string;
+  };
+  shelves: {
+    trendingTitle: string;
+    trendingSubtitle: string;
+    admissionTitle: string;
+    admissionSubtitle: string;
+    admissionBadge: string;
+    viewAllSeries: string;
+    literatureTitle: string;
+    literatureSubtitle: string;
+    viewAllClassics: string;
+    bookshopsTitle: string;
+    bookshopsSubtitle: string;
+    viewAllShops: string;
+    subjectBrowseTitle: string;
+    subjectBrowseSubtitle: string;
+    viewAllSubjects: string;
+    depotBadge: string;
+    heritageBadge: string;
+    curatedBadge: string;
+    visitShop: string;
+    booksAvailable: string;
+  };
+  subjects: {
+    medical: string;
+    fiction: string;
+    computerScience: string;
+    history: string;
+    islamic: string;
+    classics: string;
+  };
+  footer: {
+    aboutText: string;
+    categoriesHeader: string;
+    quickLinksHeader: string;
+    supportHeader: string;
+    deliveryInfo: string;
+    paymentMethods: string;
+    rightsReserved: string;
+    terms: string;
+    privacy: string;
+    refundPolicy: string;
+  };
+}

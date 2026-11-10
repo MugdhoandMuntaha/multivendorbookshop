@@ -4,15 +4,25 @@ import { Star, ShoppingBag, Eye, Store } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { formatPrice } from "@/lib/utils";
 import { getR2PublicUrl } from "@/lib/r2/utils";
+import { getServerLocale, getDictionary } from "@/lib/i18n/server";
+import { Locale } from "@/lib/i18n/types";
 import type { BookRow } from "@/server/queries/books";
 
-export function BookCard({ book }: { book: BookRow }) {
+interface BookCardProps {
+  book: BookRow;
+  locale?: Locale;
+}
+
+export async function BookCard({ book, locale }: BookCardProps) {
+  const currentLocale = locale ?? (await getServerLocale());
+  const t = getDictionary(currentLocale);
+
   const coverKey = book.book_images?.[0]?.r2_key;
   const coverUrl = getR2PublicUrl(coverKey);
   const vendorName = book.vendors?.shop_name || "Verified Bookseller";
   const vendorSlug = book.vendors?.slug || "#";
 
-  // Calculate a realistic strike-through MRP price (+15% to +20%) to show savings
+  // Calculate strike-through MRP price
   const originalPriceMinor = Math.round(book.price_minor * 1.2);
   const discountPercent = Math.round(
     ((originalPriceMinor - book.price_minor) / originalPriceMinor) * 100
@@ -36,7 +46,7 @@ export function BookCard({ book }: { book: BookRow }) {
           {/* Discount Pill Badge (Vibrant Emerald & White) */}
           {discountPercent > 0 && (
             <Badge className="absolute top-2.5 left-2.5 bg-emerald-600 px-2 py-0.5 text-[10px] font-black text-white shadow-[0_2px_6px_rgba(5,150,105,0.35)] hover:bg-emerald-700">
-              -{discountPercent}% OFF
+              -{discountPercent}% {t.common.off}
             </Badge>
           )}
 
@@ -56,7 +66,7 @@ export function BookCard({ book }: { book: BookRow }) {
                 className="neo-button-light flex h-8 w-full items-center justify-center gap-1.5 rounded-xl text-xs font-bold shadow-md"
               >
                 <Eye className="h-3.5 w-3.5 text-emerald-600" />
-                <span>একটু পড়ে দেখুন</span>
+                <span>{t.common.lookInside}</span>
               </button>
             </Link>
           </div>
@@ -89,7 +99,9 @@ export function BookCard({ book }: { book: BookRow }) {
               <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
               <span className="ml-1 text-xs font-bold text-slate-800">4.9</span>
             </div>
-            <span className="text-[11px] text-slate-400">(48 reviews)</span>
+            <span className="text-[11px] text-slate-400">
+              (48 {t.common.reviews})
+            </span>
           </div>
         </div>
       </div>
@@ -106,7 +118,9 @@ export function BookCard({ book }: { book: BookRow }) {
             </span>
           </div>
           <span className="block text-[10px] font-semibold text-emerald-600">
-            স্টকে আছে ({book.stock} টি)
+            {currentLocale === "bn"
+              ? `স্টকে আছে (${book.stock} টি)`
+              : `${t.common.inStock} (${book.stock})`}
           </span>
         </div>
 
@@ -115,7 +129,7 @@ export function BookCard({ book }: { book: BookRow }) {
           className="neo-button-green flex h-8 shrink-0 items-center gap-1 rounded-xl px-3 text-xs font-bold"
         >
           <ShoppingBag className="h-3.5 w-3.5" />
-          <span>কার্ট</span>
+          <span>{t.common.cart}</span>
         </button>
       </div>
     </div>

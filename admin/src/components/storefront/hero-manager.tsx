@@ -52,8 +52,8 @@ export function HeroManager({ initialSlides }: HeroManagerProps) {
   // Form states
   const [title, setTitle] = useState("");
   const [subtitle, setSubtitle] = useState("");
-  const [badgeText, setBadgeText] = useState("RTDS জাতীয় বইমেলা ও ভর্তি উৎসব ২০২৬");
-  const [ctaText, setCtaText] = useState("বইয়ের তালিকা দেখুন (Catalog)");
+  const [badgeText, setBadgeText] = useState("RTDS National Book Fair & Admission Fest 2026");
+  const [ctaText, setCtaText] = useState("Browse Book Catalog");
   const [ctaLink, setCtaLink] = useState("/books");
   const [bgGradient, setBgGradient] = useState(GRADIENT_PRESETS[0].value);
   const [sortOrder, setSortOrder] = useState(slides.length);
@@ -95,7 +95,7 @@ export function HeroManager({ initialSlides }: HeroManagerProps) {
       }
 
       setR2Key(r2Key);
-      alert("ছবি সফলভাবে ক্লাউডফ্লেয়ার R2 বাকেটে আপলোড হয়েছে!");
+      alert("Image uploaded successfully to Cloudflare R2 bucket!");
     } catch (err) {
       alert("Upload error: " + (err instanceof Error ? err.message : String(err)));
     } finally {
@@ -143,7 +143,7 @@ export function HeroManager({ initialSlides }: HeroManagerProps) {
   }
 
   async function handleDelete(id: string) {
-    if (!confirm("আপনি কি নিশ্চিতভাবে এই হিরো স্লাইডটি মুছে ফেলতে চান?")) return;
+    if (!confirm("Are you sure you want to delete this hero slide?")) return;
     const res = await deleteHeroSlideAction(id);
     if (res.success) {
       setSlides((prev) => prev.filter((s) => s.id !== id));
@@ -158,10 +158,10 @@ export function HeroManager({ initialSlides }: HeroManagerProps) {
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-xl font-black text-slate-900">
-            হিরো ক্যাম্পেইন ব্যানারসমূহ ({slides.length})
+            Hero Campaign Banners ({slides.length})
           </h2>
           <p className="text-xs text-slate-500">
-            হোমপেজের প্রধান প্রোমোশনাল স্লাইডার ও ব্যানার ম্যানেজ করুন
+            Configure promotional sliders and campaign banners displayed on the storefront
           </p>
         </div>
 
@@ -171,7 +171,7 @@ export function HeroManager({ initialSlides }: HeroManagerProps) {
           className="neo-button-green flex h-9 items-center gap-1.5 rounded-xl px-4 text-xs font-bold"
         >
           <Plus className="h-4 w-4" />
-          <span>{isAdding ? "বাতিল করুন" : "নতুন স্লাইড তৈরি করুন"}</span>
+          <span>{isAdding ? "Cancel" : "Add New Slide"}</span>
         </button>
       </div>
 
@@ -181,54 +181,54 @@ export function HeroManager({ initialSlides }: HeroManagerProps) {
           <div className="flex items-center gap-2 border-b border-emerald-100 pb-3">
             <Sparkles className="h-4 w-4 text-emerald-600" />
             <h3 className="text-sm font-bold text-slate-900">
-              নতুন হিরো ব্যানার যোগ করুন
+              Create New Hero Campaign Slide
             </h3>
           </div>
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div className="space-y-1.5 sm:col-span-2">
               <label className="text-xs font-bold text-slate-700">
-                প্রধান শিরোনাম (Title) *
+                Headline Title *
               </label>
               <input
                 type="text"
                 required
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                placeholder="মেডিকেল, প্রকৌশল ও একাডেমিক বইয়ের বিশ্বস্ত মার্কেটপ্লেস"
+                placeholder="e.g. Trusted Marketplace for Medical, Engineering & Academic Books"
                 className="neo-input-recessed w-full rounded-xl px-3.5 py-2 text-xs"
               />
             </div>
 
             <div className="space-y-1.5 sm:col-span-2">
               <label className="text-xs font-bold text-slate-700">
-                উপ-শিরোনাম / বিবরণ (Subtitle)
+                Subtitle Description
               </label>
               <textarea
                 rows={2}
                 value={subtitle}
                 onChange={(e) => setSubtitle(e.target.value)}
-                placeholder="RTDS মেডিকেল মাস্টার সিরিজ, ইঞ্জিনিয়ারিং ভর্তি সহায়িকা এবং একাডেমিক বই..."
+                placeholder="Order RTDS Medical Master Series, Engineering Guides, and Literature..."
                 className="neo-input-recessed w-full rounded-xl px-3.5 py-2 text-xs"
               />
             </div>
 
             <div className="space-y-1.5">
               <label className="text-xs font-bold text-slate-700">
-                ব্যাজ টেক্সট (Badge Text)
+                Badge Text
               </label>
               <input
                 type="text"
                 value={badgeText}
                 onChange={(e) => setBadgeText(e.target.value)}
-                placeholder="RTDS জাতীয় বইমেলা ও ভর্তি উৎসব ২০২৬"
+                placeholder="RTDS National Book Fair & Admission Fest 2026"
                 className="neo-input-recessed w-full rounded-xl px-3.5 py-2 text-xs"
               />
             </div>
 
             <div className="space-y-1.5">
               <label className="text-xs font-bold text-slate-700">
-                ব্যাকগ্রাউন্ড গ্রেডিয়েন্ট থিম
+                Background Theme Gradient
               </label>
               <select
                 value={bgGradient}
@@ -245,20 +245,20 @@ export function HeroManager({ initialSlides }: HeroManagerProps) {
 
             <div className="space-y-1.5">
               <label className="text-xs font-bold text-slate-700">
-                সিঙ্ক বাটন টেক্সট (CTA Label)
+                CTA Button Label
               </label>
               <input
                 type="text"
                 value={ctaText}
                 onChange={(e) => setCtaText(e.target.value)}
-                placeholder="বইয়ের তালিকা দেখুন (Catalog)"
+                placeholder="Browse Book Catalog"
                 className="neo-input-recessed w-full rounded-xl px-3.5 py-2 text-xs"
               />
             </div>
 
             <div className="space-y-1.5">
               <label className="text-xs font-bold text-slate-700">
-                বাটন লিংক (CTA Link)
+                CTA Button Link
               </label>
               <input
                 type="text"
@@ -271,7 +271,7 @@ export function HeroManager({ initialSlides }: HeroManagerProps) {
 
             <div className="space-y-1.5">
               <label className="text-xs font-bold text-slate-700">
-                সর্ট অর্ডার (ক্রম)
+                Display Sort Order
               </label>
               <input
                 type="number"
@@ -284,12 +284,12 @@ export function HeroManager({ initialSlides }: HeroManagerProps) {
             {/* Direct Cloudflare R2 Upload */}
             <div className="space-y-1.5">
               <label className="text-xs font-bold text-slate-700">
-                ব্যানার ছবি (Cloudflare R2 Direct Upload)
+                Slide Image (Direct Cloudflare R2 Upload)
               </label>
               <div className="flex items-center gap-3">
                 <label className="neo-button-light flex h-9 cursor-pointer items-center gap-1.5 rounded-xl px-3 text-xs font-bold">
                   <Upload className="h-3.5 w-3.5 text-emerald-600" />
-                  <span>{uploading ? "আপলোড হচ্ছে..." : "ছবি নির্বাচন করুন"}</span>
+                  <span>{uploading ? "Uploading..." : "Select Image"}</span>
                   <input
                     type="file"
                     accept="image/jpeg,image/png,image/webp"
@@ -318,7 +318,7 @@ export function HeroManager({ initialSlides }: HeroManagerProps) {
                 htmlFor="is_active_input"
                 className="text-xs font-bold text-slate-800 cursor-pointer"
               >
-                সরাসরি হোমপেজে সক্রিয় রাখুন (Publish Immediately)
+                Publish Immediately on Storefront
               </label>
             </div>
           </div>
@@ -329,14 +329,14 @@ export function HeroManager({ initialSlides }: HeroManagerProps) {
               onClick={() => setIsAdding(false)}
               className="neo-button-light rounded-xl px-4 py-2 text-xs font-bold"
             >
-              বাতিল
+              Cancel
             </button>
             <button
               type="submit"
               disabled={loading || uploading}
               className="neo-button-green rounded-xl px-5 py-2 text-xs font-bold disabled:opacity-50"
             >
-              {loading ? "সংরক্ষণ করা হচ্ছে..." : "স্লাইড প্রকাশ করুন"}
+              {loading ? "Saving Slide..." : "Save & Publish"}
             </button>
           </div>
         </form>
@@ -344,7 +344,7 @@ export function HeroManager({ initialSlides }: HeroManagerProps) {
 
       {/* Existing Slides List */}
       <div className="space-y-4">
-        {slides.map((slide, idx) => (
+        {slides.map((slide) => (
           <div
             key={slide.id}
             className="neo-card p-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
@@ -352,7 +352,7 @@ export function HeroManager({ initialSlides }: HeroManagerProps) {
             <div className="space-y-2 max-w-2xl">
               <div className="flex items-center gap-2">
                 <span className="rounded-md bg-emerald-100 px-2 py-0.5 text-[10px] font-bold text-emerald-800">
-                  ক্রম: {slide.sort_order}
+                  Order: {slide.sort_order}
                 </span>
                 {slide.badge_text && (
                   <span className="rounded-md bg-amber-100 px-2 py-0.5 text-[10px] font-bold text-amber-800">
@@ -366,7 +366,7 @@ export function HeroManager({ initialSlides }: HeroManagerProps) {
                       : "bg-slate-200 text-slate-700"
                   }`}
                 >
-                  {slide.is_active ? "সক্রিয় (Active)" : "নিষ্ক্রিয় (Draft)"}
+                  {slide.is_active ? "Active" : "Draft"}
                 </span>
               </div>
 
@@ -383,7 +383,7 @@ export function HeroManager({ initialSlides }: HeroManagerProps) {
                   {slide.cta_link}
                 </span>
                 <span>•</span>
-                <span>বাটন: {slide.cta_text}</span>
+                <span>Button: {slide.cta_text}</span>
               </div>
             </div>
 
@@ -399,12 +399,12 @@ export function HeroManager({ initialSlides }: HeroManagerProps) {
                 {slide.is_active ? (
                   <>
                     <XCircle className="h-3.5 w-3.5" />
-                    <span>বন্ধ করুন</span>
+                    <span>Deactivate</span>
                   </>
                 ) : (
                   <>
                     <CheckCircle className="h-3.5 w-3.5" />
-                    <span>চালু করুন</span>
+                    <span>Activate</span>
                   </>
                 )}
               </button>
@@ -413,7 +413,7 @@ export function HeroManager({ initialSlides }: HeroManagerProps) {
                 type="button"
                 onClick={() => handleDelete(slide.id)}
                 className="neo-button-light flex h-8 items-center gap-1 rounded-lg px-2.5 text-xs font-bold text-rose-600 hover:text-rose-700"
-                title="মুছে ফেলুন"
+                title="Delete slide"
               >
                 <Trash2 className="h-3.5 w-3.5" />
               </button>

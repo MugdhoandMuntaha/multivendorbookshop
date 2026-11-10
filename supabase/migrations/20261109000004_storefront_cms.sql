@@ -181,3 +181,4 @@ INSERT INTO public.curated_shelves (
         true
     )
 ON CONFLICT (id) DO NOTHING;
+

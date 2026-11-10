@@ -11,25 +11,51 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { getActiveHeroSlides, HeroSlideRow } from "@/server/queries/storefront";
+import { getServerLocale, getDictionary } from "@/lib/i18n/server";
+import { Locale } from "@/lib/i18n/types";
 
 interface HeroBannerProps {
   slides?: HeroSlideRow[];
+  locale?: Locale;
 }
 
-export async function HeroBanner({ slides }: HeroBannerProps = {}) {
+export async function HeroBanner({ slides, locale }: HeroBannerProps = {}) {
+  const currentLocale = locale ?? (await getServerLocale());
+  const t = getDictionary(currentLocale);
   const activeSlides = slides ?? (await getActiveHeroSlides());
+
   const slide = activeSlides[0] ?? {
-    title: "মেডিকেল, প্রকৌশল ও একাডেমিক বইয়ের বিশ্বস্ত মার্কেটপ্লেস",
-    subtitle:
-      "RTDS মেডিকেল মাস্টার সিরিজ, ইঞ্জিনিয়ারিং ভর্তি সহায়িকা, একাডেমিক গাইড এবং সাহিত্য এক কার্টে অর্ডার করুন সরাসরি নির্ভরযোগ্য প্রকাশক ও বুকশপ থেকে।",
-    badge_text: "RTDS জাতীয় বইমেলা ও ভর্তি উৎসব ২০২৬",
-    cta_text: "বইয়ের তালিকা দেখুন (Catalog)",
+    title: t.hero.title,
+    subtitle: t.hero.subtitle,
+    badge_text: t.hero.badge,
+    cta_text: t.hero.browseCatalog,
     cta_link: "/books",
     bg_gradient: "from-emerald-800 via-emerald-700 to-teal-800",
   };
 
   const gradientClass =
     slide.bg_gradient || "from-emerald-800 via-emerald-700 to-teal-800";
+
+  // If user selected English and slide has default bangla title, use English translation
+  const displayTitle =
+    currentLocale === "en" && slide.title?.includes("মেডিকেল")
+      ? t.hero.title
+      : slide.title;
+
+  const displaySubtitle =
+    currentLocale === "en" && slide.subtitle?.includes("মেডিকেল")
+      ? t.hero.subtitle
+      : slide.subtitle;
+
+  const displayBadge =
+    currentLocale === "en" && slide.badge_text?.includes("জাতীয়")
+      ? t.hero.badge
+      : slide.badge_text;
+
+  const displayCta =
+    currentLocale === "en" && slide.cta_text?.includes("বইয়ের")
+      ? t.hero.browseCatalog
+      : slide.cta_text;
 
   return (
     <div className="space-y-8">
@@ -44,23 +70,23 @@ export async function HeroBanner({ slides }: HeroBannerProps = {}) {
         <div className="relative z-10 grid grid-cols-1 items-center gap-8 lg:grid-cols-12">
           <div className="space-y-5 lg:col-span-7">
             <div className="flex flex-wrap items-center gap-2">
-              {slide.badge_text && (
+              {displayBadge && (
                 <Badge className="border border-white/30 bg-white/15 px-3 py-1 text-xs font-semibold text-white shadow-xs backdrop-blur-md hover:bg-white/25">
                   <Sparkles className="mr-1.5 inline h-3.5 w-3.5 text-amber-300" />
-                  {slide.badge_text}
+                  {displayBadge}
                 </Badge>
               )}
               <span className="rounded-full bg-amber-400 px-2.5 py-0.5 text-xs font-black tracking-wider text-slate-950 uppercase shadow-xs">
-                RTDS Guaranteed
+                {t.hero.guaranteed}
               </span>
             </div>
 
             <h1 className="text-3xl leading-tight font-black tracking-tight drop-shadow-xs sm:text-4xl lg:text-5xl">
-              {slide.title}
+              {displayTitle}
             </h1>
 
             <p className="max-w-xl text-sm leading-relaxed font-normal text-emerald-100/90 sm:text-base">
-              {slide.subtitle}
+              {displaySubtitle}
             </p>
 
             <div className="flex flex-wrap items-center gap-3.5 pt-2">
@@ -70,7 +96,7 @@ export async function HeroBanner({ slides }: HeroBannerProps = {}) {
                   className="neo-button-light flex h-11 items-center gap-2 rounded-2xl px-6 font-bold text-emerald-800 shadow-md"
                 >
                   <BookOpen className="h-4 w-4 text-emerald-600" />
-                  <span>{slide.cta_text || "বইয়ের তালিকা দেখুন (Catalog)"}</span>
+                  <span>{displayCta || t.hero.browseCatalog}</span>
                 </button>
               </Link>
 
@@ -80,7 +106,7 @@ export async function HeroBanner({ slides }: HeroBannerProps = {}) {
                   variant="outline"
                   className="h-11 gap-2 rounded-2xl border-white/40 bg-white/10 px-6 font-semibold text-white backdrop-blur-md hover:bg-white/20"
                 >
-                  <span>বই বিক্রি করুন (Sell Books)</span>
+                  <span>{t.hero.sellBooks}</span>
                   <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>
@@ -91,25 +117,25 @@ export async function HeroBanner({ slides }: HeroBannerProps = {}) {
           <div className="hidden grid-cols-2 gap-4 lg:col-span-5 lg:grid">
             <div className="space-y-2 rounded-2xl border border-white/25 bg-white/15 p-5 shadow-[6px_6px_20px_rgba(0,0,0,0.12),-2px_-2px_10px_rgba(255,255,255,0.2)] backdrop-blur-md">
               <span className="text-[10px] font-bold tracking-wider text-amber-300 uppercase">
-                মেডিকেল ও বিশ্ববিদ্যালয়
+                {currentLocale === "bn" ? "মেডিকেল ও বিশ্ববিদ্যালয়" : "Medical & Admission"}
               </span>
               <p className="text-sm leading-snug font-bold text-white">
-                RTDS মাস্টার সিরিজ ও পূর্ণাঙ্গ প্রশ্নব্যাংক সেট
+                {t.hero.medicalShowcaseTitle}
               </p>
               <p className="text-xs text-emerald-100/80">
-                সারা দেশে দ্রুত ক্যাশ অন ডেলিভারি সুবিধা
+                {t.hero.medicalShowcaseDesc}
               </p>
             </div>
 
             <div className="space-y-2 rounded-2xl border border-white/25 bg-white/15 p-5 shadow-[6px_6px_20px_rgba(0,0,0,0.12),-2px_-2px_10px_rgba(255,255,255,0.2)] backdrop-blur-md">
               <span className="text-[10px] font-bold tracking-wider text-amber-300 uppercase">
-                সাহিত্য ও গবেষণা
+                {currentLocale === "bn" ? "সাহিত্য ও গবেষণা" : "Literature & Classics"}
               </span>
               <p className="text-sm leading-snug font-bold text-white">
-                ধ্রুপদী বাংলা ও বিশ্ব সাহিত্যের সেরা সংস্করণ
+                {t.hero.literatureShowcaseTitle}
               </p>
               <p className="text-xs text-emerald-100/80">
-                আসল ও পাইরেসিমুক্ত নতুন ও রিকন্ডিশনড কপি
+                {t.hero.literatureShowcaseDesc}
               </p>
             </div>
           </div>
@@ -123,8 +149,8 @@ export async function HeroBanner({ slides }: HeroBannerProps = {}) {
             <ShieldCheck className="h-6 w-6" />
           </div>
           <div>
-            <h4 className="text-sm font-bold text-slate-800">১০০% আসল বই</h4>
-            <p className="text-xs text-slate-500">সরাসরি ভেরিফায়েড প্রকাশক</p>
+            <h4 className="text-sm font-bold text-slate-800">{t.hero.trust1Title}</h4>
+            <p className="text-xs text-slate-500">{t.hero.trust1Desc}</p>
           </div>
         </div>
 
@@ -133,8 +159,8 @@ export async function HeroBanner({ slides }: HeroBannerProps = {}) {
             <Truck className="h-6 w-6" />
           </div>
           <div>
-            <h4 className="text-sm font-bold text-slate-800">ক্যাশ অন ডেলিভারি</h4>
-            <p className="text-xs text-slate-500">সমগ্র বাংলাদেশে দ্রুত হোম ডেলিভারি</p>
+            <h4 className="text-sm font-bold text-slate-800">{t.hero.trust2Title}</h4>
+            <p className="text-xs text-slate-500">{t.hero.trust2Desc}</p>
           </div>
         </div>
 
@@ -143,8 +169,8 @@ export async function HeroBanner({ slides }: HeroBannerProps = {}) {
             <RotateCcw className="h-6 w-6" />
           </div>
           <div>
-            <h4 className="text-sm font-bold text-slate-800">সহজ রিটার্ন পলিসি</h4>
-            <p className="text-xs text-slate-500">মুদ্রণ ত্রুটিতে ৩ দিনে ফ্রি রিপ্লেসমেন্ট</p>
+            <h4 className="text-sm font-bold text-slate-800">{t.hero.trust3Title}</h4>
+            <p className="text-xs text-slate-500">{t.hero.trust3Desc}</p>
           </div>
         </div>
 
@@ -153,8 +179,8 @@ export async function HeroBanner({ slides }: HeroBannerProps = {}) {
             <BadgeCheck className="h-6 w-6" />
           </div>
           <div>
-            <h4 className="text-sm font-bold text-slate-800">RTDS অথেনটিক প্ল্যাটফর্ম</h4>
-            <p className="text-xs text-slate-500">অনলাইন পেমেন্ট ও ইনভয়েস নিরাপত্তা</p>
+            <h4 className="text-sm font-bold text-slate-800">{t.hero.trust4Title}</h4>
+            <p className="text-xs text-slate-500">{t.hero.trust4Desc}</p>
           </div>
         </div>
       </section>

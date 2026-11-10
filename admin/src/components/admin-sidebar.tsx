@@ -22,7 +22,7 @@ const NAV_ITEMS = [
     items: [
       {
         href: "/",
-        label: "ড্যাশবোর্ড (Dashboard)",
+        label: "Dashboard",
         icon: LayoutDashboard,
       },
     ],
@@ -32,17 +32,17 @@ const NAV_ITEMS = [
     items: [
       {
         href: "/storefront/hero",
-        label: "হিরো স্লাইডার (Hero Slides)",
+        label: "Hero Slides",
         icon: ImageIcon,
       },
       {
         href: "/storefront/announcement",
-        label: "অ্যানাউন্সমেন্ট ও হেল্পলাইন",
+        label: "Announcement & Helpline",
         icon: Bell,
       },
       {
         href: "/storefront/shelves",
-        label: "হোমপেজ শেলফ (Shelves)",
+        label: "Homepage Shelves",
         icon: Layers,
       },
     ],
@@ -52,17 +52,17 @@ const NAV_ITEMS = [
     items: [
       {
         href: "/vendors",
-        label: "ভেন্ডর ও কমিশন (Vendors)",
+        label: "Vendors & Commission",
         icon: Users,
       },
       {
         href: "/books",
-        label: "বই ক্যাটালগ (Books Moderation)",
+        label: "Book Catalog Moderation",
         icon: BookOpen,
       },
       {
         href: "/orders",
-        label: "অর্ডার ও ডেলিভারি (Orders)",
+        label: "Orders & Logistics",
         icon: ShoppingBag,
       },
     ],
@@ -140,7 +140,7 @@ export function AdminSidebar() {
           rel="noopener noreferrer"
           className="neo-button-light flex w-full items-center justify-center gap-2 rounded-xl py-2.5 text-xs font-bold"
         >
-          <span>স্টোরফ্রন্ট দেখুন (Storefront)</span>
+          <span>View Storefront</span>
           <ExternalLink className="h-3.5 w-3.5 text-emerald-600" />
         </a>
       </div>

@@ -11,6 +11,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { getCurrentProfile } from "@/server/queries/auth";
 import { getStorefrontSettings } from "@/server/queries/storefront";
+import { getServerLocale, getDictionary } from "@/lib/i18n/server";
+import { LanguageSwitcher } from "./language-switcher";
 import { UserNav } from "./user-nav";
 
 export function HeaderFallback() {
@@ -31,14 +33,17 @@ export function HeaderFallback() {
 }
 
 export async function Header() {
-  const [{ profile }, settings] = await Promise.all([
+  const [{ profile }, settings, locale] = await Promise.all([
     getCurrentProfile(),
     getStorefrontSettings(),
+    getServerLocale(),
   ]);
+
+  const t = getDictionary(locale);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-emerald-100/80 bg-white/95 shadow-sm backdrop-blur-md">
-      {/* 1. Top Announcement Bar (Controlled by Admin CMS) */}
+      {/* 1. Top Announcement Bar & Language Switcher */}
       {settings.announcement_enabled && (
         <div className="border-b border-emerald-900/80 bg-emerald-950 px-4 py-1.5 text-xs text-emerald-100">
           <div className="container mx-auto flex max-w-7xl items-center justify-between">
@@ -46,23 +51,27 @@ export async function Header() {
               <span className="flex items-center gap-1.5 font-medium">
                 <PhoneCall className="h-3 w-3 text-emerald-400" />
                 <span>
-                  হেল্পলাইন: {settings.helpline_phone || "০৯৬১২-০০৭৮৩৭"} ({settings.helpline_hours || "সকাল ৯টা - রাত ১০টা"})
+                  {t.common.helpline}: {settings.helpline_phone || "09612-007837"} ({settings.helpline_hours || t.common.serviceHours})
                 </span>
               </span>
               <span className="hidden text-emerald-700 sm:inline-block">|</span>
               <span className="hidden font-medium text-amber-300 sm:inline-block">
-                {settings.announcement_text || "⚡ সারা দেশে ক্যাশ অন ডেলিভারি | ৳১,০০০ টাকার অর্ডারে ফ্রি ডেলিভারি"}
+                {locale === "bn"
+                  ? (settings.announcement_text || t.header.announcement)
+                  : "⚡ Nationwide Cash on Delivery | Free shipping on orders over ৳1,000"}
               </span>
             </div>
 
             <div className="flex items-center gap-3 text-[11px]">
               <Link
                 href="/vendor/apply"
-                className="flex items-center gap-1.5 font-semibold text-emerald-300 transition-colors hover:text-white"
+                className="hidden items-center gap-1.5 font-semibold text-emerald-300 transition-colors hover:text-white sm:flex"
               >
                 <Store className="h-3 w-3 text-emerald-400" />
-                <span>বই বিক্রি করুন (ভেন্ডর হোন)</span>
+                <span>{t.header.sellBooksLink}</span>
               </Link>
+              <span className="hidden text-emerald-800 sm:inline-block">|</span>
+              <LanguageSwitcher variant="header" />
             </div>
           </div>
         </div>
@@ -99,19 +108,19 @@ export async function Header() {
               name="category"
               className="max-w-[140px] cursor-pointer truncate border-r border-emerald-100 bg-transparent px-3 py-1.5 text-xs font-semibold text-emerald-900 focus:outline-none"
             >
-              <option value="">সকল ক্যাটাগরি</option>
-              <option value="medical">মেডিকেল ভর্তি প্রস্তুতি</option>
-              <option value="engineering">ইঞ্জিনিয়ারিং ও ভার্সিটি</option>
-              <option value="academic">এইচএসসি ও এসএসসি</option>
-              <option value="fiction">সাহিত্য ও উপন্যাস</option>
-              <option value="islamic">ইসলামি সাহিত্য</option>
-              <option value="rare">দুষ্প্রাপ্য ও পুরাতন বই</option>
+              <option value="">{t.common.allCategories}</option>
+              <option value="medical">Medical Admission Prep</option>
+              <option value="engineering">Engineering & Varsity</option>
+              <option value="academic">HSC & SSC Academic</option>
+              <option value="fiction">Literature & Fiction</option>
+              <option value="islamic">Islamic Literature</option>
+              <option value="rare">Rare & Vintage Books</option>
             </select>
 
             <input
               type="text"
               name="q"
-              placeholder="বইয়ের নাম, লেখক বা বিষয় দিয়ে অনুসন্ধান করুন... (Search books, authors, ISBNs)"
+              placeholder={t.common.searchPlaceholder}
               className="w-full bg-transparent px-3 py-1.5 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none sm:text-sm"
             />
 
@@ -120,7 +129,7 @@ export async function Header() {
               className="neo-button-green m-0.5 flex h-9 shrink-0 items-center gap-1.5 rounded-xl px-4 text-xs font-bold"
             >
               <Search className="h-4 w-4" />
-              <span className="hidden lg:inline">অনুসন্ধান</span>
+              <span className="hidden lg:inline">{t.common.searchButton}</span>
             </button>
           </div>
         </form>
@@ -134,7 +143,7 @@ export async function Header() {
               className="neo-button-light relative h-9 w-9 rounded-xl p-0 hover:text-emerald-700"
             >
               <Heart className="h-4 w-4 text-emerald-700" />
-              <span className="sr-only">Wishlist</span>
+              <span className="sr-only">{t.common.wishlist}</span>
             </Button>
           </Link>
 
@@ -145,7 +154,7 @@ export async function Header() {
               className="neo-button-light relative h-9 gap-2 rounded-xl border-emerald-200/80 px-3.5 font-bold text-emerald-800"
             >
               <ShoppingBag className="h-4 w-4 text-emerald-600" />
-              <span className="hidden text-xs sm:inline">কার্ট</span>
+              <span className="hidden text-xs sm:inline">{t.common.cart}</span>
               <span className="flex h-4 min-w-[16px] items-center justify-center rounded-full bg-emerald-600 px-1.5 text-[10px] font-bold text-white shadow-xs">
                 0
               </span>
@@ -164,7 +173,7 @@ export async function Header() {
             className="flex shrink-0 items-center gap-1.5 font-bold text-emerald-800 hover:text-emerald-600"
           >
             <Menu className="h-3.5 w-3.5 text-emerald-600" />
-            <span>সকল বই (All Categories)</span>
+            <span>{t.header.categories.all}</span>
           </Link>
 
           <span className="text-emerald-200">|</span>
@@ -173,49 +182,49 @@ export async function Header() {
             href="/books?category=medical"
             className="shrink-0 font-bold text-emerald-700 transition-colors hover:text-emerald-900"
           >
-            🩺 মেডিকেল ভর্তি প্রস্তুতি (RTDS Medical)
+            {t.header.categories.medical}
           </Link>
 
           <Link
             href="/books?category=engineering"
             className="shrink-0 transition-colors hover:text-emerald-700"
           >
-            📐 ইঞ্জিনিয়ারিং ও ভার্সিটি
+            {t.header.categories.engineering}
           </Link>
 
           <Link
             href="/books?category=fiction"
             className="shrink-0 transition-colors hover:text-emerald-700"
           >
-            উপন্যাস ও সাহিত্য (Fiction)
+            {t.header.categories.fiction}
           </Link>
 
           <Link
             href="/books?category=non-fiction"
             className="shrink-0 transition-colors hover:text-emerald-700"
           >
-            ইতিহাস ও দর্শন (Non-Fiction)
+            {t.header.categories.nonFiction}
           </Link>
 
           <Link
             href="/books?category=islamic"
             className="shrink-0 transition-colors hover:text-emerald-700"
           >
-            ইসলামি বই (Islamic Books)
+            {t.header.categories.islamic}
           </Link>
 
           <Link
             href="/books?category=rare"
             className="shrink-0 transition-colors hover:text-emerald-700"
           >
-            দুষ্প্রাপ্য ও পুরাতন বই (Rare)
+            {t.header.categories.rare}
           </Link>
 
           <Link
             href="/vendors"
             className="ml-auto shrink-0 font-bold text-emerald-800 transition-colors hover:text-emerald-600"
           >
-            🏪 অনুমোদিত বুকশপ ও প্রকাশনী
+            {t.header.categories.verifiedShops}
           </Link>
         </div>
       </div>

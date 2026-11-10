@@ -69,10 +69,10 @@ export function OrdersManager({ initialOrders }: OrdersManagerProps) {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h2 className="text-xl font-black text-slate-900">
-            মার্কেটপ্লেস অর্ডার ও কুরিয়ার ট্র্যাকিং ({filteredOrders.length})
+            Marketplace Orders & Courier Oversight ({filteredOrders.length})
           </h2>
           <p className="text-xs text-slate-500">
-            মাল্টি-ভেন্ডর অর্ডার ডেলিভারি, ক্যাশ অন ডেলিভারি ও পেমেন্ট নজরদারি
+            Monitor multi-vendor order fulfillment, courier delivery, and COD reconciliation
           </p>
         </div>
 
@@ -82,7 +82,7 @@ export function OrdersManager({ initialOrders }: OrdersManagerProps) {
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="অর্ডার আইডি বা ক্রেতার নাম..."
+            placeholder="Search by order ID or customer name..."
             className="neo-input-recessed w-full rounded-xl py-2 pl-9 pr-3 text-xs"
           />
         </div>
@@ -91,7 +91,7 @@ export function OrdersManager({ initialOrders }: OrdersManagerProps) {
       <div className="space-y-4">
         {filteredOrders.length === 0 ? (
           <div className="neo-card p-12 text-center text-xs text-slate-500">
-            কোনো অর্ডার পাওয়া যায়নি।
+            No orders found matching your criteria.
           </div>
         ) : (
           filteredOrders.map((order) => (
@@ -114,17 +114,17 @@ export function OrdersManager({ initialOrders }: OrdersManagerProps) {
                         }`}
                       >
                         {order.payment_status === "paid"
-                          ? "পরিশোধিত (Paid)"
-                          : "ক্যাশ অন ডেলিভারি (COD)"}
+                          ? "Paid"
+                          : "Cash on Delivery"}
                       </span>
                       <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-bold text-slate-700 capitalize">
                         {order.status}
                       </span>
                     </div>
                     <span className="text-[11px] text-slate-400">
-                      তারিখ: {new Date(order.created_at).toLocaleDateString("bn-BD")} | ক্রেতা:{" "}
+                      Date: {new Date(order.created_at).toLocaleDateString("en-US")} | Customer:{" "}
                       <strong className="text-slate-700">
-                        {order.buyer?.full_name || "সম্মানিত ক্রেতা"}
+                        {order.buyer?.full_name || "Valued Customer"}
                       </strong>
                     </span>
                   </div>
@@ -135,7 +135,7 @@ export function OrdersManager({ initialOrders }: OrdersManagerProps) {
                     {formatPrice(order.total_minor)}
                   </div>
                   <span className="text-[10px] text-slate-400">
-                    মোট {order.items?.length || 0} টি আইটেম
+                    Total {order.items?.length || 0} item{order.items?.length === 1 ? "" : "s"}
                   </span>
                 </div>
               </div>
@@ -143,7 +143,7 @@ export function OrdersManager({ initialOrders }: OrdersManagerProps) {
               {/* Items Breakdown per Vendor */}
               <div className="space-y-1.5 rounded-xl bg-emerald-50/40 p-3">
                 <span className="text-[10px] font-bold tracking-wider text-emerald-800 uppercase">
-                  আইটেম ও ভেন্ডর তালিকা:
+                  Vendor Item Breakdown:
                 </span>
                 <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
                   {order.items?.map((item) => (
@@ -153,10 +153,10 @@ export function OrdersManager({ initialOrders }: OrdersManagerProps) {
                     >
                       <div className="truncate mr-2">
                         <span className="font-bold text-slate-800">
-                          {item.book?.title || "বই"}
+                          {item.book?.title || "Book"}
                         </span>
                         <span className="block text-[10px] text-slate-400">
-                          ভেন্ডর: {item.vendor?.shop_name || "মার্কেটপ্লেস"}
+                          Vendor: {item.vendor?.shop_name || "Marketplace"}
                         </span>
                       </div>
                       <div className="text-right shrink-0">
@@ -174,7 +174,7 @@ export function OrdersManager({ initialOrders }: OrdersManagerProps) {
                 <div className="flex items-center gap-2 text-xs text-slate-600">
                   <Truck className="h-4 w-4 text-emerald-600" />
                   <span>
-                    কুরিয়ার: <strong>Steadfast / Pathao Logistics</strong> (সারা দেশে ২-৩ দিনে ডেলিভারি)
+                    Courier: <strong>Steadfast / Pathao Logistics</strong> (2-3 days nationwide)
                   </span>
                 </div>
 
@@ -189,7 +189,7 @@ export function OrdersManager({ initialOrders }: OrdersManagerProps) {
                       className="neo-button-green flex h-8 items-center gap-1 rounded-lg px-3 text-xs font-bold"
                     >
                       <CheckCircle2 className="h-3.5 w-3.5" />
-                      <span>ডেলিভারি সম্পন্ন ও পেমেন্ট কনফার্ম</span>
+                      <span>Confirm Delivery & Payment</span>
                     </button>
                   )}
 
@@ -207,7 +207,7 @@ export function OrdersManager({ initialOrders }: OrdersManagerProps) {
                       className="neo-button-light flex h-8 items-center gap-1 rounded-lg px-2.5 text-xs font-bold text-rose-600 hover:text-rose-700"
                     >
                       <XCircle className="h-3.5 w-3.5" />
-                      <span>বাতিল</span>
+                      <span>Cancel Order</span>
                     </button>
                   )}
                 </div>

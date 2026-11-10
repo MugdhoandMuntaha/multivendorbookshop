@@ -12,10 +12,10 @@ export const DEFAULT_STOREFRONT_SETTINGS: StorefrontSettingsRow = {
   site_name: "RTDS Bookshop",
   tagline: "Official Book Marketplace of RTDS Platform",
   announcement_text:
-    "⚡ সারা দেশে ক্যাশ অন ডেলিভারি | ৳১,০০০ টাকার অর্ডারে ফ্রি ডেলিভারি",
+    "⚡ Nationwide Cash on Delivery | Free shipping on orders over ৳1,000",
   announcement_enabled: true,
-  helpline_phone: "০৯৬১২-০০৭৮৩৭",
-  helpline_hours: "সকাল ৯টা - রাত ১০টা",
+  helpline_phone: "09612-007837",
+  helpline_hours: "9:00 AM - 10:00 PM",
   free_shipping_threshold_minor: 100000, // ৳ 1,000
   flat_shipping_rate_minor: 7000, // ৳ 70
   emergency_alert: null,
@@ -26,11 +26,11 @@ export const DEFAULT_STOREFRONT_SETTINGS: StorefrontSettingsRow = {
 export const DEFAULT_HERO_SLIDES: HeroSlideRow[] = [
   {
     id: "66666666-6666-6666-6666-666666666601",
-    title: "মেডিকেল, প্রকৌশল ও একাডেমিক বইয়ের বিশ্বস্ত মার্কেটপ্লেস",
+    title: "Trusted Marketplace for Medical, Engineering & Academic Books",
     subtitle:
-      "RTDS মেডিকেল মাস্টার সিরিজ, ইঞ্জিনিয়ারিং ভর্তি সহায়িকা, একাডেমিক গাইড এবং সাহিত্য এক কার্টে অর্ডার করুন সরাসরি নির্ভরযোগ্য প্রকাশক ও বুকশপ থেকে।",
-    badge_text: "RTDS জাতীয় বইমেলা ও ভর্তি উৎসব ২০২৬",
-    cta_text: "বইয়ের তালিকা দেখুন (Catalog)",
+      "Order RTDS Medical Master Series, Engineering Admission Guides, Academic Textbooks, and Literature in one cart directly from verified publishers and bookstores.",
+    badge_text: "RTDS National Book Fair & Admission Fest 2026",
+    cta_text: "Browse Book Catalog",
     cta_link: "/books",
     image_r2_key: null,
     bg_gradient: "from-emerald-800 via-emerald-700 to-teal-800",
@@ -44,8 +44,8 @@ export const DEFAULT_HERO_SLIDES: HeroSlideRow[] = [
 export const DEFAULT_CURATED_SHELVES: CuratedShelfRow[] = [
   {
     id: "77777777-7777-7777-7777-777777777701",
-    title: "সর্বাধিক বিক্রিত বইসমূহ (Trending Bestsellers)",
-    subtitle: "দেশজুড়ে হাজারো পাঠকের পছন্দের তালিকায় থাকা সেরা বইসমূহ",
+    title: "Trending Bestsellers",
+    subtitle: "Top-selling books loved by thousands of readers nationwide",
     category_id: null,
     shelf_type: "bestseller",
     icon_name: "Flame",
@@ -57,9 +57,9 @@ export const DEFAULT_CURATED_SHELVES: CuratedShelfRow[] = [
   },
   {
     id: "77777777-7777-7777-7777-777777777702",
-    title: "মেডিকেল ও বিশ্ববিদ্যালয় ভর্তি প্রস্তুতি (RTDS Master Series)",
+    title: "Medical & University Admission Prep (RTDS Master Series)",
     subtitle:
-      "RTDS অফিসিয়াল প্রশ্নব্যাংক, শর্টকাট টেকনিক ও পূর্ণাঙ্গ মডেল টেস্ট পেপার",
+      "Official RTDS question banks, shortcut techniques, and comprehensive model test papers",
     category_id: "22222222-2222-2222-2222-222222222203",
     shelf_type: "admission_special",
     icon_name: "GraduationCap",
@@ -71,9 +71,9 @@ export const DEFAULT_CURATED_SHELVES: CuratedShelfRow[] = [
   },
   {
     id: "77777777-7777-7777-7777-777777777703",
-    title: "সাহিত্য, দর্শন ও ধ্রুপদী সংগ্রহ (Literature & Classics)",
+    title: "Literature, Philosophy & Classics",
     subtitle:
-      "ধ্রুপদী বাংলা উপন্যাস, নোবেলজয়ী আন্তর্জাতিক সাহিত্য ও সংগ্রাহকদের বিশেষ বাঁধাইকৃত সংস্করণ",
+      "Classic Bengali novels, Nobel laureate international literature, and special collector editions",
     category_id: "22222222-2222-2222-2222-222222222201",
     shelf_type: "literature_rare",
     icon_name: "Sparkles",

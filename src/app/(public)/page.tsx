@@ -16,13 +16,17 @@ import {
   getActiveHeroSlides,
   getActiveCuratedShelves,
 } from "@/server/queries/storefront";
+import { getServerLocale, getDictionary } from "@/lib/i18n/server";
 
 export default async function HomePage() {
-  const [books, slides, shelves] = await Promise.all([
+  const [books, slides, shelves, locale] = await Promise.all([
     getFeaturedBooks(),
     getActiveHeroSlides(),
     getActiveCuratedShelves(),
+    getServerLocale(),
   ]);
+
+  const t = getDictionary(locale);
 
   // Categorized slices for curated shelves
   const bestsellers = books.slice(0, 4);
@@ -46,7 +50,7 @@ export default async function HomePage() {
   return (
     <div className="mx-auto flex w-full max-w-7xl flex-col gap-14 px-4 py-8 sm:px-6 lg:px-8">
       {/* 1. Hero Promotional Banner & Trust Bar */}
-      <HeroBanner slides={slides} />
+      <HeroBanner slides={slides} locale={locale} />
 
       {/* 2. Trending Bestsellers Shelf */}
       <section className="space-y-6">
@@ -57,10 +61,10 @@ export default async function HomePage() {
             </div>
             <div>
               <h2 className="text-xl font-black tracking-tight text-slate-900 sm:text-2xl">
-                সর্বাধিক বিক্রিত বইসমূহ (Trending Bestsellers)
+                {t.shelves.trendingTitle}
               </h2>
               <p className="text-xs text-slate-500">
-                দেশজুড়ে হাজারো পাঠকের পছন্দের তালিকায় থাকা সেরা বইসমূহ
+                {t.shelves.trendingSubtitle}
               </p>
             </div>
           </div>
@@ -71,7 +75,7 @@ export default async function HomePage() {
               size="sm"
               className="gap-1 text-xs font-bold text-emerald-700 hover:bg-emerald-50 hover:text-emerald-900"
             >
-              <span>সকল বই দেখুন</span>
+              <span>{t.common.viewAll}</span>
               <ArrowRight className="h-3.5 w-3.5" />
             </Button>
           </Link>
@@ -79,12 +83,12 @@ export default async function HomePage() {
 
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4">
           {bestsellers.map((book) => (
-            <BookCard key={book.id} book={book} />
+            <BookCard key={book.id} book={book} locale={locale} />
           ))}
         </div>
       </section>
 
-      {/* 3. RTDS Live Academic & Admission Shelf (Neomorphic High-Yield Card) */}
+      {/* 3. RTDS Academic & Admission Shelf (Neomorphic High-Yield Card) */}
       <section className="space-y-6 rounded-3xl border border-emerald-200/60 bg-gradient-to-br from-emerald-500/10 via-teal-500/5 to-white/80 p-6 shadow-[6px_10px_24px_rgba(5,150,105,0.06)] backdrop-blur-md sm:p-8">
         <div className="flex items-center justify-between border-b border-emerald-200/60 pb-3.5">
           <div className="flex items-center gap-3">
@@ -94,15 +98,14 @@ export default async function HomePage() {
             <div>
               <div className="flex items-center gap-2">
                 <h2 className="text-xl font-black tracking-tight text-slate-900 sm:text-2xl">
-                  মেডিকেল ও বিশ্ববিদ্যালয় ভর্তি প্রস্তুতি (RTDS Master Series)
+                  {t.shelves.admissionTitle}
                 </h2>
                 <Badge className="bg-emerald-600 px-2 py-0.5 text-[10px] font-bold text-white uppercase shadow-xs">
-                  Official Guides
+                  {t.shelves.admissionBadge}
                 </Badge>
               </div>
               <p className="text-xs text-slate-500">
-                RTDS অফিসিয়াল প্রশ্নব্যাংক, শর্টকাট টেকনিক ও পূর্ণাঙ্গ মডেল
-                টেস্ট পেপার
+                {t.shelves.admissionSubtitle}
               </p>
             </div>
           </div>
@@ -112,7 +115,7 @@ export default async function HomePage() {
               type="button"
               className="neo-button-green flex h-9 items-center gap-1.5 rounded-xl px-4 text-xs font-bold"
             >
-              <span>সকল সিরিজ দেখুন</span>
+              <span>{t.shelves.viewAllSeries}</span>
               <ArrowRight className="h-3.5 w-3.5" />
             </button>
           </Link>
@@ -123,7 +126,7 @@ export default async function HomePage() {
             ? admissionSpecial
             : books.slice(0, 4)
           ).map((book) => (
-            <BookCard key={book.id} book={book} />
+            <BookCard key={book.id} book={book} locale={locale} />
           ))}
         </div>
       </section>
@@ -137,11 +140,10 @@ export default async function HomePage() {
             </div>
             <div>
               <h2 className="text-xl font-black tracking-tight text-slate-900 sm:text-2xl">
-                সাহিত্য, দর্শন ও ধ্রুপদী সংগ্রহ (Literature & Classics)
+                {t.shelves.literatureTitle}
               </h2>
               <p className="text-xs text-slate-500">
-                ধ্রুপদী বাংলা উপন্যাস, নোবেলজয়ী আন্তর্জাতিক সাহিত্য ও
-                সংগ্রাহকদের বিশেষ বাঁধাইকৃত সংস্করণ
+                {t.shelves.literatureSubtitle}
               </p>
             </div>
           </div>
@@ -152,7 +154,7 @@ export default async function HomePage() {
               size="sm"
               className="gap-1 text-xs font-bold text-emerald-700 hover:bg-emerald-50 hover:text-emerald-900"
             >
-              <span>সকল সংগ্রহ</span>
+              <span>{t.shelves.viewAllClassics}</span>
               <ArrowRight className="h-3.5 w-3.5" />
             </Button>
           </Link>
@@ -161,13 +163,13 @@ export default async function HomePage() {
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4">
           {(literatureRare.length > 0 ? literatureRare : books.slice(4, 8)).map(
             (book) => (
-              <BookCard key={book.id} book={book} />
+              <BookCard key={book.id} book={book} locale={locale} />
             )
           )}
         </div>
       </section>
 
-      {/* 5. Featured Independent Bookshops & Publishers Showcase (Tactile Neomorphic Cards) */}
+      {/* 5. Featured Independent Bookshops & Publishers Showcase */}
       <section className="space-y-6">
         <div className="flex items-center justify-between border-b border-emerald-100 pb-3.5">
           <div className="flex items-center gap-3">
@@ -176,11 +178,10 @@ export default async function HomePage() {
             </div>
             <div>
               <h2 className="text-xl font-black tracking-tight text-slate-900 sm:text-2xl">
-                অনুমোদিত প্রকাশনী ও বুকশপসমূহ (Featured Bookshops)
+                {t.shelves.bookshopsTitle}
               </h2>
               <p className="text-xs text-slate-500">
-                বাংলাবাজার, নীলক্ষেত ও সেন্ট্রাল রিপোজিটরি থেকে যাচাইকৃত
-                স্বতন্ত্র বুকশপ
+                {t.shelves.bookshopsSubtitle}
               </p>
             </div>
           </div>
@@ -191,7 +192,7 @@ export default async function HomePage() {
               size="sm"
               className="gap-1 text-xs font-bold text-emerald-800 hover:bg-emerald-50"
             >
-              <span>সকল বুকশপ দেখুন</span>
+              <span>{t.shelves.viewAllShops}</span>
               <ArrowRight className="h-3.5 w-3.5" />
             </Button>
           </Link>
@@ -205,7 +206,7 @@ export default async function HomePage() {
                 RT
               </div>
               <Badge className="bg-emerald-600 text-[10px] font-bold text-white shadow-xs">
-                Official Depot
+                {t.shelves.depotBadge}
               </Badge>
             </div>
             <div>
@@ -213,17 +214,18 @@ export default async function HomePage() {
                 RTDS Publications Central Depot
               </h3>
               <p className="mt-1 line-clamp-2 text-xs text-slate-500">
-                RTDS প্ল্যাটফর্মের অফিসিয়াল প্রকাশনা ও মেডিকেল মাস্টার সিরিজের
-                কেন্দ্রীয় সরবরাহ কেন্দ্র।
+                {locale === "bn"
+                  ? "RTDS প্ল্যাটফর্মের অফিসিয়াল প্রকাশনা ও মেডিকেল মাস্টার সিরিজের কেন্দ্রীয় সরবরাহ কেন্দ্র।"
+                  : "Official publication depot for RTDS Platform medical master series and engineering admission guides."}
               </p>
             </div>
             <div className="flex items-center justify-between border-t border-emerald-100/60 pt-2.5 text-xs">
-              <span className="text-slate-500">150+ বই উপলব্ধ</span>
+              <span className="text-slate-500">150+ {t.shelves.booksAvailable}</span>
               <Link
                 href="/vendors/rtds-publications-depot"
                 className="font-bold text-emerald-700 hover:underline"
               >
-                বুকশপ দেখুন →
+                {t.shelves.visitShop}
               </Link>
             </div>
           </div>
@@ -235,7 +237,7 @@ export default async function HomePage() {
                 BB
               </div>
               <Badge className="bg-teal-700 text-[10px] font-bold text-white shadow-xs">
-                Heritage Shop
+                {t.shelves.heritageBadge}
               </Badge>
             </div>
             <div>
@@ -243,17 +245,18 @@ export default async function HomePage() {
                 Banglabazar Boi Bhaban
               </h3>
               <p className="mt-1 line-clamp-2 text-xs text-slate-500">
-                বাংলাবাজারের ঐতিহ্যবাহী প্রকাশনা, ধ্রুপদী সাহিত্য, ইতিহাস ও
-                আন্তর্জাতিক অনুবাদের বিশাল সংগ্রহশালা।
+                {locale === "bn"
+                  ? "বাংলাবাজারের ঐতিহ্যবাহী প্রকাশনা, ধ্রুপদী সাহিত্য, ইতিহাস ও আন্তর্জাতিক অনুবাদের বিশাল সংগ্রহশালা।"
+                  : "Heritage Banglabazar bookstore featuring classic Bengali novels, historical chronicles, and international translations."}
               </p>
             </div>
             <div className="flex items-center justify-between border-t border-emerald-100/60 pt-2.5 text-xs">
-              <span className="text-slate-500">300+ বই উপলব্ধ</span>
+              <span className="text-slate-500">300+ {t.shelves.booksAvailable}</span>
               <Link
                 href="/vendors/banglabazar-boi-bhaban"
                 className="font-bold text-emerald-700 hover:underline"
               >
-                বুকশপ দেখুন →
+                {t.shelves.visitShop}
               </Link>
             </div>
           </div>
@@ -265,7 +268,7 @@ export default async function HomePage() {
                 NE
               </div>
               <Badge className="bg-emerald-600 text-[10px] font-bold text-white shadow-xs">
-                Curated Shop
+                {t.shelves.curatedBadge}
               </Badge>
             </div>
             <div>
@@ -273,24 +276,25 @@ export default async function HomePage() {
                 Nilkhet Engineering Corner
               </h3>
               <p className="mt-1 line-clamp-2 text-xs text-slate-500">
-                নীলক্ষেত বুক মার্কেট থেকে কম্পিউটার সায়েন্স, ইলেকট্রিক্যাল ও
-                ভার্সিটি টেক্সটবইয়ের নির্ভরযোগ্য শপ।
+                {locale === "bn"
+                  ? "নীলক্ষেত বুক মার্কেট থেকে কম্পিউটার সায়েন্স, ইলেকট্রিক্যাল ও ভার্সিটি টেক্সটবইয়ের নির্ভরযোগ্য শপ।"
+                  : "Curated Nilkhet academic outlet for computer science, electrical engineering, and university textbooks."}
               </p>
             </div>
             <div className="flex items-center justify-between border-t border-emerald-100/60 pt-2.5 text-xs">
-              <span className="text-slate-500">220+ বই উপলব্ধ</span>
+              <span className="text-slate-500">220+ {t.shelves.booksAvailable}</span>
               <Link
                 href="/vendors/nilkhet-engineering-corner"
                 className="font-bold text-emerald-700 hover:underline"
               >
-                বুকশপ দেখুন →
+                {t.shelves.visitShop}
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 6. Genre & Subject Exploration Grid (Neomorphic Pill Tiles) */}
+      {/* 6. Genre & Subject Exploration Grid */}
       <section className="space-y-6">
         <div className="flex items-center justify-between border-b border-emerald-100 pb-3.5">
           <div className="flex items-center gap-3">
@@ -299,11 +303,10 @@ export default async function HomePage() {
             </div>
             <div>
               <h2 className="text-xl font-black tracking-tight text-slate-900 sm:text-2xl">
-                বিষয়ভিত্তিক বইয়ের বিভাগ (Browse by Subject)
+                {t.shelves.subjectBrowseTitle}
               </h2>
               <p className="text-xs text-slate-500">
-                আপনার পছন্দের বিষয় বা পরীক্ষার বিভাগ নির্বাচন করে দ্রুত বই
-                খুঁজুন
+                {t.shelves.subjectBrowseSubtitle}
               </p>
             </div>
           </div>
@@ -314,7 +317,7 @@ export default async function HomePage() {
               size="sm"
               className="gap-1 text-xs font-bold text-emerald-800 hover:bg-emerald-50"
             >
-              <span>সকল বিভাগ</span>
+              <span>{t.shelves.viewAllSubjects}</span>
               <ArrowRight className="h-3.5 w-3.5" />
             </Button>
           </Link>
@@ -323,37 +326,37 @@ export default async function HomePage() {
         <div className="grid grid-cols-2 gap-3.5 sm:grid-cols-3 lg:grid-cols-6">
           {[
             {
-              name: "মেডিকেল ভর্তি প্রস্তুতি",
+              name: t.subjects.medical,
               slug: "medical-engineering-admission",
               icon: "🩺",
               count: "150+ Books",
             },
             {
-              name: "উপন্যাস ও সাহিত্য",
+              name: t.subjects.fiction,
               slug: "fiction-literature",
               icon: "📖",
               count: "450+ Books",
             },
             {
-              name: "বিজ্ঞান ও প্রযুক্তি",
+              name: t.subjects.computerScience,
               slug: "computer-science-engineering",
               icon: "💻",
               count: "120+ Books",
             },
             {
-              name: "ইতিহাস ও ঐতিহ্য",
+              name: t.subjects.history,
               slug: "history-heritage",
               icon: "🏛️",
               count: "95+ Books",
             },
             {
-              name: "ইসলামি সাহিত্য",
+              name: t.subjects.islamic,
               slug: "islamic-theological",
               icon: "🕌",
               count: "180+ Books",
             },
             {
-              name: "দুষ্প্রাপ্য ও ক্লাসিক",
+              name: t.subjects.classics,
               slug: "philosophy-society",
               icon: "✨",
               count: "70+ Books",

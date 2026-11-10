@@ -17,3 +17,4 @@ function getR2Client(): S3Client {
 
 export const r2Client = getR2Client();
 export const R2_BUCKET_NAME = process.env.R2_BUCKET_NAME || "rtdsbookshop";
+

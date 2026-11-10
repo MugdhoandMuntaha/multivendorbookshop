@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Header, HeaderFallback } from "@/components/common/header";
 import { Footer } from "@/components/common/footer";
+import { getServerLocale } from "@/lib/i18n/server";
+import { LanguageProvider } from "@/lib/i18n/context";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -17,29 +19,33 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | BookMarket",
-    default: "BookMarket - Independent Multivendor Book Marketplace",
+    template: "%s | RTDS Bookshop",
+    default: "RTDS Bookshop - Official Book Marketplace of RTDS Platform",
   },
   description:
-    "Discover new, used, and rare books from independent booksellers and local shops worldwide.",
+    "Order RTDS Medical Master Series, Engineering Guides, Academic Textbooks, and Literature directly from verified publishers and bookshops.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getServerLocale();
+
   return (
     <html
-      lang="en"
+      lang={locale}
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="bg-background text-foreground flex min-h-full flex-col">
-        <Suspense fallback={<HeaderFallback />}>
-          <Header />
-        </Suspense>
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <LanguageProvider initialLocale={locale}>
+          <Suspense fallback={<HeaderFallback />}>
+            <Header />
+          </Suspense>
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   );
