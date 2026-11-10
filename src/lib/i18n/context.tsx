@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Locale, Dictionary } from "./types";
 import { enDictionary } from "./dictionaries/en";
@@ -26,12 +26,14 @@ export function LanguageProvider({
   initialLocale: Locale;
   children: React.ReactNode;
 }) {
+  const [prevInitialLocale, setPrevInitialLocale] = useState(initialLocale);
   const [locale, setLocaleState] = useState<Locale>(initialLocale);
   const router = useRouter();
 
-  useEffect(() => {
+  if (prevInitialLocale !== initialLocale) {
+    setPrevInitialLocale(initialLocale);
     setLocaleState(initialLocale);
-  }, [initialLocale]);
+  }
 
   const dictionary = locale === "bn" ? bnDictionary : enDictionary;
 
@@ -67,3 +69,4 @@ export function useLanguage() {
   }
   return context;
 }
+

@@ -19,7 +19,7 @@ import {
 import { getServerLocale, getDictionary } from "@/lib/i18n/server";
 
 export default async function HomePage() {
-  const [books, slides, shelves, locale] = await Promise.all([
+  const [books, slides, , locale] = await Promise.all([
     getFeaturedBooks(),
     getActiveHeroSlides(),
     getActiveCuratedShelves(),
@@ -110,7 +110,7 @@ export default async function HomePage() {
             </div>
           </div>
 
-          <Link href="/books?category=academic">
+          <Link href="/books?category=medical-engineering-admission">
             <button
               type="button"
               className="neo-button-green flex h-9 items-center gap-1.5 rounded-xl px-4 text-xs font-bold"
@@ -148,7 +148,7 @@ export default async function HomePage() {
             </div>
           </div>
 
-          <Link href="/books?category=rare">
+          <Link href="/books?category=philosophy-society">
             <Button
               variant="ghost"
               size="sm"

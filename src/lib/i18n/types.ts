@@ -107,4 +107,88 @@ export interface Dictionary {
     privacy: string;
     refundPolicy: string;
   };
+  catalog: {
+    title: string;
+    subtitle: string;
+    filters: string;
+    clearFilters: string;
+    condition: string;
+    conditions: {
+      new: string;
+      like_new: string;
+      good: string;
+      fair: string;
+    };
+    priceRange: string;
+    minPrice: string;
+    maxPrice: string;
+    apply: string;
+    vendor: string;
+    allVendors: string;
+    sortBy: string;
+    sortOptions: {
+      newest: string;
+      price_asc: string;
+      price_desc: string;
+      title_asc: string;
+    };
+    resultsCount: string;
+    noBooksFound: string;
+    resetFilters: string;
+    page: string;
+    of: string;
+    previous: string;
+    next: string;
+    activeFilters: string;
+  };
+  bookDetail: {
+    author: string;
+    publisher: string;
+    isbn: string;
+    condition: string;
+    stockStatus: string;
+    inStock: string;
+    outOfStock: string;
+    availableCopies: string;
+    quantity: string;
+    addToCart: string;
+    buyNow: string;
+    addedToCart: string;
+    wishlist: string;
+    specifications: string;
+    description: string;
+    verifiedVendor: string;
+    vendorDelivery: string;
+    returnPolicy: string;
+    cashOnDelivery: string;
+    customerReviews: string;
+    noReviewsYet: string;
+    verifiedPurchase: string;
+    relatedBooks: string;
+    shareBook: string;
+    viewShop: string;
+    binding: string;
+    language: string;
+    pages: string;
+  };
+  categories: {
+    title: string;
+    subtitle: string;
+    booksCount: string;
+    viewCategory: string;
+    allCategories: string;
+  };
+  vendors: {
+    title: string;
+    subtitle: string;
+    shopNow: string;
+    booksListed: string;
+    rating: string;
+    aboutShop: string;
+    allShopBooks: string;
+    deliveryInfo: string;
+    verifiedBadge: string;
+    commissionRate: string;
+  };
 }
+

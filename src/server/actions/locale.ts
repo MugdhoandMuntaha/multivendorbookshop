@@ -16,3 +16,4 @@ export async function setLocaleAction(locale: Locale) {
   revalidatePath("/", "layout");
   return { success: true, locale };
 }
+

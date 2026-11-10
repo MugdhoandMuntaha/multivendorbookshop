@@ -22,3 +22,4 @@ export async function getServerLocale(): Promise<Locale> {
 export function getDictionary(locale: Locale = DEFAULT_LOCALE): Dictionary {
   return locale === "bn" ? bnDictionary : enDictionary;
 }
+

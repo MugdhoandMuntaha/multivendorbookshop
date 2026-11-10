@@ -109,12 +109,12 @@ export async function Header() {
               className="max-w-[140px] cursor-pointer truncate border-r border-emerald-100 bg-transparent px-3 py-1.5 text-xs font-semibold text-emerald-900 focus:outline-none"
             >
               <option value="">{t.common.allCategories}</option>
-              <option value="medical">Medical Admission Prep</option>
-              <option value="engineering">Engineering & Varsity</option>
-              <option value="academic">HSC & SSC Academic</option>
-              <option value="fiction">Literature & Fiction</option>
-              <option value="islamic">Islamic Literature</option>
-              <option value="rare">Rare & Vintage Books</option>
+              <option value="medical-engineering-admission">Medical & Engineering</option>
+              <option value="computer-science-engineering">Computer Science</option>
+              <option value="fiction-literature">Literature & Fiction</option>
+              <option value="islamic-theological">Islamic Literature</option>
+              <option value="history-heritage">History & Heritage</option>
+              <option value="philosophy-society">Philosophy & Society</option>
             </select>
 
             <input
@@ -179,42 +179,42 @@ export async function Header() {
           <span className="text-emerald-200">|</span>
 
           <Link
-            href="/books?category=medical"
+            href="/books?category=medical-engineering-admission"
             className="shrink-0 font-bold text-emerald-700 transition-colors hover:text-emerald-900"
           >
             {t.header.categories.medical}
           </Link>
 
           <Link
-            href="/books?category=engineering"
+            href="/books?category=computer-science-engineering"
             className="shrink-0 transition-colors hover:text-emerald-700"
           >
             {t.header.categories.engineering}
           </Link>
 
           <Link
-            href="/books?category=fiction"
+            href="/books?category=fiction-literature"
             className="shrink-0 transition-colors hover:text-emerald-700"
           >
             {t.header.categories.fiction}
           </Link>
 
           <Link
-            href="/books?category=non-fiction"
+            href="/books?category=history-heritage"
             className="shrink-0 transition-colors hover:text-emerald-700"
           >
             {t.header.categories.nonFiction}
           </Link>
 
           <Link
-            href="/books?category=islamic"
+            href="/books?category=islamic-theological"
             className="shrink-0 transition-colors hover:text-emerald-700"
           >
             {t.header.categories.islamic}
           </Link>
 
           <Link
-            href="/books?category=rare"
+            href="/books?category=philosophy-society"
             className="shrink-0 transition-colors hover:text-emerald-700"
           >
             {t.header.categories.rare}
