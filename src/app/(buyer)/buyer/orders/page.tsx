@@ -1,22 +1,18 @@
-import { Package } from "lucide-react";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { getBuyerOrders } from "@/server/queries/orders";
+import { BuyerOrdersClient } from "@/components/orders/buyer-orders-client";
 
-export default function BuyerOrdersPage() {
+export const metadata = {
+  title: "Order History & Tracking | RTDS Bookshop Platform",
+  description:
+    "Track your multi-vendor book orders, courier consignments, and download receipts.",
+};
+
+export default async function BuyerOrdersPage() {
+  const orders = await getBuyerOrders();
+
   return (
-    <div className="space-y-6">
-      <h1 className="text-3xl font-bold tracking-tight">Order History</h1>
-      <div className="space-y-4 rounded-2xl border border-dashed p-12 text-center">
-        <Package className="text-muted-foreground mx-auto h-12 w-12" />
-        <h2 className="text-xl font-semibold">No orders yet</h2>
-        <p className="text-muted-foreground mx-auto max-w-sm text-sm">
-          When you purchase books from our independent sellers, your orders will
-          appear here.
-        </p>
-        <Link href="/">
-          <Button className="mt-2">Start Shopping</Button>
-        </Link>
-      </div>
+    <div className="container mx-auto px-4 py-8 max-w-5xl">
+      <BuyerOrdersClient initialOrders={orders} />
     </div>
   );
 }

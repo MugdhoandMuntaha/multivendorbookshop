@@ -42,7 +42,27 @@ BEGIN
     ON CONFLICT (id) DO NOTHING;
 END $$;
 
--- 2. Mock User Profiles for Vendors, Admins, and Buyers
+-- 2. Mock Auth Users & User Profiles for Vendors, Admins, and Buyers
+INSERT INTO auth.users (
+    id,
+    instance_id,
+    aud,
+    role,
+    email,
+    encrypted_password,
+    email_confirmed_at,
+    raw_app_meta_data,
+    raw_user_meta_data,
+    created_at,
+    updated_at
+) VALUES
+    ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', 'admin@rtds.com.bd', crypt('Admin@12345', gen_salt('bf')), now(), '{"provider":"email","providers":["email"]}', '{"full_name":"RTDS Platform Administrator"}', now(), now()),
+    ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', 'vendor1@rtds.com.bd', crypt('Vendor@12345', gen_salt('bf')), now(), '{"provider":"email","providers":["email"]}', '{"full_name":"RTDS Central Depot Manager"}', now(), now()),
+    ('cccccccc-cccc-cccc-cccc-cccccccccccc', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', 'vendor2@rtds.com.bd', crypt('Vendor@12345', gen_salt('bf')), now(), '{"provider":"email","providers":["email"]}', '{"full_name":"Banglabazar Boi Bhaban Officer"}', now(), now()),
+    ('dddddddd-dddd-dddd-dddd-dddddddddddd', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', 'vendor3@rtds.com.bd', crypt('Vendor@12345', gen_salt('bf')), now(), '{"provider":"email","providers":["email"]}', '{"full_name":"Nilkhet Book Corner"}', now(), now()),
+    ('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', 'buyer@rtds.com.bd', crypt('Buyer@12345', gen_salt('bf')), now(), '{"provider":"email","providers":["email"]}', '{"full_name":"Tahmid Hasan (Medical Aspirant)"}', now(), now())
+ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO public.profiles (id, full_name, role) VALUES
     ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', 'RTDS Platform Administrator', 'admin'),
     ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', 'RTDS Central Depot Manager', 'vendor'),
@@ -217,14 +237,18 @@ ON CONFLICT (id) DO UPDATE SET
 
 -- 5. Mock Book Images (R2 Keys)
 INSERT INTO public.book_images (book_id, r2_key, position) VALUES
-    ('44444444-4444-4444-4444-444444444409', 'books/rtds-physics.webp', 0),
-    ('44444444-4444-4444-4444-444444444410', 'books/rtds-biology.webp', 0),
-    ('44444444-4444-4444-4444-444444444411', 'books/rtds-chemistry.webp', 0),
-    ('44444444-4444-4444-4444-444444444401', 'books/dune-cover-1.webp', 0),
-    ('44444444-4444-4444-4444-444444444412', 'books/lalsalu.webp', 0),
-    ('44444444-4444-4444-4444-444444444403', 'books/meditations.webp', 0),
-    ('44444444-4444-4444-4444-444444444405', 'books/ddia-oreilly.webp', 0),
-    ('44444444-4444-4444-4444-444444444407', 'books/sicp.webp', 0)
+    ('44444444-4444-4444-4444-444444444409', 'https://covers.openlibrary.org/b/isbn/9780134988689-L.jpg', 0),
+    ('44444444-4444-4444-4444-444444444410', 'https://covers.openlibrary.org/b/isbn/9780134093413-L.jpg', 0),
+    ('44444444-4444-4444-4444-444444444411', 'https://covers.openlibrary.org/b/isbn/9780073402680-L.jpg', 0),
+    ('44444444-4444-4444-4444-444444444401', 'https://covers.openlibrary.org/b/isbn/9780441172719-L.jpg', 0),
+    ('44444444-4444-4444-4444-444444444412', 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&q=80&w=800', 0),
+    ('44444444-4444-4444-4444-444444444403', 'https://covers.openlibrary.org/b/isbn/9780140449334-L.jpg', 0),
+    ('44444444-4444-4444-4444-444444444405', 'https://covers.openlibrary.org/b/isbn/9781449373320-L.jpg', 0),
+    ('44444444-4444-4444-4444-444444444407', 'https://covers.openlibrary.org/b/isbn/9780262510875-L.jpg', 0),
+    ('44444444-4444-4444-4444-444444444413', 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&q=80&w=800', 0),
+    ('44444444-4444-4444-4444-444444444414', 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&q=80&w=800', 0),
+    ('44444444-4444-4444-4444-444444444415', 'https://covers.openlibrary.org/b/isbn/9780984782857-L.jpg', 0),
+    ('44444444-4444-4444-4444-444444444416', 'https://covers.openlibrary.org/b/isbn/9780060555665-L.jpg', 0)
 ON CONFLICT DO NOTHING;
 
 -- 6. Mock Completed Order & Verified Review (BDT)

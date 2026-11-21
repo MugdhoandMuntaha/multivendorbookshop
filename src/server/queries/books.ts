@@ -86,7 +86,7 @@ export const FALLBACK_BOOKS: BookRow[] = [
       name: "Medical & Engineering Admission",
       slug: "medical-engineering-admission",
     },
-    book_images: [{ r2_key: "books/rtds-physics.webp", position: 0 }],
+    book_images: [{ r2_key: "https://covers.openlibrary.org/b/isbn/9780134988689-L.jpg", position: 0 }],
   },
   {
     id: "44444444-4444-4444-4444-444444444410",
@@ -116,7 +116,7 @@ export const FALLBACK_BOOKS: BookRow[] = [
       name: "Medical & Engineering Admission",
       slug: "medical-engineering-admission",
     },
-    book_images: [{ r2_key: "books/rtds-biology.webp", position: 0 }],
+    book_images: [{ r2_key: "https://covers.openlibrary.org/b/isbn/9780134093413-L.jpg", position: 0 }],
   },
   {
     id: "44444444-4444-4444-4444-444444444411",
@@ -146,7 +146,7 @@ export const FALLBACK_BOOKS: BookRow[] = [
       name: "Medical & Engineering Admission",
       slug: "medical-engineering-admission",
     },
-    book_images: [{ r2_key: "books/rtds-chemistry.webp", position: 0 }],
+    book_images: [{ r2_key: "https://covers.openlibrary.org/b/isbn/9780073402680-L.jpg", position: 0 }],
   },
   {
     id: "44444444-4444-4444-4444-444444444405",
@@ -176,7 +176,7 @@ export const FALLBACK_BOOKS: BookRow[] = [
       name: "Computer Science & Engineering",
       slug: "computer-science-engineering",
     },
-    book_images: [{ r2_key: "books/ddia-oreilly.webp", position: 0 }],
+    book_images: [{ r2_key: "https://covers.openlibrary.org/b/isbn/9781449373320-L.jpg", position: 0 }],
   },
   {
     id: "44444444-4444-4444-4444-444444444401",
@@ -206,7 +206,7 @@ export const FALLBACK_BOOKS: BookRow[] = [
       name: "Sci-Fi & Fantasy",
       slug: "scifi-fantasy",
     },
-    book_images: [{ r2_key: "books/dune-cover-1.webp", position: 0 }],
+    book_images: [{ r2_key: "https://covers.openlibrary.org/b/isbn/9780441172719-L.jpg", position: 0 }],
   },
   {
     id: "44444444-4444-4444-4444-444444444412",
@@ -236,7 +236,7 @@ export const FALLBACK_BOOKS: BookRow[] = [
       name: "Fiction & Literature",
       slug: "fiction-literature",
     },
-    book_images: [{ r2_key: "books/lalsalu.webp", position: 0 }],
+    book_images: [{ r2_key: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&q=80&w=800", position: 0 }],
   },
   {
     id: "44444444-4444-4444-4444-444444444403",
@@ -266,7 +266,7 @@ export const FALLBACK_BOOKS: BookRow[] = [
       name: "Philosophy & Society",
       slug: "philosophy-society",
     },
-    book_images: [{ r2_key: "books/meditations.webp", position: 0 }],
+    book_images: [{ r2_key: "https://covers.openlibrary.org/b/isbn/9780140449334-L.jpg", position: 0 }],
   },
   {
     id: "44444444-4444-4444-4444-444444444407",
@@ -296,7 +296,7 @@ export const FALLBACK_BOOKS: BookRow[] = [
       name: "Computer Science & Engineering",
       slug: "computer-science-engineering",
     },
-    book_images: [{ r2_key: "books/sicp.webp", position: 0 }],
+    book_images: [{ r2_key: "https://covers.openlibrary.org/b/isbn/9780262510875-L.jpg", position: 0 }],
   },
   {
     id: "44444444-4444-4444-4444-444444444413",
@@ -326,7 +326,7 @@ export const FALLBACK_BOOKS: BookRow[] = [
       name: "History & Heritage",
       slug: "history-heritage",
     },
-    book_images: [{ r2_key: "books/ekattorer-dinguli.webp", position: 0 }],
+    book_images: [{ r2_key: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&q=80&w=800", position: 0 }],
   },
   {
     id: "44444444-4444-4444-4444-444444444414",
@@ -356,7 +356,7 @@ export const FALLBACK_BOOKS: BookRow[] = [
       name: "Islamic & Theological Books",
       slug: "islamic-theological",
     },
-    book_images: [{ r2_key: "books/riyadus-saliheen.webp", position: 0 }],
+    book_images: [{ r2_key: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&q=80&w=800", position: 0 }],
   },
   {
     id: "44444444-4444-4444-4444-444444444415",
@@ -386,7 +386,7 @@ export const FALLBACK_BOOKS: BookRow[] = [
       name: "Computer Science & Engineering",
       slug: "computer-science-engineering",
     },
-    book_images: [{ r2_key: "books/ctci.webp", position: 0 }],
+    book_images: [{ r2_key: "https://covers.openlibrary.org/b/isbn/9780984782857-L.jpg", position: 0 }],
   },
   {
     id: "44444444-4444-4444-4444-444444444416",
@@ -416,7 +416,7 @@ export const FALLBACK_BOOKS: BookRow[] = [
       name: "Business, Finance & Startups",
       slug: "business-finance-startups",
     },
-    book_images: [{ r2_key: "books/intelligent-investor.webp", position: 0 }],
+    book_images: [{ r2_key: "https://covers.openlibrary.org/b/isbn/9780060555665-L.jpg", position: 0 }],
   },
 ];
 

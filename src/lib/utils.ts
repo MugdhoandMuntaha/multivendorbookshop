@@ -54,3 +54,52 @@ export function getR2ImageUrl(r2Key: string | null | undefined): string {
   const cleanKey = r2Key.startsWith("/") ? r2Key.slice(1) : r2Key;
   return `${publicBase}/${cleanKey}`;
 }
+
+/**
+ * Generates an active consignment tracking URL for top Bangladeshi logistics partners.
+ */
+export function getCourierTrackingUrl(
+  trackingNumber: string | null | undefined
+): string | null {
+  if (!trackingNumber) return null;
+  const num = trackingNumber.trim();
+  if (num.startsWith("http://") || num.startsWith("https://")) return num;
+
+  // Extract clean code if prefix is present (e.g. "Steadfast: ST-12345" or "ST-12345")
+  const cleanCode = num.includes(":") ? num.split(":")[1].trim() : num;
+
+  if (
+    cleanCode.toUpperCase().startsWith("ST-") ||
+    cleanCode.toUpperCase().startsWith("SF-") ||
+    num.toLowerCase().includes("steadfast")
+  ) {
+    return `https://steadfast.com.bd/t/${cleanCode}`;
+  }
+  if (
+    cleanCode.toUpperCase().startsWith("PT-") ||
+    cleanCode.toUpperCase().startsWith("PATHAO-") ||
+    num.toLowerCase().includes("pathao")
+  ) {
+    const code = cleanCode.replace(/^(PT-|PATHAO-)/i, "");
+    return `https://merchant.pathao.com/tracking?consignment_id=${code}`;
+  }
+  if (
+    cleanCode.toUpperCase().startsWith("REDX-") ||
+    num.toLowerCase().includes("redx")
+  ) {
+    const code = cleanCode.replace(/^REDX-/i, "");
+    return `https://redx.com.bd/track-order/?trackingId=${code}`;
+  }
+  if (
+    cleanCode.toUpperCase().startsWith("PF-") ||
+    cleanCode.toUpperCase().startsWith("PAPERFLY-") ||
+    num.toLowerCase().includes("paperfly")
+  ) {
+    const code = cleanCode.replace(/^(PF-|PAPERFLY-)/i, "");
+    return `https://paperfly.com.bd/tracking.php?orderId=${code}`;
+  }
+
+  // Default to Steadfast courier format
+  return `https://steadfast.com.bd/t/${cleanCode}`;
+}
+

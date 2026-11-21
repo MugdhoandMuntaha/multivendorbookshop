@@ -3,6 +3,7 @@
 import { z } from "zod";
 import { createClient } from "@/lib/supabase/server";
 import { getPaymentProvider } from "@/server/payment";
+import { sendOrderConfirmationNotification } from "@/server/notifications/order-notifications";
 
 const checkoutSchema = z.object({
   fullName: z.string().min(2, "Name must be at least 2 characters"),
@@ -133,6 +134,20 @@ export async function checkoutOrderAction(
           payment_reference: paymentResult.paymentReference,
         })
         .eq("id", effectiveOrderId);
+    }
+
+    // Trigger order confirmation notification stub (SMS/Email)
+    try {
+      await sendOrderConfirmationNotification({
+        orderId: effectiveOrderId,
+        buyerName: validData.fullName,
+        buyerPhone: validData.phone,
+        buyerEmail: user.email,
+        totalMinor: 57000,
+        paymentMethod: validData.paymentProvider === "cod" ? "Cash on Delivery" : "Digital Payment",
+      });
+    } catch (notifErr) {
+      console.warn("Notification dispatch notice:", notifErr);
     }
 
     return {
