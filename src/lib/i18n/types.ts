@@ -190,5 +190,63 @@ export interface Dictionary {
     verifiedBadge: string;
     commissionRate: string;
   };
+  cart: {
+    title: string;
+    subtitle: string;
+    emptyTitle: string;
+    emptySubtitle: string;
+    browseBooks: string;
+    vendorPackage: string;
+    shippingNotice: string;
+    orderSummary: string;
+    subtotal: string;
+    deliveryFee: string;
+    total: string;
+    freeDeliveryQualified: string;
+    freeDeliveryThresholdNotice: string;
+    proceedToCheckout: string;
+    continueShopping: string;
+    clearCart: string;
+    itemRemoved: string;
+    quantity: string;
+    maxStockNotice: string;
+  };
+  checkout: {
+    title: string;
+    subtitle: string;
+    shippingInfo: string;
+    fullName: string;
+    phone: string;
+    division: string;
+    district: string;
+    streetAddress: string;
+    streetAddressPlaceholder: string;
+    deliveryNotes: string;
+    deliveryNotesPlaceholder: string;
+    paymentMethod: string;
+    codTitle: string;
+    codDesc: string;
+    onlineTitle: string;
+    onlineDesc: string;
+    placeOrder: string;
+    placingOrder: string;
+    orderReview: string;
+    orderConfirmedTitle: string;
+    orderConfirmedSubtitle: string;
+    orderNumber: string;
+    deliveryTo: string;
+    viewOrders: string;
+    trackStatus: string;
+  };
+  wishlist: {
+    title: string;
+    subtitle: string;
+    emptyTitle: string;
+    emptySubtitle: string;
+    discoverTitles: string;
+    moveToCart: string;
+    remove: string;
+    savedItems: string;
+  };
 }
 

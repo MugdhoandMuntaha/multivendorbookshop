@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import {
   ShoppingBag,
   Zap,
@@ -13,24 +14,63 @@ import {
   RotateCcw,
 } from "lucide-react";
 import { Dictionary, Locale } from "@/lib/i18n/types";
+import { useCart } from "@/lib/cart/context";
+import { useWishlist } from "@/lib/wishlist/context";
 
 interface BookActionsProps {
   bookId: string;
   stock: number;
   dict: Dictionary;
   locale: Locale;
+  title: string;
+  author: string;
+  priceMinor: number;
+  currency: string;
+  condition: string;
+  vendorId: string;
+  vendorName: string;
+  vendorSlug: string;
+  coverUrl: string;
 }
 
 export function BookActions({
+  bookId,
   stock,
   dict,
   locale,
+  title,
+  author,
+  priceMinor,
+  currency,
+  condition,
+  vendorId,
+  vendorName,
+  vendorSlug,
+  coverUrl,
 }: BookActionsProps) {
+  const router = useRouter();
+  const { addItem } = useCart();
+  const { toggleWishlist, isWishlisted } = useWishlist();
+
   const [quantity, setQuantity] = useState(1);
   const [addedMessage, setAddedMessage] = useState(false);
-  const [isWishlisted, setIsWishlisted] = useState(false);
 
   const isOutOfStock = stock <= 0;
+  const wishlisted = isWishlisted(bookId);
+
+  const itemPayload = {
+    bookId,
+    vendorId,
+    vendorName,
+    vendorSlug,
+    title,
+    author,
+    priceMinor,
+    currency,
+    condition,
+    stock,
+    coverUrl,
+  };
 
   function handleQuantityChange(delta: number) {
     setQuantity((prev) => {
@@ -43,6 +83,7 @@ export function BookActions({
 
   function handleAddToCart() {
     if (isOutOfStock) return;
+    addItem(itemPayload, quantity);
     setAddedMessage(true);
     setTimeout(() => {
       setAddedMessage(false);
@@ -51,12 +92,12 @@ export function BookActions({
 
   function handleBuyNow() {
     if (isOutOfStock) return;
-    // In Phase 5 cart/checkout, will navigate to checkout.
-    // For now, provide instant feedback
-    setAddedMessage(true);
-    setTimeout(() => {
-      setAddedMessage(false);
-    }, 3000);
+    addItem(itemPayload, quantity);
+    router.push("/checkout");
+  }
+
+  function handleToggleWishlist() {
+    toggleWishlist(itemPayload);
   }
 
   return (
@@ -138,14 +179,14 @@ export function BookActions({
         {/* Wishlist Button */}
         <button
           type="button"
-          onClick={() => setIsWishlisted(!isWishlisted)}
+          onClick={handleToggleWishlist}
           className={`neo-button-light shrink-0 p-3 rounded-xl flex items-center justify-center transition-all ${
-            isWishlisted ? "text-rose-600 bg-rose-50" : "text-slate-600"
+            wishlisted ? "text-rose-600 bg-rose-50" : "text-slate-600"
           }`}
           title={dict.bookDetail.wishlist}
         >
           <Heart
-            className={`h-4 w-4 ${isWishlisted ? "fill-rose-500 text-rose-500" : ""}`}
+            className={`h-4 w-4 ${wishlisted ? "fill-rose-500 text-rose-500" : ""}`}
           />
         </button>
       </div>

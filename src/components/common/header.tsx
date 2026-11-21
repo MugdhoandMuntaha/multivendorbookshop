@@ -1,19 +1,18 @@
 import Link from "next/link";
 import {
   BookOpen,
-  ShoppingBag,
   Search,
   PhoneCall,
   Store,
-  Heart,
   Menu,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { getCurrentProfile } from "@/server/queries/auth";
 import { getStorefrontSettings } from "@/server/queries/storefront";
 import { getServerLocale, getDictionary } from "@/lib/i18n/server";
 import { LanguageSwitcher } from "./language-switcher";
 import { UserNav } from "./user-nav";
+import { HeaderCartButton } from "./header-cart-button";
+import { HeaderWishlistButton } from "./header-wishlist-button";
 
 export function HeaderFallback() {
   return (
@@ -136,31 +135,8 @@ export async function Header() {
 
         {/* Right User Actions (Neomorphic Soft Light Buttons) */}
         <div className="flex shrink-0 items-center gap-2 sm:gap-3">
-          <Link href="/buyer/wishlist" className="hidden sm:inline-flex">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="neo-button-light relative h-9 w-9 rounded-xl p-0 hover:text-emerald-700"
-            >
-              <Heart className="h-4 w-4 text-emerald-700" />
-              <span className="sr-only">{t.common.wishlist}</span>
-            </Button>
-          </Link>
-
-          <Link href="/cart">
-            <Button
-              variant="outline"
-              size="sm"
-              className="neo-button-light relative h-9 gap-2 rounded-xl border-emerald-200/80 px-3.5 font-bold text-emerald-800"
-            >
-              <ShoppingBag className="h-4 w-4 text-emerald-600" />
-              <span className="hidden text-xs sm:inline">{t.common.cart}</span>
-              <span className="flex h-4 min-w-[16px] items-center justify-center rounded-full bg-emerald-600 px-1.5 text-[10px] font-bold text-white shadow-xs">
-                0
-              </span>
-            </Button>
-          </Link>
-
+          <HeaderWishlistButton />
+          <HeaderCartButton />
           <UserNav profile={profile} />
         </div>
       </div>

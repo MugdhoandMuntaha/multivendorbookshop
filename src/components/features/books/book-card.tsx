@@ -1,12 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Star, ShoppingBag, Eye, Store } from "lucide-react";
+import { Star, Eye, Store } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { formatPrice } from "@/lib/utils";
 import { getR2PublicUrl } from "@/lib/r2/utils";
 import { getServerLocale, getDictionary } from "@/lib/i18n/server";
 import { Locale } from "@/lib/i18n/types";
 import type { BookRow } from "@/server/queries/books";
+import { AddToCartButton } from "./add-to-cart-button";
 
 interface BookCardProps {
   book: BookRow;
@@ -124,13 +125,22 @@ export async function BookCard({ book, locale }: BookCardProps) {
           </span>
         </div>
 
-        <button
-          type="button"
-          className="neo-button-green flex h-8 shrink-0 items-center gap-1 rounded-xl px-3 text-xs font-bold"
-        >
-          <ShoppingBag className="h-3.5 w-3.5" />
-          <span>{t.common.cart}</span>
-        </button>
+        <AddToCartButton
+          item={{
+            bookId: book.id,
+            vendorId: book.vendor_id,
+            vendorName,
+            vendorSlug,
+            title: book.title,
+            author: book.author,
+            priceMinor: book.price_minor,
+            currency: book.currency,
+            condition: book.condition,
+            stock: book.stock,
+            coverUrl,
+          }}
+          label={t.common.cart}
+        />
       </div>
     </div>
   );

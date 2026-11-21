@@ -5,6 +5,8 @@ import { Header, HeaderFallback } from "@/components/common/header";
 import { Footer } from "@/components/common/footer";
 import { getServerLocale } from "@/lib/i18n/server";
 import { LanguageProvider } from "@/lib/i18n/context";
+import { CartProvider } from "@/lib/cart/context";
+import { WishlistProvider } from "@/lib/wishlist/context";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -40,11 +42,15 @@ export default async function RootLayout({
     >
       <body className="bg-background text-foreground flex min-h-full flex-col">
         <LanguageProvider initialLocale={locale}>
-          <Suspense fallback={<HeaderFallback />}>
-            <Header />
-          </Suspense>
-          <main className="flex-1">{children}</main>
-          <Footer />
+          <CartProvider>
+            <WishlistProvider>
+              <Suspense fallback={<HeaderFallback />}>
+                <Header />
+              </Suspense>
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </WishlistProvider>
+          </CartProvider>
         </LanguageProvider>
       </body>
     </html>

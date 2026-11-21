@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { getServerLocale, getDictionary } from "@/lib/i18n/server";
 import { formatPrice } from "@/lib/utils";
+import { getR2PublicUrl } from "@/lib/r2/utils";
 import { getBookById, getRelatedBooks } from "@/server/queries/books";
 import { BookGallery } from "@/components/features/books/book-gallery";
 import { BookActions } from "@/components/features/books/book-actions";
@@ -212,6 +213,15 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
                 stock={book.stock}
                 dict={dict}
                 locale={locale}
+                title={book.title}
+                author={book.author}
+                priceMinor={book.price_minor}
+                currency={book.currency}
+                condition={book.condition}
+                vendorId={book.vendor_id}
+                vendorName={vendorName}
+                vendorSlug={vendorSlug}
+                coverUrl={getR2PublicUrl(book.book_images?.[0]?.r2_key)}
               />
             </div>
           </div>
