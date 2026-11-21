@@ -43,4 +43,5 @@ next-env.d.ts
 
 # local tool runner shim
 powershell.cmd
+powershell.exe
 
