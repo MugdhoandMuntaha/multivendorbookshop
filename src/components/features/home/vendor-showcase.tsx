@@ -24,7 +24,7 @@ const FEATURED_VENDORS: VendorCardData[] = [
     rating: "4.8",
     salesCount: "12k+ sold",
     initials: "পথ",
-    badgeBg: "bg-rose-50 text-rose-700 border-rose-200",
+    badgeBg: "bg-stone-100 text-stone-800 border-stone-200",
   },
   {
     id: "v-2",
@@ -34,7 +34,7 @@ const FEATURED_VENDORS: VendorCardData[] = [
     rating: "4.7",
     salesCount: "8k+ sold",
     initials: "জ্ঞান",
-    badgeBg: "bg-indigo-50 text-indigo-700 border-indigo-200",
+    badgeBg: "bg-stone-100 text-stone-800 border-stone-200",
   },
   {
     id: "v-3",
@@ -44,7 +44,7 @@ const FEATURED_VENDORS: VendorCardData[] = [
     rating: "4.7",
     salesCount: "5k+ sold",
     initials: "বই",
-    badgeBg: "bg-emerald-50 text-emerald-700 border-emerald-200",
+    badgeBg: "bg-stone-100 text-stone-800 border-stone-200",
   },
   {
     id: "v-4",
@@ -54,7 +54,7 @@ const FEATURED_VENDORS: VendorCardData[] = [
     rating: "4.8",
     salesCount: "10k+ sold",
     initials: "অক্ষর",
-    badgeBg: "bg-amber-50 text-amber-700 border-amber-200",
+    badgeBg: "bg-stone-100 text-stone-800 border-stone-200",
   },
 ];
 
@@ -65,11 +65,11 @@ export function VendorShowcase() {
     <section className="space-y-4">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2.5">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-100 text-emerald-800">
-            <Store className="h-4 w-4" />
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-100/70 text-emerald-800">
+            <Store className="h-4 w-4 stroke-[1.5]" />
           </div>
           <div>
-            <h2 className="text-lg sm:text-xl font-bold tracking-tight text-slate-900">
+            <h2 className="text-lg font-semibold tracking-tight text-slate-900">
               {locale === "bn"
                 ? "আমাদের সেলারদের জনপ্রিয় বই"
                 : "Popular Sellers & Publishers"}
@@ -84,7 +84,7 @@ export function VendorShowcase() {
 
         <Link
           href="/vendors"
-          className="inline-flex items-center gap-1.5 rounded-full bg-[#0c3823] hover:bg-[#124d31] px-4 py-1.5 text-xs font-bold text-white shadow-xs transition-all"
+          className="inline-flex items-center gap-1.5 rounded-lg bg-[#0c3823] hover:bg-[#124d31] px-3.5 py-1.5 text-xs font-medium text-white transition-colors"
         >
           <span>{locale === "bn" ? "সব দেখুন" : "View All"}</span>
           <ArrowRight className="h-3 w-3" />
@@ -98,19 +98,19 @@ export function VendorShowcase() {
           return (
             <div
               key={vendor.id}
-              className="group flex items-center justify-between gap-3 rounded-2xl border border-slate-200/80 bg-white p-3.5 shadow-xs transition-all hover:border-emerald-300 hover:shadow-md"
+              className="group flex items-center justify-between gap-3 rounded-xl border border-stone-200/80 bg-white p-3.5 shadow-2xs transition-colors hover:border-stone-300"
             >
               <div className="flex items-center gap-3 min-w-0">
                 <div
-                  className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full border text-xs font-black ${vendor.badgeBg}`}
+                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border text-xs font-semibold ${vendor.badgeBg}`}
                 >
                   {vendor.initials}
                 </div>
                 <div className="min-w-0">
-                  <h4 className="text-xs font-bold text-slate-900 truncate group-hover:text-emerald-800">
+                  <h4 className="text-xs font-semibold text-slate-900 truncate group-hover:text-emerald-900 transition-colors">
                     {displayName}
                   </h4>
-                  <div className="flex items-center gap-1 text-[11px] text-slate-500">
+                  <div className="flex items-center gap-1 text-[11px] text-slate-500 tabular-nums">
                     <Star className="h-3 w-3 fill-amber-400 text-amber-400" />
                     <span className="font-semibold text-slate-800">
                       {vendor.rating}
@@ -122,7 +122,7 @@ export function VendorShowcase() {
 
               <Link
                 href={`/vendors/${vendor.slug}`}
-                className="shrink-0 inline-flex items-center gap-1 rounded-full border border-slate-200 px-2.5 py-1 text-[10px] font-bold text-slate-700 hover:border-emerald-700 hover:text-emerald-800 transition-colors"
+                className="shrink-0 inline-flex items-center gap-1 rounded-md border border-stone-200 px-2 py-1 text-[10px] font-medium text-stone-600 hover:border-[#0c3823] hover:text-[#0c3823] transition-colors"
               >
                 <span>Visit Shop</span>
                 <ArrowRight className="h-2.5 w-2.5" />

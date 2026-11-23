@@ -19,7 +19,7 @@ export function UserNav({ profile }: { profile: Profile | null }) {
         <Link href="/login">
           <button
             type="button"
-            className="flex h-9 items-center justify-center rounded-full bg-[#0c3823] hover:bg-[#124d31] px-5 text-xs font-bold text-white shadow-xs transition-all hover:scale-105"
+            className="flex h-9 items-center justify-center rounded-lg bg-[#0c3823] hover:bg-[#124d31] px-4 text-xs font-medium text-white transition-colors"
           >
             {locale === "bn" ? "লগইন / সাইন আপ" : "Login / Sign Up"}
           </button>

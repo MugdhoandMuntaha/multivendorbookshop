@@ -49,10 +49,10 @@ export async function Header() {
             <BookOpen className="h-6 w-6 text-emerald-800" />
           </div>
           <div className="flex flex-col leading-tight">
-            <span className="text-xl sm:text-2xl font-black tracking-tight text-slate-900">
+            <span className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900">
               {locale === "bn" ? "বইঘর" : "RTDS Bookshop"}
             </span>
-            <span className="text-[10px] font-semibold tracking-wider text-slate-500 uppercase">
+            <span className="text-[10px] font-medium tracking-wide text-slate-500">
               Read • Learn • Grow
             </span>
           </div>
@@ -102,7 +102,7 @@ export async function Header() {
             {/* All Categories Dropdown Button */}
             <Link
               href="/categories"
-              className="flex shrink-0 items-center gap-2 rounded-lg bg-[#0c3823] hover:bg-[#124d31] px-3.5 py-2 font-bold text-white shadow-xs transition-colors"
+              className="flex shrink-0 items-center gap-2 rounded-lg bg-[#0c3823] hover:bg-[#124d31] px-3.5 py-1.5 font-medium text-white transition-colors"
             >
               <LayoutGrid className="h-4 w-4" />
               <span>{locale === "bn" ? "সকল বিভাগ" : "All Categories"}</span>
@@ -110,40 +110,40 @@ export async function Header() {
             </Link>
 
             {/* Navigation Links */}
-            <nav className="flex items-center gap-6 font-semibold text-slate-600 shrink-0">
+            <nav className="flex items-center gap-6 font-medium text-slate-600 shrink-0">
               <Link
                 href="/"
-                className="text-emerald-800 font-bold hover:text-emerald-950 transition-colors"
+                className="text-emerald-900 font-semibold hover:text-emerald-950 transition-colors"
               >
                 {locale === "bn" ? "হোম" : "Home"}
               </Link>
               <Link
                 href="/books"
-                className="hover:text-emerald-800 transition-colors"
+                className="hover:text-emerald-900 transition-colors"
               >
                 {locale === "bn" ? "আমাদের প্রকাশনা" : "Our Publication"}
               </Link>
               <Link
                 href="/vendors"
-                className="hover:text-emerald-800 transition-colors"
+                className="hover:text-emerald-900 transition-colors"
               >
                 {locale === "bn" ? "সেলারগণ" : "Sellers"}
               </Link>
               <Link
                 href="/books?offer=true"
-                className="hover:text-emerald-800 transition-colors"
+                className="hover:text-emerald-900 transition-colors"
               >
                 {locale === "bn" ? "অফার সমূহ" : "Offers"}
               </Link>
               <Link
                 href="/categories"
-                className="hover:text-emerald-800 transition-colors"
+                className="hover:text-emerald-900 transition-colors"
               >
                 {locale === "bn" ? "আমাদের সম্পর্কে" : "About Us"}
               </Link>
               <Link
                 href="/buyer/orders"
-                className="hover:text-emerald-800 transition-colors"
+                className="hover:text-emerald-900 transition-colors"
               >
                 {locale === "bn" ? "যোগাযোগ" : "Contact"}
               </Link>
@@ -151,8 +151,8 @@ export async function Header() {
           </div>
 
           {/* Free Delivery Right Notice */}
-          <div className="hidden lg:flex items-center gap-1.5 font-bold text-slate-800 text-[11px] shrink-0 bg-slate-50 border border-slate-200/60 rounded-full px-3 py-1">
-            <Truck className="h-3.5 w-3.5 text-emerald-700" />
+          <div className="hidden lg:flex items-center gap-1.5 font-medium text-stone-700 text-[11px] shrink-0 bg-stone-50 border border-stone-200/70 rounded-md px-2.5 py-1 tabular-nums">
+            <Truck className="h-3.5 w-3.5 text-emerald-800" />
             <span>
               {locale === "bn" ? "ফ্রি ডেলিভারি ৳৩৯৯+" : "Free Delivery ৳399+"}
             </span>

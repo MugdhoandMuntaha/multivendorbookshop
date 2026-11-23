@@ -44,7 +44,7 @@ export async function Footer() {
 
           {/* Column 2: কোম্পানি (Company) */}
           <div className="space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white">
+            <h4 className="text-xs font-semibold text-white">
               {locale === "bn" ? "কোম্পানি" : "Company"}
             </h4>
             <ul className="space-y-2 text-[11px] text-slate-400">
@@ -73,7 +73,7 @@ export async function Footer() {
 
           {/* Column 3: সহায়তা (Support) */}
           <div className="space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white">
+            <h4 className="text-xs font-semibold text-white">
               {locale === "bn" ? "সহায়তা" : "Support"}
             </h4>
             <ul className="space-y-2 text-[11px] text-slate-400">
@@ -102,7 +102,7 @@ export async function Footer() {
 
           {/* Column 4: আমাদের সাথে থাকুন (Socials) */}
           <div className="space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white">
+            <h4 className="text-xs font-semibold text-white">
               {locale === "bn" ? "আমাদের সাথে থাকুন" : "Follow Us"}
             </h4>
             <div className="flex items-center gap-2 pt-1 text-slate-300">
@@ -110,53 +110,53 @@ export async function Footer() {
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 hover:bg-emerald-700 hover:text-white transition-colors"
+                className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 hover:bg-emerald-700 hover:text-white transition-colors"
                 title="Facebook"
               >
-                <FacebookIcon className="h-4 w-4" />
+                <FacebookIcon className="h-3.5 w-3.5" />
               </a>
               <a
                 href="https://youtube.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 hover:bg-red-700 hover:text-white transition-colors"
+                className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 hover:bg-red-700 hover:text-white transition-colors"
                 title="YouTube"
               >
-                <YoutubeIcon className="h-4 w-4" />
+                <YoutubeIcon className="h-3.5 w-3.5" />
               </a>
               <a
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 hover:bg-pink-700 hover:text-white transition-colors"
+                className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 hover:bg-pink-700 hover:text-white transition-colors"
                 title="Instagram"
               >
-                <InstagramIcon className="h-4 w-4" />
+                <InstagramIcon className="h-3.5 w-3.5" />
               </a>
               <a
                 href="https://x.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 hover:bg-slate-700 hover:text-white transition-colors"
+                className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 hover:bg-slate-700 hover:text-white transition-colors"
                 title="X"
               >
-                <TwitterIcon className="h-4 w-4" />
+                <TwitterIcon className="h-3.5 w-3.5" />
               </a>
               <a
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 hover:bg-blue-700 hover:text-white transition-colors"
+                className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 hover:bg-blue-700 hover:text-white transition-colors"
                 title="LinkedIn"
               >
-                <LinkedinIcon className="h-4 w-4" />
+                <LinkedinIcon className="h-3.5 w-3.5" />
               </a>
             </div>
           </div>
 
           {/* Column 5: নিরাপদ লেনদেনে (Payment Badges) */}
           <div className="space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white">
+            <h4 className="text-xs font-semibold text-white">
               {locale === "bn" ? "নিরাপদ লেনদেনে" : "Secure Payments"}
             </h4>
             <div className="flex flex-wrap items-center gap-2 pt-1">

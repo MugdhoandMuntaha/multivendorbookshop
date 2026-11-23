@@ -27,13 +27,12 @@ export default async function HomePage() {
       {/* 2. Category Chips Section ("বিভাগ সমূহ") */}
       <CategoryChips />
 
-      {/* 3. Bestseller Books Section ("বেস্টসেলার বই 🔥") */}
+      {/* 3. Bestseller Books Section ("বেস্টসেলার বই") */}
       <section className="space-y-4">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-lg sm:text-xl font-bold tracking-tight text-slate-900 flex items-center gap-1.5">
-              <span>{locale === "bn" ? "বেস্টসেলার বই" : "Bestseller Books"}</span>
-              <span className="text-base">🔥</span>
+            <h2 className="text-lg font-semibold tracking-tight text-slate-900">
+              {locale === "bn" ? "বেস্টসেলার বই" : "Bestseller Books"}
             </h2>
             <p className="text-xs text-slate-500">
               {locale === "bn"
@@ -44,7 +43,7 @@ export default async function HomePage() {
 
           <Link
             href="/books"
-            className="inline-flex items-center gap-1.5 rounded-full bg-[#0c3823] hover:bg-[#124d31] px-4 py-1.5 text-xs font-bold text-white shadow-xs transition-all"
+            className="inline-flex items-center gap-1.5 rounded-lg bg-[#0c3823] hover:bg-[#124d31] px-3.5 py-1.5 text-xs font-medium text-white transition-colors"
           >
             <span>{locale === "bn" ? "সব দেখুন" : "View All"}</span>
             <ArrowRight className="h-3 w-3" />

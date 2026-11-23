@@ -50,25 +50,25 @@ export function FlashSaleCountdown() {
   }, []);
 
   return (
-    <section className="relative overflow-hidden rounded-3xl bg-[#0a2e1d] p-6 text-white shadow-md sm:p-7">
+    <section className="relative overflow-hidden rounded-2xl bg-[#0c3823] p-5 sm:p-6 text-white border border-[#144f32]">
       <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
         {/* Left: Gift Graphic & Heading */}
         <div className="flex items-center gap-4 text-center sm:text-left">
-          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-amber-400/20 text-amber-300 ring-4 ring-amber-400/10">
-            <Gift className="h-8 w-8 text-amber-300 animate-bounce" />
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-amber-400/15 text-amber-300 border border-amber-400/20">
+            <Gift className="h-6 w-6 text-amber-300" />
           </div>
 
           <div className="space-y-1">
-            <span className="text-[11px] font-semibold text-emerald-300 tracking-wide uppercase">
+            <span className="text-[11px] font-medium text-emerald-300 tracking-wide">
               {locale === "bn" ? "সীমিত সময়ের অফার" : "Limited Time Offer"}
             </span>
             <div className="flex flex-wrap items-center gap-2.5">
-              <h3 className="text-xl sm:text-2xl font-black tracking-tight text-white">
+              <h3 className="text-lg sm:text-xl font-semibold tracking-tight text-white">
                 {locale === "bn"
-                  ? "সেরা বইয়ে সেরা ছাড়!"
-                  : "Massive Book Festival Deals!"}
+                  ? "সেরা বইয়ে সেরা ছাড়"
+                  : "Massive Book Festival Deals"}
               </h3>
-              <span className="rounded-full bg-[#fcd34d] px-3 py-0.5 text-xs font-black text-slate-950">
+              <span className="rounded-md bg-[#fcd34d] px-2.5 py-0.5 text-xs font-bold text-slate-950">
                 {locale === "bn" ? "২০% পর্যন্ত ছাড়" : "Up to 20% OFF"}
               </span>
             </div>
@@ -77,49 +77,49 @@ export function FlashSaleCountdown() {
 
         {/* Center: Countdown Timer */}
         <div className="flex items-center gap-3">
-          <span className="hidden xl:inline text-xs font-semibold text-emerald-200">
+          <span className="hidden xl:inline text-xs font-medium text-emerald-200">
             {locale === "bn" ? "অফার শেষ হতে বাকি:" : "Offer ends in:"}
           </span>
 
-          <div className="flex items-center gap-2">
-            <div className="flex flex-col items-center justify-center rounded-xl bg-white/10 px-3 py-1.5 min-w-[48px] backdrop-blur-xs">
-              <span className="font-mono text-lg font-black leading-tight text-white">
+          <div className="flex items-center gap-2 tabular-nums">
+            <div className="flex flex-col items-center justify-center rounded-lg bg-white/10 px-3 py-1.5 min-w-[46px] border border-white/10">
+              <span className="font-mono text-base font-bold leading-tight text-white">
                 {timeLeft.days}
               </span>
-              <span className="text-[9px] text-emerald-300 uppercase">
+              <span className="text-[9px] text-emerald-300">
                 {locale === "bn" ? "দিন" : "Days"}
               </span>
             </div>
 
             <span className="font-bold text-emerald-300">:</span>
 
-            <div className="flex flex-col items-center justify-center rounded-xl bg-white/10 px-3 py-1.5 min-w-[48px] backdrop-blur-xs">
-              <span className="font-mono text-lg font-black leading-tight text-white">
+            <div className="flex flex-col items-center justify-center rounded-lg bg-white/10 px-3 py-1.5 min-w-[46px] border border-white/10">
+              <span className="font-mono text-base font-bold leading-tight text-white">
                 {timeLeft.hours}
               </span>
-              <span className="text-[9px] text-emerald-300 uppercase">
+              <span className="text-[9px] text-emerald-300">
                 {locale === "bn" ? "ঘণ্টা" : "Hours"}
               </span>
             </div>
 
             <span className="font-bold text-emerald-300">:</span>
 
-            <div className="flex flex-col items-center justify-center rounded-xl bg-white/10 px-3 py-1.5 min-w-[48px] backdrop-blur-xs">
-              <span className="font-mono text-lg font-black leading-tight text-white">
+            <div className="flex flex-col items-center justify-center rounded-lg bg-white/10 px-3 py-1.5 min-w-[46px] border border-white/10">
+              <span className="font-mono text-base font-bold leading-tight text-white">
                 {timeLeft.minutes}
               </span>
-              <span className="text-[9px] text-emerald-300 uppercase">
+              <span className="text-[9px] text-emerald-300">
                 {locale === "bn" ? "মিনিট" : "Mins"}
               </span>
             </div>
 
             <span className="font-bold text-emerald-300">:</span>
 
-            <div className="flex flex-col items-center justify-center rounded-xl bg-white/10 px-3 py-1.5 min-w-[48px] backdrop-blur-xs">
-              <span className="font-mono text-lg font-black leading-tight text-white">
+            <div className="flex flex-col items-center justify-center rounded-lg bg-white/10 px-3 py-1.5 min-w-[46px] border border-white/10">
+              <span className="font-mono text-base font-bold leading-tight text-white">
                 {timeLeft.seconds}
               </span>
-              <span className="text-[9px] text-emerald-300 uppercase">
+              <span className="text-[9px] text-emerald-300">
                 {locale === "bn" ? "সেকেন্ড" : "Secs"}
               </span>
             </div>
@@ -129,7 +129,7 @@ export function FlashSaleCountdown() {
         {/* Right: CTA Button */}
         <Link
           href="/books"
-          className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#f59e0b] hover:bg-[#d97706] px-6 py-2.5 text-xs font-black text-slate-950 shadow-md transition-all hover:scale-105"
+          className="inline-flex shrink-0 items-center gap-2 rounded-lg bg-[#f59e0b] hover:bg-[#d97706] px-5 py-2 text-xs font-semibold text-slate-950 transition-colors"
         >
           <span>{locale === "bn" ? "এখনই কিনুন" : "Claim Discount"}</span>
           <ArrowRight className="h-4 w-4" />

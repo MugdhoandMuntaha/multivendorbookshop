@@ -11,7 +11,7 @@ interface WishlistHeartButtonProps {
 
 export function WishlistHeartButton({
   item,
-  className = "absolute top-2 right-2 flex h-7 w-7 items-center justify-center rounded-full bg-white/90 backdrop-blur-xs text-slate-500 hover:text-rose-600 shadow-xs transition-transform hover:scale-110",
+  className = "absolute top-2 right-2 flex h-7 w-7 items-center justify-center rounded-full border border-slate-200/60 bg-white/95 text-slate-500 hover:text-rose-600 shadow-2xs transition-colors",
 }: WishlistHeartButtonProps) {
   const { isWishlisted, toggleWishlist, isLoaded } = useWishlist();
 

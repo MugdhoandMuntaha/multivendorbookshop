@@ -54,16 +54,16 @@ export async function BookCard({ book, locale }: BookCardProps) {
   };
 
   return (
-    <div className="group relative flex flex-col justify-between rounded-2xl border border-slate-100 bg-white p-2.5 sm:p-3 shadow-xs transition-all hover:border-emerald-200 hover:shadow-md">
+    <div className="group relative flex flex-col justify-between rounded-xl border border-slate-200/80 bg-white p-2.5 sm:p-3 shadow-2xs transition-colors hover:border-slate-300">
       <div>
-        {/* Book Cover Container with Aspect Ratio (3:4.2) */}
-        <div className="relative aspect-[3/4.2] w-full overflow-hidden rounded-xl bg-slate-50">
+        {/* Book Cover Container with Physical Book Ratio (3:4.2) */}
+        <div className="relative aspect-[3/4.2] w-full overflow-hidden rounded-lg bg-slate-100">
           <Link href={`/books/${book.id}`} className="block h-full w-full">
             <Image
               src={coverUrl}
               alt={book.title}
               fill
-              className="object-cover transition-transform duration-300 group-hover:scale-105"
+              className="object-cover"
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 16vw"
             />
           </Link>
@@ -74,7 +74,7 @@ export async function BookCard({ book, locale }: BookCardProps) {
 
         {/* Book Info */}
         <div className="pt-2.5 space-y-1">
-          <h3 className="line-clamp-1 text-xs sm:text-[13px] font-bold text-slate-900 transition-colors group-hover:text-emerald-800">
+          <h3 className="line-clamp-1 text-xs sm:text-[13px] font-medium text-slate-900 transition-colors group-hover:text-emerald-900">
             <Link href={`/books/${book.id}`}>{book.title}</Link>
           </h3>
 
@@ -82,19 +82,19 @@ export async function BookCard({ book, locale }: BookCardProps) {
             {book.author}
           </p>
 
-          {/* Star Rating */}
+          {/* Star Rating with Tabular Figures */}
           <div className="flex items-center gap-1 text-[11px] text-slate-600">
             <Star className="h-3 w-3 fill-amber-400 text-amber-400" />
-            <span className="font-semibold text-slate-800">4.8</span>
-            <span className="text-slate-400 text-[10px]">(12k)</span>
+            <span className="font-semibold text-slate-800 tabular-nums">4.8</span>
+            <span className="text-slate-400 text-[10px] tabular-nums">(12k)</span>
           </div>
         </div>
       </div>
 
       {/* Price & Action Row */}
       <div className="mt-3 flex items-center justify-between border-t border-slate-100 pt-2.5">
-        <div className="flex items-baseline gap-1.5">
-          <span className="text-sm font-black text-slate-900">
+        <div className="flex items-baseline gap-1.5 tabular-nums">
+          <span className="text-sm font-bold text-slate-900">
             {formatPrice(book.price_minor, book.currency, currentLocale === "bn" ? "bn-BD" : "en-BD")}
           </span>
           <span className="text-[11px] text-slate-400 line-through">
@@ -105,7 +105,7 @@ export async function BookCard({ book, locale }: BookCardProps) {
         <AddToCartButton
           item={cartItem}
           variant="icon"
-          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#0c3823] hover:bg-[#124d31] text-white shadow-xs transition-colors"
+          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#0c3823] hover:bg-[#124d31] text-white transition-colors"
         />
       </div>
     </div>

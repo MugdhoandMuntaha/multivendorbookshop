@@ -64,36 +64,36 @@ export function HeroBanner() {
   }
 
   return (
-    <section className="relative overflow-hidden rounded-3xl bg-[#f5efe6] shadow-xs">
-      <div className="relative min-h-[380px] sm:min-h-[430px] flex items-center p-6 sm:p-12 lg:p-14">
+    <section className="relative overflow-hidden rounded-2xl border border-stone-200/70 bg-[#f7f3ec]">
+      <div className="relative min-h-[380px] sm:min-h-[420px] flex items-center p-6 sm:p-10 lg:p-12">
         {/* Navigation Arrows */}
         <button
           onClick={handlePrev}
           type="button"
           aria-label="Previous slide"
-          className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 z-20 flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-white/90 text-slate-800 shadow-md backdrop-blur-xs transition-all hover:bg-white hover:scale-110"
+          className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 z-20 flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full border border-stone-200 bg-white/95 text-stone-700 shadow-2xs transition-colors hover:bg-white hover:text-stone-900"
         >
-          <ChevronLeft className="h-5 w-5" />
+          <ChevronLeft className="h-4 w-4" />
         </button>
 
         <button
           onClick={handleNext}
           type="button"
           aria-label="Next slide"
-          className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 z-20 flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-white/90 text-slate-800 shadow-md backdrop-blur-xs transition-all hover:bg-white hover:scale-110"
+          className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 z-20 flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full border border-stone-200 bg-white/95 text-stone-700 shadow-2xs transition-colors hover:bg-white hover:text-stone-900"
         >
-          <ChevronRight className="h-5 w-5" />
+          <ChevronRight className="h-4 w-4" />
         </button>
 
-        {/* Floating Circular Discount Badge */}
-        <div className="absolute top-4 right-4 sm:top-8 sm:right-10 z-20 flex h-20 w-20 sm:h-24 sm:w-24 -rotate-6 flex-col items-center justify-center rounded-full bg-[#fcd34d] text-slate-950 shadow-md">
-          <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider">
+        {/* Circular Discount Medallion (Quiet editorial badge) */}
+        <div className="absolute top-4 right-4 sm:top-6 sm:right-8 z-20 flex h-20 w-20 sm:h-22 sm:w-22 flex-col items-center justify-center rounded-full border border-amber-300/80 bg-[#fef3c7] text-stone-900 shadow-2xs">
+          <span className="text-[10px] font-semibold uppercase tracking-wider text-stone-600">
             Up to
           </span>
-          <span className="text-xl sm:text-2xl font-black leading-none">
+          <span className="text-xl sm:text-2xl font-bold leading-none tabular-nums text-stone-950">
             {slide.discount}
           </span>
-          <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider">
+          <span className="text-[10px] font-semibold uppercase tracking-wider text-stone-600">
             OFF
           </span>
         </div>
@@ -101,24 +101,24 @@ export function HeroBanner() {
         {/* Main Content Grid */}
         <div className="relative z-10 grid grid-cols-1 items-center gap-8 lg:grid-cols-12 w-full">
           {/* Left Column: Text & CTA */}
-          <div className="space-y-4 sm:space-y-5 lg:col-span-7 pr-6">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100/90 px-3.5 py-1 text-xs font-bold text-emerald-800 border border-emerald-200/60">
+          <div className="space-y-4 lg:col-span-7 pr-6">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100/80 px-3 py-1 text-xs font-medium text-emerald-800 border border-emerald-200/50">
               <Sprout className="h-3.5 w-3.5 text-emerald-700" />
               <span>{locale === "bn" ? slide.badgeBn : slide.badgeEn}</span>
             </span>
 
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 leading-[1.12] whitespace-pre-line">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-stone-900 leading-[1.18] whitespace-pre-line">
               {locale === "bn" ? slide.titleBn : slide.titleEn}
             </h1>
 
-            <p className="max-w-md text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
+            <p className="max-w-md text-xs sm:text-sm text-stone-600 leading-relaxed">
               {locale === "bn" ? slide.subtitleBn : slide.subtitleEn}
             </p>
 
             <div className="pt-2">
               <Link
                 href={slide.link}
-                className="inline-flex items-center gap-2 rounded-full bg-[#0c3823] hover:bg-[#124d31] px-6 sm:px-7 py-3 text-xs sm:text-sm font-bold text-white shadow-md transition-all hover:scale-105"
+                className="inline-flex items-center gap-2 rounded-lg bg-[#0c3823] hover:bg-[#124d31] px-5 py-2.5 text-xs sm:text-sm font-medium text-white transition-colors"
               >
                 <span>{locale === "bn" ? slide.ctaBn : slide.ctaEn}</span>
                 <ArrowRight className="h-4 w-4" />
@@ -128,7 +128,7 @@ export function HeroBanner() {
 
           {/* Right Column: Hero Image Container */}
           <div className="relative lg:col-span-5 flex items-center justify-center">
-            <div className="relative aspect-[4/3] w-full max-w-md overflow-hidden rounded-2xl shadow-xl border-4 border-white/80">
+            <div className="relative aspect-[4/3] w-full max-w-md overflow-hidden rounded-xl border border-stone-200/80 bg-stone-100 shadow-2xs">
               <Image
                 src={slide.imageUrl}
                 alt="Book Collection"
@@ -142,13 +142,13 @@ export function HeroBanner() {
         </div>
 
         {/* Bottom Pagination Dots */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5">
           {SLIDES.map((_, idx) => (
             <button
               key={idx}
               onClick={() => setCurrentSlide(idx)}
-              className={`h-2 transition-all rounded-full ${
-                currentSlide === idx ? "w-6 bg-[#0c3823]" : "w-2 bg-slate-400/60"
+              className={`h-1.5 transition-all rounded-full ${
+                currentSlide === idx ? "w-5 bg-[#0c3823]" : "w-1.5 bg-stone-400/60"
               }`}
               aria-label={`Slide ${idx + 1}`}
             />
