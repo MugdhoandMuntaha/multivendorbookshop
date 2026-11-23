@@ -33,25 +33,25 @@ export function CartView() {
   if (items.length === 0) {
     return (
       <div className="mx-auto max-w-4xl px-4 py-16">
-        <div className="neo-card p-12 sm:p-16 rounded-3xl text-center space-y-5 border border-emerald-950/5">
-          <div className="h-20 w-20 rounded-3xl bg-emerald-100/70 text-emerald-800 flex items-center justify-center mx-auto shadow-inner">
-            <ShoppingBag className="h-10 w-10 text-emerald-700" />
+        <div className="rounded-2xl border border-stone-200/80 bg-white p-10 sm:p-14 text-center space-y-4 shadow-2xs">
+          <div className="h-16 w-16 rounded-xl bg-stone-100 text-stone-700 border border-stone-200 flex items-center justify-center mx-auto">
+            <ShoppingBag className="h-8 w-8 text-stone-600 stroke-[1.5]" />
           </div>
-          <div className="space-y-1.5 max-w-md mx-auto">
-            <h1 className="text-2xl font-black text-slate-900 tracking-tight">
+          <div className="space-y-1 max-w-md mx-auto">
+            <h1 className="text-xl font-semibold text-slate-900 tracking-tight">
               {t.cart.emptyTitle}
             </h1>
             <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed">
               {t.cart.emptySubtitle}
             </p>
           </div>
-          <div>
+          <div className="pt-2">
             <Link
               href="/books"
-              className="neo-button-green inline-flex items-center gap-2 px-6 py-3 text-xs font-bold rounded-xl shadow-md"
+              className="inline-flex items-center gap-2 rounded-lg bg-[#0c3823] hover:bg-[#124d31] px-5 py-2.5 text-xs font-medium text-white transition-colors"
             >
               <span>{t.cart.browseBooks}</span>
-              <ArrowRight className="h-4 w-4" />
+              <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>
         </div>
@@ -62,12 +62,12 @@ export function CartView() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 space-y-6">
       {/* Header Banner */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-emerald-100/60 pb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200/80 pb-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+          <h1 className="text-xl sm:text-2xl font-semibold text-slate-900 tracking-tight">
             {t.cart.title}
           </h1>
-          <p className="text-xs sm:text-sm text-slate-600 mt-0.5">
+          <p className="text-xs sm:text-sm text-slate-600 mt-0.5 font-normal">
             {t.cart.subtitle}
           </p>
         </div>
@@ -75,7 +75,7 @@ export function CartView() {
         <button
           type="button"
           onClick={clearCart}
-          className="neo-button-light inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold text-slate-600 hover:text-rose-600 self-start sm:self-auto"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-stone-200 bg-white text-xs font-medium text-slate-600 hover:text-rose-600 transition-colors self-start sm:self-auto"
         >
           <RotateCcw className="h-3.5 w-3.5" />
           <span>{t.cart.clearCart}</span>
@@ -90,13 +90,13 @@ export function CartView() {
             return (
               <div
                 key={group.vendorId}
-                className="neo-card p-5 sm:p-6 rounded-2xl space-y-4 border border-emerald-950/5"
+                className="rounded-xl border border-stone-200/80 bg-white p-5 sm:p-6 space-y-4 shadow-2xs"
               >
                 {/* Vendor Group Header */}
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-emerald-100/60">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-100">
                   <div className="flex items-center gap-2.5">
-                    <div className="h-8 w-8 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold">
-                      <Store className="h-4 w-4" />
+                    <div className="h-8 w-8 rounded-lg bg-stone-100 text-stone-700 border border-stone-200 flex items-center justify-center font-medium">
+                      <Store className="h-4 w-4 stroke-[1.5]" />
                     </div>
                     <div>
                       <div className="text-[11px] text-slate-400 font-semibold uppercase tracking-wider">

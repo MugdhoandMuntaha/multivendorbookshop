@@ -55,10 +55,10 @@ export default async function VendorDashboardPage() {
   return (
     <div className="space-y-8">
       {/* Welcome Banner */}
-      <div className="from-primary/10 via-background to-secondary/10 flex flex-col justify-between gap-4 rounded-2xl border bg-gradient-to-r p-6 sm:flex-row sm:items-center">
+      <div className="flex flex-col justify-between gap-4 rounded-xl border border-stone-200/80 bg-white p-6 sm:flex-row sm:items-center shadow-2xs">
         <div className="space-y-1">
           <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-bold tracking-tight">
+            <h1 className="text-xl font-semibold tracking-tight text-slate-900">
               {vendor.shop_name}
             </h1>
             <Badge
@@ -68,7 +68,7 @@ export default async function VendorDashboardPage() {
               {vendor.status}
             </Badge>
           </div>
-          <p className="text-muted-foreground text-sm">
+          <p className="text-slate-500 text-xs font-normal">
             Slug: <span className="font-mono text-xs">/shop/{vendor.slug}</span>
             {" • "}
             Commission: {(vendor.commission_bps / 100).toFixed(1)}%

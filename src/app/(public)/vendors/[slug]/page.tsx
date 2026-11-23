@@ -101,20 +101,20 @@ export default async function VendorStorefrontPage({
 
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 space-y-8">
         {/* Vendor Branded Shop Header */}
-        <div className="neo-card p-6 sm:p-8 rounded-2xl relative overflow-hidden border border-emerald-950/5">
+        <div className="rounded-xl border border-stone-200/80 bg-white p-6 relative overflow-hidden shadow-2xs">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative z-10">
             {/* Shop Identity */}
             <div className="flex items-start gap-4">
-              <div className="h-16 w-16 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0 shadow-inner">
-                <Store className="h-8 w-8" />
+              <div className="h-12 w-12 rounded-lg bg-stone-100 text-stone-700 border border-stone-200 flex items-center justify-center shrink-0">
+                <Store className="h-6 w-6 stroke-[1.5]" />
               </div>
 
-              <div className="space-y-1.5">
+              <div className="space-y-1">
                 <div className="flex items-center gap-2">
-                  <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+                  <h1 className="text-xl sm:text-2xl font-semibold text-slate-900 tracking-tight">
                     {vendor.shop_name}
                   </h1>
-                  <span className="neo-pill-mint inline-flex items-center gap-1 px-2.5 py-0.5 text-xs font-bold text-emerald-800">
+                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-emerald-50 border border-emerald-200/60 text-xs font-medium text-emerald-800">
                     <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" />
                     <span>{dict.vendors.verifiedBadge}</span>
                   </span>
@@ -128,33 +128,33 @@ export default async function VendorStorefrontPage({
             </div>
 
             {/* Shop Key Stats Pills */}
-            <div className="flex flex-wrap items-center gap-3 shrink-0">
-              <div className="neo-card px-4 py-2.5 rounded-xl border border-emerald-950/5 text-center">
+            <div className="flex flex-wrap items-center gap-2.5 shrink-0 tabular-nums">
+              <div className="rounded-lg border border-stone-200 bg-stone-50 px-3 py-2 text-center">
                 <div className="flex items-center justify-center gap-1 text-amber-500">
                   <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
-                  <span className="text-xs font-black text-slate-800">
+                  <span className="text-xs font-semibold text-slate-800">
                     {vendor.average_rating || 4.9}
                   </span>
                 </div>
-                <span className="text-[10px] text-slate-400 block font-semibold mt-0.5">
+                <span className="text-[10px] text-slate-400 block font-normal mt-0.5">
                   {dict.vendors.rating}
                 </span>
               </div>
 
-              <div className="neo-card px-4 py-2.5 rounded-xl border border-emerald-950/5 text-center">
-                <span className="text-xs font-black text-emerald-800 block">
+              <div className="rounded-lg border border-stone-200 bg-stone-50 px-3 py-2 text-center">
+                <span className="text-xs font-semibold text-slate-900 block">
                   {vendor.book_count || searchResult.total}
                 </span>
-                <span className="text-[10px] text-slate-400 block font-semibold mt-0.5">
+                <span className="text-[10px] text-slate-400 block font-normal mt-0.5">
                   {dict.vendors.booksListed}
                 </span>
               </div>
 
-              <div className="neo-card px-4 py-2.5 rounded-xl border border-emerald-950/5 text-center">
-                <span className="text-xs font-black text-slate-800 block">
+              <div className="rounded-lg border border-stone-200 bg-stone-50 px-3 py-2 text-center">
+                <span className="text-xs font-semibold text-slate-900 block">
                   {formatPrice(vendor.shipping_fee_minor, "BDT")}
                 </span>
-                <span className="text-[10px] text-slate-400 block font-semibold mt-0.5">
+                <span className="text-[10px] text-slate-400 block font-normal mt-0.5">
                   Flat Courier Rate
                 </span>
               </div>

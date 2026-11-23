@@ -70,7 +70,7 @@ export function BuyerOrdersClient({ initialOrders }: BuyerOrdersClientProps) {
             <ShieldCheck className="h-3.5 w-3.5" />
             <span>RTDS Platform Guaranteed Orders</span>
           </div>
-          <h1 className="text-3xl font-black tracking-tight text-slate-900">
+          <h1 className="text-xl sm:text-2xl font-semibold tracking-tight text-slate-900">
             {t.orders.historyTitle}
           </h1>
           <p className="text-sm text-slate-600 mt-1">

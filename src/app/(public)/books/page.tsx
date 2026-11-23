@@ -93,21 +93,19 @@ export default async function BooksPage({ searchParams }: BooksPageProps) {
 
       <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 space-y-6">
         {/* Page Banner Header */}
-        <div className="neo-card p-6 sm:p-8 rounded-2xl relative overflow-hidden">
+        <div className="rounded-xl border border-stone-200/80 bg-white p-6 sm:p-7 relative overflow-hidden">
           <div className="max-w-2xl relative z-10 space-y-2">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-black tracking-wide uppercase">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-emerald-50 border border-emerald-200/60 text-emerald-800 text-xs font-medium">
               <BookOpen className="h-3.5 w-3.5 text-emerald-700" />
               <span>RTDS Platform Verified Catalog</span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+            <h1 className="text-xl sm:text-2xl font-semibold text-slate-900 tracking-tight">
               {dict.catalog.title}
             </h1>
             <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed">
               {dict.catalog.subtitle}
             </p>
           </div>
-          {/* Subtle background decorative circle */}
-          <div className="absolute -right-10 -bottom-10 h-48 w-48 rounded-full bg-emerald-500/5 blur-2xl pointer-events-none" />
         </div>
 
         {/* Catalog Main Layout */}

@@ -23,16 +23,15 @@ export default async function VendorApplyPage() {
   return (
     <div className="container mx-auto max-w-4xl space-y-8 px-4 py-12">
       <div className="space-y-3 text-center">
-        <div className="bg-primary/10 text-primary mb-2 inline-flex h-12 w-12 items-center justify-center rounded-2xl">
-          <Store className="h-6 w-6" />
+        <div className="bg-stone-100 text-stone-700 border border-stone-200 mb-2 inline-flex h-12 w-12 items-center justify-center rounded-xl">
+          <Store className="h-6 w-6 stroke-[1.5]" />
         </div>
-        <h1 className="text-3xl font-bold tracking-tight">
-          Become a BookMarket Vendor
+        <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-slate-900">
+          Become an RTDS Bookseller & Publisher
         </h1>
-        <p className="text-muted-foreground mx-auto max-w-xl text-sm">
-          Join our curated bookseller network. Sell new textbooks, admission
-          test series, vintage paperbacks, or rare collector copies with
-          nationwide delivery.
+        <p className="text-slate-500 mx-auto max-w-xl text-xs sm:text-sm leading-relaxed">
+          Join our verified bookseller network. Sell new academic guides, admission
+          test series, literature, or rare collector copies with nationwide delivery.
         </p>
       </div>
 
@@ -40,24 +39,24 @@ export default async function VendorApplyPage() {
       {vendor?.status === "pending" && (
         <Card className="border-amber-500/20 bg-amber-500/5">
           <CardContent className="space-y-4 pt-8 pb-8 text-center">
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-amber-500/20 text-amber-600 dark:text-amber-400">
-              <Clock className="h-8 w-8" />
+            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/15 text-amber-700">
+              <Clock className="h-6 w-6 stroke-[1.5]" />
             </div>
-            <div className="space-y-2">
-              <h2 className="text-2xl font-bold tracking-tight">
+            <div className="space-y-1.5">
+              <h2 className="text-xl font-semibold tracking-tight text-slate-900">
                 Application Under Review
               </h2>
-              <p className="text-muted-foreground mx-auto max-w-md text-sm">
+              <p className="text-slate-600 mx-auto max-w-md text-xs sm:text-sm">
                 Your vendor application for{" "}
-                <span className="text-foreground font-semibold">
+                <span className="text-slate-900 font-medium">
                   &ldquo;{vendor.shop_name}&rdquo;
                 </span>{" "}
                 has been received and is currently being evaluated by our
                 curation team.
               </p>
             </div>
-            <div className="text-muted-foreground bg-background inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs">
-              <span className="h-2 w-2 animate-pulse rounded-full bg-amber-500" />
+            <div className="text-slate-600 bg-white inline-flex items-center gap-2 rounded-md border border-stone-200 px-3 py-1 text-xs">
+              <span className="h-2 w-2 rounded-full bg-amber-500" />
               <span>Status: Pending Approval (Review time: 24–48 hours)</span>
             </div>
           </CardContent>

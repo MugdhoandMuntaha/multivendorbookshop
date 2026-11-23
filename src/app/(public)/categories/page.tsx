@@ -60,13 +60,13 @@ export default async function CategoriesPage() {
 
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 space-y-8">
         {/* Banner */}
-        <div className="neo-card p-6 sm:p-8 rounded-2xl relative overflow-hidden">
+        <div className="rounded-xl border border-stone-200/80 bg-white p-6 sm:p-7 relative overflow-hidden">
           <div className="max-w-2xl relative z-10 space-y-2">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-black tracking-wide uppercase">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-emerald-50 border border-emerald-200/60 text-emerald-800 text-xs font-medium">
               <Grid className="h-3.5 w-3.5 text-emerald-700" />
               <span>{dict.categories.allCategories}</span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+            <h1 className="text-xl sm:text-2xl font-semibold text-slate-900 tracking-tight">
               {dict.categories.title}
             </h1>
             <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed">
@@ -76,7 +76,7 @@ export default async function CategoriesPage() {
         </div>
 
         {/* Categories Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {categories.map((cat) => {
             const Icon = (cat.icon_name && iconMap[cat.icon_name]) || BookOpen;
 
@@ -84,34 +84,34 @@ export default async function CategoriesPage() {
               <Link
                 key={cat.id}
                 href={`/categories/${cat.slug}`}
-                className="neo-card neo-card-hover p-5 rounded-2xl flex flex-col justify-between group transition-all"
+                className="rounded-xl border border-stone-200/80 bg-white p-4 flex flex-col justify-between group hover:border-stone-300 transition-colors shadow-2xs"
               >
                 <div className="space-y-3">
-                  <div className="h-12 w-12 rounded-xl bg-emerald-100/70 text-emerald-800 flex items-center justify-center transition-colors group-hover:bg-emerald-600 group-hover:text-white shadow-xs">
-                    <Icon className="h-6 w-6 transition-transform group-hover:scale-110" />
+                  <div className="h-10 w-10 rounded-lg bg-stone-100 text-stone-700 border border-stone-200 flex items-center justify-center transition-colors group-hover:bg-[#0c3823]/10 group-hover:text-[#0c3823]">
+                    <Icon className="h-5 w-5 stroke-[1.5]" />
                   </div>
 
                   <div>
-                    <h2 className="text-base font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">
+                    <h2 className="text-sm font-semibold text-slate-900 group-hover:text-emerald-900 transition-colors">
                       {cat.name}
                     </h2>
-                    <p className="text-xs text-slate-500 font-normal mt-1 line-clamp-2">
+                    <p className="text-xs text-slate-500 font-normal mt-0.5 line-clamp-2">
                       {cat.description ||
                         "Browse quality authentic books in this category."}
                     </p>
                   </div>
                 </div>
 
-                <div className="mt-5 pt-3 border-t border-emerald-100/60 flex items-center justify-between text-xs">
-                  <span className="neo-pill-mint px-2 py-0.5 text-[11px] font-bold">
+                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+                  <span className="text-slate-500 tabular-nums">
                     {cat.book_count}{" "}
                     {locale === "bn"
                       ? dict.categories.booksCount
                       : dict.categories.booksCount}
                   </span>
-                  <span className="font-bold text-emerald-700 group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                  <span className="font-medium text-emerald-900 inline-flex items-center gap-1 group-hover:underline">
                     <span>{dict.categories.viewCategory}</span>
-                    <ArrowRight className="h-3.5 w-3.5" />
+                    <ArrowRight className="h-3 w-3" />
                   </span>
                 </div>
               </Link>

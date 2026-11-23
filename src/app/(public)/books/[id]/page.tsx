@@ -157,21 +157,21 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
               <div className="flex items-center gap-2">
                 <Link
                   href={`/vendors/${vendorSlug}`}
-                  className="neo-pill-mint inline-flex items-center gap-1.5 px-3 py-1 text-xs font-bold text-emerald-800 transition-colors hover:text-emerald-950"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-stone-100 text-stone-700 text-xs font-medium border border-stone-200 hover:text-emerald-900 transition-colors"
                 >
-                  <Store className="h-3.5 w-3.5 text-emerald-600" />
+                  <Store className="h-3.5 w-3.5 text-stone-600" />
                   <span>{vendorName}</span>
-                  <CheckCircle2 className="h-3 w-3 text-emerald-600 ml-0.5" />
+                  <CheckCircle2 className="h-3 w-3 text-emerald-700 ml-0.5" />
                 </Link>
               </div>
 
-              <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight leading-snug">
+              <h1 className="text-xl sm:text-2xl font-semibold text-slate-900 tracking-tight leading-snug">
                 {book.title}
               </h1>
 
-              <p className="text-sm font-semibold text-slate-600">
+              <p className="text-sm font-normal text-slate-600">
                 {dict.bookDetail.author}:{" "}
-                <span className="text-emerald-800 font-bold">
+                <span className="text-slate-900 font-medium">
                   {book.author}
                 </span>
               </p>
@@ -182,32 +182,32 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
-                      className="h-4 w-4 fill-amber-400 text-amber-400"
+                      className="h-3.5 w-3.5 fill-amber-400 text-amber-400"
                     />
                   ))}
                 </div>
-                <span className="text-xs font-black text-slate-800">4.9</span>
-                <span className="text-xs text-slate-400">
+                <span className="text-xs font-semibold text-slate-800 tabular-nums">4.9</span>
+                <span className="text-xs text-slate-400 tabular-nums">
                   ({book.reviews?.length || 48} {dict.common.reviews})
                 </span>
               </div>
             </div>
 
             {/* Price Box */}
-            <div className="neo-card p-4 rounded-2xl flex items-baseline gap-3 border border-emerald-950/5">
-              <span className="text-3xl font-black text-emerald-700">
+            <div className="rounded-xl border border-stone-200/80 bg-stone-50/50 p-4 flex items-baseline gap-3 tabular-nums">
+              <span className="text-2xl sm:text-3xl font-bold text-slate-900">
                 {formatPrice(book.price_minor, book.currency)}
               </span>
               <span className="text-sm font-medium text-slate-400 line-through">
                 {formatPrice(originalPriceMinor, book.currency)}
               </span>
-              <span className="neo-pill-mint px-2.5 py-0.5 text-xs font-black text-emerald-800">
+              <span className="rounded-md border border-amber-300/80 bg-amber-50 px-2 py-0.5 text-xs font-medium text-amber-900">
                 -{discountPercent}% {dict.common.off}
               </span>
             </div>
 
             {/* Interactive Cart, Stock & Actions */}
-            <div className="neo-card p-5 sm:p-6 rounded-2xl border border-emerald-950/5">
+            <div className="rounded-xl border border-stone-200/80 bg-white p-5 sm:p-6 shadow-2xs">
               <BookActions
                 bookId={book.id}
                 stock={book.stock}
@@ -230,7 +230,7 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
         {/* Specifications & Overview Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
           {/* Description & Overview (2 cols) */}
-          <div className="md:col-span-2 neo-card p-6 sm:p-8 rounded-2xl space-y-4">
+          <div className="md:col-span-2 rounded-xl border border-stone-200/80 bg-white p-6 sm:p-8 space-y-4 shadow-2xs">
             <div className="flex items-center gap-2 pb-3 border-b border-emerald-100/60">
               <FileText className="h-5 w-5 text-emerald-600" />
               <h2 className="text-base font-bold text-slate-900">

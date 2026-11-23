@@ -121,26 +121,26 @@ export default async function CategoryDetailPage({
 
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 space-y-8">
         {/* Category Header Card */}
-        <div className="neo-card p-6 sm:p-8 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+        <div className="rounded-xl border border-stone-200/80 bg-white p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 shadow-2xs">
           <div className="flex items-center gap-4">
-            <div className="h-14 w-14 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0 shadow-xs">
-              <Icon className="h-7 w-7" />
+            <div className="h-12 w-12 rounded-lg bg-stone-100 text-stone-700 border border-stone-200 flex items-center justify-center shrink-0">
+              <Icon className="h-6 w-6 stroke-[1.5]" />
             </div>
             <div>
-              <div className="neo-pill-mint inline-flex px-2.5 py-0.5 text-[10px] font-black uppercase mb-1">
+              <div className="inline-flex rounded-md bg-stone-100 text-stone-700 px-2 py-0.5 text-[11px] font-medium mb-1 border border-stone-200">
                 Category
               </div>
-              <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+              <h1 className="text-xl sm:text-2xl font-semibold text-slate-900 tracking-tight">
                 {category.name}
               </h1>
-              <p className="text-xs sm:text-sm text-slate-600 mt-1 max-w-xl">
+              <p className="text-xs sm:text-sm text-slate-600 mt-0.5 max-w-xl font-normal leading-relaxed">
                 {meta?.description ||
                   `Explore genuine books under ${category.name} on RTDS Bookshop.`}
               </p>
             </div>
           </div>
 
-          <div className="neo-card px-4 py-3 rounded-xl border border-emerald-950/5 flex items-center gap-2 text-xs font-bold text-emerald-800 shrink-0">
+          <div className="rounded-lg border border-stone-200 bg-stone-50 px-3.5 py-1.5 flex items-center gap-2 text-xs font-medium text-stone-700 shrink-0 tabular-nums">
             <span>
               {searchResult.total} {dict.categories.booksCount}
             </span>
