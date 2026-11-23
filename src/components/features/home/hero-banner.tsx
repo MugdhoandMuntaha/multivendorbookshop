@@ -1,189 +1,160 @@
-import Link from "next/link";
-import {
-  Sparkles,
-  ArrowRight,
-  ShieldCheck,
-  Truck,
-  RotateCcw,
-  BadgeCheck,
-  BookOpen,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { getActiveHeroSlides, HeroSlideRow } from "@/server/queries/storefront";
-import { getServerLocale, getDictionary } from "@/lib/i18n/server";
-import { Locale } from "@/lib/i18n/types";
+"use client";
 
-interface HeroBannerProps {
-  slides?: HeroSlideRow[];
-  locale?: Locale;
+import { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { ArrowRight, ChevronLeft, ChevronRight, Sprout } from "lucide-react";
+import { useLanguage } from "@/lib/i18n/context";
+
+interface HeroSlide {
+  badgeBn: string;
+  badgeEn: string;
+  titleBn: string;
+  titleEn: string;
+  subtitleBn: string;
+  subtitleEn: string;
+  ctaBn: string;
+  ctaEn: string;
+  link: string;
+  discount: string;
+  imageUrl: string;
 }
 
-export async function HeroBanner({ slides, locale }: HeroBannerProps = {}) {
-  const currentLocale = locale ?? (await getServerLocale());
-  const t = getDictionary(currentLocale);
-  const activeSlides = slides ?? (await getActiveHeroSlides());
+const SLIDES: HeroSlide[] = [
+  {
+    badgeBn: "বই পড়ুন, নিজেকে গড়ুন",
+    badgeEn: "Read Books, Grow Yourself",
+    titleBn: "জ্ঞান হোক\nআপনার সঙ্গী",
+    titleEn: "Let Knowledge Be\nYour True Companion",
+    subtitleBn: "বইঘর থেকে পছন্দের বই কিনুন সহজে, দ্রুত ও নিরাপদে।",
+    subtitleEn: "Shop authentic academic, medical, and literature books with fast delivery.",
+    ctaBn: "এখনই কিনুন",
+    ctaEn: "Shop Now",
+    link: "/books",
+    discount: "40%",
+    imageUrl: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&q=80&w=1000",
+  },
+  {
+    badgeBn: "ভর্তি উৎসব ২০২৬",
+    badgeEn: "Admission Festival 2026",
+    titleBn: "মেডিকেল ও ইঞ্জিনিয়ারিং\nমাস্টার সিরিজ",
+    titleEn: "Medical & Engineering\nMaster Admission Guides",
+    subtitleBn: "বিগত ২০ বছরের প্রশ্নব্যাংক ও শর্টকাট টেকনিকসহ পূর্ণাঙ্গ প্রস্তুতি।",
+    subtitleEn: "Complete question banks, high-yield diagrams, and chapter shortcuts.",
+    ctaBn: "সিরিজ দেখুন",
+    ctaEn: "Explore Series",
+    link: "/books?category=medical-engineering-admission",
+    discount: "35%",
+    imageUrl: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&q=80&w=1000",
+  },
+];
 
-  const slide = activeSlides[0] ?? {
-    title: t.hero.title,
-    subtitle: t.hero.subtitle,
-    badge_text: t.hero.badge,
-    cta_text: t.hero.browseCatalog,
-    cta_link: "/books",
-    bg_gradient: "from-emerald-800 via-emerald-700 to-teal-800",
-  };
+export function HeroBanner() {
+  const { locale } = useLanguage();
+  const [currentSlide, setCurrentSlide] = useState(0);
 
-  const gradientClass =
-    slide.bg_gradient || "from-emerald-800 via-emerald-700 to-teal-800";
+  const slide = SLIDES[currentSlide];
 
-  // If user selected English and slide has default bangla title, use English translation
-  const displayTitle =
-    currentLocale === "en" && slide.title?.includes("মেডিকেল")
-      ? t.hero.title
-      : slide.title;
+  function handlePrev() {
+    setCurrentSlide((prev) => (prev === 0 ? SLIDES.length - 1 : prev - 1));
+  }
 
-  const displaySubtitle =
-    currentLocale === "en" && slide.subtitle?.includes("মেডিকেল")
-      ? t.hero.subtitle
-      : slide.subtitle;
-
-  const displayBadge =
-    currentLocale === "en" && slide.badge_text?.includes("জাতীয়")
-      ? t.hero.badge
-      : slide.badge_text;
-
-  const displayCta =
-    currentLocale === "en" && slide.cta_text?.includes("বইয়ের")
-      ? t.hero.browseCatalog
-      : slide.cta_text;
+  function handleNext() {
+    setCurrentSlide((prev) => (prev === SLIDES.length - 1 ? 0 : prev + 1));
+  }
 
   return (
-    <div className="space-y-8">
-      {/* Main Promotional Banner with Lush Emerald Gradient & Neomorphic Depth */}
-      <section
-        className={`relative overflow-hidden rounded-3xl border border-emerald-400/30 bg-gradient-to-br ${gradientClass} p-8 text-white shadow-[8px_16px_32px_-6px_rgba(5,150,105,0.25)] sm:p-12 lg:p-14`}
-      >
-        {/* Soft background light-diffusers */}
-        <div className="pointer-events-none absolute -top-14 -right-14 h-72 w-72 rounded-full bg-emerald-400/20 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-14 -left-14 h-72 w-72 rounded-full bg-teal-300/20 blur-3xl" />
+    <section className="relative overflow-hidden rounded-3xl bg-[#f5efe6] shadow-xs">
+      <div className="relative min-h-[380px] sm:min-h-[430px] flex items-center p-6 sm:p-12 lg:p-14">
+        {/* Navigation Arrows */}
+        <button
+          onClick={handlePrev}
+          type="button"
+          aria-label="Previous slide"
+          className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 z-20 flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-white/90 text-slate-800 shadow-md backdrop-blur-xs transition-all hover:bg-white hover:scale-110"
+        >
+          <ChevronLeft className="h-5 w-5" />
+        </button>
 
-        <div className="relative z-10 grid grid-cols-1 items-center gap-8 lg:grid-cols-12">
-          <div className="space-y-5 lg:col-span-7">
-            <div className="flex flex-wrap items-center gap-2">
-              {displayBadge && (
-                <Badge className="border border-white/30 bg-white/15 px-3 py-1 text-xs font-semibold text-white shadow-xs backdrop-blur-md hover:bg-white/25">
-                  <Sparkles className="mr-1.5 inline h-3.5 w-3.5 text-amber-300" />
-                  {displayBadge}
-                </Badge>
-              )}
-              <span className="rounded-full bg-amber-400 px-2.5 py-0.5 text-xs font-black tracking-wider text-slate-950 uppercase shadow-xs">
-                {t.hero.guaranteed}
-              </span>
-            </div>
+        <button
+          onClick={handleNext}
+          type="button"
+          aria-label="Next slide"
+          className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 z-20 flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-white/90 text-slate-800 shadow-md backdrop-blur-xs transition-all hover:bg-white hover:scale-110"
+        >
+          <ChevronRight className="h-5 w-5" />
+        </button>
 
-            <h1 className="text-3xl leading-tight font-black tracking-tight drop-shadow-xs sm:text-4xl lg:text-5xl">
-              {displayTitle}
+        {/* Floating Circular Discount Badge */}
+        <div className="absolute top-4 right-4 sm:top-8 sm:right-10 z-20 flex h-20 w-20 sm:h-24 sm:w-24 -rotate-6 flex-col items-center justify-center rounded-full bg-[#fcd34d] text-slate-950 shadow-md">
+          <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider">
+            Up to
+          </span>
+          <span className="text-xl sm:text-2xl font-black leading-none">
+            {slide.discount}
+          </span>
+          <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider">
+            OFF
+          </span>
+        </div>
+
+        {/* Main Content Grid */}
+        <div className="relative z-10 grid grid-cols-1 items-center gap-8 lg:grid-cols-12 w-full">
+          {/* Left Column: Text & CTA */}
+          <div className="space-y-4 sm:space-y-5 lg:col-span-7 pr-6">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100/90 px-3.5 py-1 text-xs font-bold text-emerald-800 border border-emerald-200/60">
+              <Sprout className="h-3.5 w-3.5 text-emerald-700" />
+              <span>{locale === "bn" ? slide.badgeBn : slide.badgeEn}</span>
+            </span>
+
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 leading-[1.12] whitespace-pre-line">
+              {locale === "bn" ? slide.titleBn : slide.titleEn}
             </h1>
 
-            <p className="max-w-xl text-sm leading-relaxed font-normal text-emerald-100/90 sm:text-base">
-              {displaySubtitle}
+            <p className="max-w-md text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
+              {locale === "bn" ? slide.subtitleBn : slide.subtitleEn}
             </p>
 
-            <div className="flex flex-wrap items-center gap-3.5 pt-2">
-              <Link href={slide.cta_link || "/books"}>
-                <button
-                  type="button"
-                  className="neo-button-light flex h-11 items-center gap-2 rounded-2xl px-6 font-bold text-emerald-800 shadow-md"
-                >
-                  <BookOpen className="h-4 w-4 text-emerald-600" />
-                  <span>{displayCta || t.hero.browseCatalog}</span>
-                </button>
-              </Link>
-
-              <Link href="/vendor/apply">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="h-11 gap-2 rounded-2xl border-white/40 bg-white/10 px-6 font-semibold text-white backdrop-blur-md hover:bg-white/20"
-                >
-                  <span>{t.hero.sellBooks}</span>
-                  <ArrowRight className="h-4 w-4" />
-                </Button>
+            <div className="pt-2">
+              <Link
+                href={slide.link}
+                className="inline-flex items-center gap-2 rounded-full bg-[#0c3823] hover:bg-[#124d31] px-6 sm:px-7 py-3 text-xs sm:text-sm font-bold text-white shadow-md transition-all hover:scale-105"
+              >
+                <span>{locale === "bn" ? slide.ctaBn : slide.ctaEn}</span>
+                <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
           </div>
 
-          {/* Right Visual Floating Showcase Cards (Neomorphic Frosted Glass) */}
-          <div className="hidden grid-cols-2 gap-4 lg:col-span-5 lg:grid">
-            <div className="space-y-2 rounded-2xl border border-white/25 bg-white/15 p-5 shadow-[6px_6px_20px_rgba(0,0,0,0.12),-2px_-2px_10px_rgba(255,255,255,0.2)] backdrop-blur-md">
-              <span className="text-[10px] font-bold tracking-wider text-amber-300 uppercase">
-                {currentLocale === "bn" ? "মেডিকেল ও বিশ্ববিদ্যালয়" : "Medical & Admission"}
-              </span>
-              <p className="text-sm leading-snug font-bold text-white">
-                {t.hero.medicalShowcaseTitle}
-              </p>
-              <p className="text-xs text-emerald-100/80">
-                {t.hero.medicalShowcaseDesc}
-              </p>
-            </div>
-
-            <div className="space-y-2 rounded-2xl border border-white/25 bg-white/15 p-5 shadow-[6px_6px_20px_rgba(0,0,0,0.12),-2px_-2px_10px_rgba(255,255,255,0.2)] backdrop-blur-md">
-              <span className="text-[10px] font-bold tracking-wider text-amber-300 uppercase">
-                {currentLocale === "bn" ? "সাহিত্য ও গবেষণা" : "Literature & Classics"}
-              </span>
-              <p className="text-sm leading-snug font-bold text-white">
-                {t.hero.literatureShowcaseTitle}
-              </p>
-              <p className="text-xs text-emerald-100/80">
-                {t.hero.literatureShowcaseDesc}
-              </p>
+          {/* Right Column: Hero Image Container */}
+          <div className="relative lg:col-span-5 flex items-center justify-center">
+            <div className="relative aspect-[4/3] w-full max-w-md overflow-hidden rounded-2xl shadow-xl border-4 border-white/80">
+              <Image
+                src={slide.imageUrl}
+                alt="Book Collection"
+                fill
+                priority
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 40vw"
+              />
             </div>
           </div>
         </div>
-      </section>
 
-      {/* 4 Trust & Service Indicators (Tactile Neomorphic White & Emerald Badges) */}
-      <section className="grid grid-cols-2 gap-3.5 sm:gap-5 lg:grid-cols-4">
-        <div className="neo-card neo-card-hover flex items-center gap-3.5 p-4 sm:p-5">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-700 shadow-[inset_2px_2px_4px_rgba(0,0,0,0.04)]">
-            <ShieldCheck className="h-6 w-6" />
-          </div>
-          <div>
-            <h4 className="text-sm font-bold text-slate-800">{t.hero.trust1Title}</h4>
-            <p className="text-xs text-slate-500">{t.hero.trust1Desc}</p>
-          </div>
+        {/* Bottom Pagination Dots */}
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
+          {SLIDES.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentSlide(idx)}
+              className={`h-2 transition-all rounded-full ${
+                currentSlide === idx ? "w-6 bg-[#0c3823]" : "w-2 bg-slate-400/60"
+              }`}
+              aria-label={`Slide ${idx + 1}`}
+            />
+          ))}
         </div>
-
-        <div className="neo-card neo-card-hover flex items-center gap-3.5 p-4 sm:p-5">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-700 shadow-[inset_2px_2px_4px_rgba(0,0,0,0.04)]">
-            <Truck className="h-6 w-6" />
-          </div>
-          <div>
-            <h4 className="text-sm font-bold text-slate-800">{t.hero.trust2Title}</h4>
-            <p className="text-xs text-slate-500">{t.hero.trust2Desc}</p>
-          </div>
-        </div>
-
-        <div className="neo-card neo-card-hover flex items-center gap-3.5 p-4 sm:p-5">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-700 shadow-[inset_2px_2px_4px_rgba(0,0,0,0.04)]">
-            <RotateCcw className="h-6 w-6" />
-          </div>
-          <div>
-            <h4 className="text-sm font-bold text-slate-800">{t.hero.trust3Title}</h4>
-            <p className="text-xs text-slate-500">{t.hero.trust3Desc}</p>
-          </div>
-        </div>
-
-        <div className="neo-card neo-card-hover flex items-center gap-3.5 p-4 sm:p-5">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-700 shadow-[inset_2px_2px_4px_rgba(0,0,0,0.04)]">
-            <BadgeCheck className="h-6 w-6" />
-          </div>
-          <div>
-            <h4 className="text-sm font-bold text-slate-800">{t.hero.trust4Title}</h4>
-            <p className="text-xs text-slate-500">{t.hero.trust4Desc}</p>
-          </div>
-        </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 }

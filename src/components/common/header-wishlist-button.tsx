@@ -17,12 +17,13 @@ export function HeaderWishlistButton() {
       <Button
         variant="ghost"
         size="sm"
-        className="neo-button-light relative h-9 w-9 rounded-xl p-0 hover:text-emerald-700"
+        className="relative flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 hover:border-emerald-700 hover:text-rose-600 shadow-2xs"
+        title={t.common.wishlist}
       >
-        <Heart className="h-4 w-4 text-emerald-700" />
+        <Heart className="h-4 w-4" />
         <span className="sr-only">{t.common.wishlist}</span>
         {count > 0 && (
-          <span className="absolute -top-1 -right-1 flex h-4 min-w-[16px] items-center justify-center rounded-full bg-rose-500 px-1 text-[10px] font-black text-white shadow-xs">
+          <span className="absolute -top-1 -right-1 flex h-4 min-w-[16px] items-center justify-center rounded-full bg-rose-600 px-1 text-[9px] font-black text-white shadow-xs">
             {count > 99 ? "99+" : count}
           </span>
         )}

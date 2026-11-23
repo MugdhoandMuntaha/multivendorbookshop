@@ -11,27 +11,17 @@ import type { Database } from "@/types/database";
 type Profile = Database["public"]["Tables"]["profiles"]["Row"];
 
 export function UserNav({ profile }: { profile: Profile | null }) {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
 
   if (!profile) {
     return (
       <div className="flex items-center gap-2">
-        <Link href="/vendor/apply">
-          <Button
-            variant="ghost"
-            size="sm"
-            className="hidden items-center gap-1.5 text-xs font-semibold text-emerald-800 hover:bg-emerald-50 hover:text-emerald-950 sm:inline-flex"
-          >
-            <Store className="h-4 w-4 text-emerald-600" />
-            <span>{t.common.sellBooks}</span>
-          </Button>
-        </Link>
         <Link href="/login">
           <button
             type="button"
-            className="neo-button-green flex h-9 items-center justify-center rounded-xl px-4 text-xs font-bold shadow-xs"
+            className="flex h-9 items-center justify-center rounded-full bg-[#0c3823] hover:bg-[#124d31] px-5 text-xs font-bold text-white shadow-xs transition-all hover:scale-105"
           >
-            {t.common.signIn}
+            {locale === "bn" ? "লগইন / সাইন আপ" : "Login / Sign Up"}
           </button>
         </Link>
       </div>

@@ -17,7 +17,7 @@ export function formatPrice(
   const majorAmount = amountMinor / 100;
   if (currency.toUpperCase() === "BDT") {
     const hasFractions = majorAmount % 1 !== 0;
-    const formatted = new Intl.NumberFormat("en-BD", {
+    const formatted = new Intl.NumberFormat(locale, {
       minimumFractionDigits: hasFractions ? 2 : 0,
       maximumFractionDigits: 2,
     }).format(majorAmount);

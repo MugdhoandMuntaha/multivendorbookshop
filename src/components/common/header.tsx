@@ -2,13 +2,12 @@ import Link from "next/link";
 import {
   BookOpen,
   Search,
-  PhoneCall,
-  Store,
-  Menu,
+  Truck,
+  LayoutGrid,
+  ChevronDown,
 } from "lucide-react";
 import { getCurrentProfile } from "@/server/queries/auth";
-import { getStorefrontSettings } from "@/server/queries/storefront";
-import { getServerLocale, getDictionary } from "@/lib/i18n/server";
+import { getServerLocale } from "@/lib/i18n/server";
 import { LanguageSwitcher } from "./language-switcher";
 import { UserNav } from "./user-nav";
 import { HeaderCartButton } from "./header-cart-button";
@@ -16,192 +15,148 @@ import { HeaderWishlistButton } from "./header-wishlist-button";
 
 export function HeaderFallback() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-emerald-100 bg-white/90 shadow-xs">
+    <header className="sticky top-0 z-50 w-full border-b border-slate-100 bg-white">
       <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link
           href="/"
-          className="flex items-center gap-2 text-xl font-bold tracking-tight text-emerald-700"
+          className="flex items-center gap-2 text-xl font-bold tracking-tight text-emerald-800"
         >
-          <BookOpen className="h-6 w-6 text-emerald-600" />
+          <BookOpen className="h-6 w-6 text-emerald-700" />
           <span>RTDS Bookshop</span>
         </Link>
-        <div className="bg-muted h-9 w-48 animate-pulse rounded-lg" />
+        <div className="bg-slate-100 h-9 w-48 animate-pulse rounded-full" />
       </div>
     </header>
   );
 }
 
 export async function Header() {
-  const [{ profile }, settings, locale] = await Promise.all([
+  const [{ profile }, locale] = await Promise.all([
     getCurrentProfile(),
-    getStorefrontSettings(),
     getServerLocale(),
   ]);
 
-  const t = getDictionary(locale);
-
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-emerald-100/80 bg-white/95 shadow-sm backdrop-blur-md">
-      {/* 1. Top Announcement Bar & Language Switcher */}
-      {settings.announcement_enabled && (
-        <div className="border-b border-emerald-900/80 bg-emerald-950 px-4 py-1.5 text-xs text-emerald-100">
-          <div className="container mx-auto flex max-w-7xl items-center justify-between">
-            <div className="flex items-center gap-4 text-[11px]">
-              <span className="flex items-center gap-1.5 font-medium">
-                <PhoneCall className="h-3 w-3 text-emerald-400" />
-                <span>
-                  {t.common.helpline}: {settings.helpline_phone || "09612-007837"} ({settings.helpline_hours || t.common.serviceHours})
-                </span>
-              </span>
-              <span className="hidden text-emerald-700 sm:inline-block">|</span>
-              <span className="hidden font-medium text-amber-300 sm:inline-block">
-                {locale === "bn"
-                  ? (settings.announcement_text || t.header.announcement)
-                  : "⚡ Nationwide Cash on Delivery | Free shipping on orders over ৳1,000"}
-              </span>
-            </div>
-
-            <div className="flex items-center gap-3 text-[11px]">
-              <Link
-                href="/vendor/apply"
-                className="hidden items-center gap-1.5 font-semibold text-emerald-300 transition-colors hover:text-white sm:flex"
-              >
-                <Store className="h-3 w-3 text-emerald-400" />
-                <span>{t.header.sellBooksLink}</span>
-              </Link>
-              <span className="hidden text-emerald-800 sm:inline-block">|</span>
-              <LanguageSwitcher variant="header" />
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* 2. Main Header with Neomorphic Omnisearch */}
-      <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-        {/* Brand Logo with Neomorphic Tactile Container */}
+    <header className="sticky top-0 z-50 w-full border-b border-slate-200/80 bg-white shadow-xs">
+      {/* 1. Main Header Row */}
+      <div className="container mx-auto flex h-20 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+        {/* Brand Logo with Open Book Icon */}
         <Link
           href="/"
-          className="flex shrink-0 items-center gap-2.5 text-2xl font-black tracking-tight"
+          className="flex shrink-0 items-center gap-3 text-2xl font-black tracking-tight"
         >
-          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-700 text-white shadow-[3px_3px_10px_rgba(5,150,105,0.25),-2px_-2px_6px_rgba(255,255,255,0.8)]">
-            <BookOpen className="h-5 w-5" />
+          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-800 border border-emerald-200/60 shadow-xs">
+            <BookOpen className="h-6 w-6 text-emerald-800" />
           </div>
-          <div className="flex flex-col leading-none">
-            <span className="text-xl font-black tracking-tight text-slate-900">
-              RTDS <span className="text-emerald-600">Bookshop</span>
+          <div className="flex flex-col leading-tight">
+            <span className="text-xl sm:text-2xl font-black tracking-tight text-slate-900">
+              {locale === "bn" ? "বইঘর" : "RTDS Bookshop"}
             </span>
-            <span className="text-[10px] font-semibold tracking-wide text-emerald-700">
-              Official Book Marketplace
+            <span className="text-[10px] font-semibold tracking-wider text-slate-500 uppercase">
+              Read • Learn • Grow
             </span>
           </div>
         </Link>
 
-        {/* Central Search Bar (Neomorphic Recessed Inset Container) */}
+        {/* Central Search Bar (Pill Search Bar with Ctrl+K shortcut) */}
         <form
           action="/books"
           method="GET"
-          className="relative hidden max-w-2xl flex-1 items-center md:flex"
+          className="relative hidden max-w-xl flex-1 items-center md:flex"
         >
-          <div className="neo-input-recessed flex w-full items-center rounded-2xl px-1 py-1">
-            <select
-              name="category"
-              className="max-w-[140px] cursor-pointer truncate border-r border-emerald-100 bg-transparent px-3 py-1.5 text-xs font-semibold text-emerald-900 focus:outline-none"
-            >
-              <option value="">{t.common.allCategories}</option>
-              <option value="medical-engineering-admission">Medical & Engineering</option>
-              <option value="computer-science-engineering">Computer Science</option>
-              <option value="fiction-literature">Literature & Fiction</option>
-              <option value="islamic-theological">Islamic Literature</option>
-              <option value="history-heritage">History & Heritage</option>
-              <option value="philosophy-society">Philosophy & Society</option>
-            </select>
+          <div className="relative flex w-full items-center rounded-full border border-slate-200 bg-slate-50/60 py-2 pl-11 pr-14 transition-all focus-within:border-emerald-800 focus-within:bg-white focus-within:shadow-xs">
+            <Search className="pointer-events-none absolute left-4 h-4 w-4 text-slate-400" />
 
             <input
               type="text"
               name="q"
-              placeholder={t.common.searchPlaceholder}
-              className="w-full bg-transparent px-3 py-1.5 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none sm:text-sm"
+              placeholder={
+                locale === "bn"
+                  ? "বই, লেখক বা প্রকাশনীর নাম দিয়ে খুঁজুন..."
+                  : "Search for books, authors, or categories..."
+              }
+              className="w-full bg-transparent text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none font-medium"
             />
 
-            <button
-              type="submit"
-              className="neo-button-green m-0.5 flex h-9 shrink-0 items-center gap-1.5 rounded-xl px-4 text-xs font-bold"
-            >
-              <Search className="h-4 w-4" />
-              <span className="hidden lg:inline">{t.common.searchButton}</span>
-            </button>
+            <kbd className="pointer-events-none absolute right-3 hidden rounded-md border border-slate-200 bg-white px-2 py-0.5 font-mono text-[10px] font-semibold text-slate-400 sm:inline-block shadow-2xs">
+              Ctrl + K
+            </kbd>
           </div>
         </form>
 
-        {/* Right User Actions (Neomorphic Soft Light Buttons) */}
-        <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+        {/* Right Actions: Wishlist, Cart, Login / Profile, Language Switcher */}
+        <div className="flex shrink-0 items-center gap-2.5 sm:gap-4">
           <HeaderWishlistButton />
           <HeaderCartButton />
           <UserNav profile={profile} />
+          <div className="hidden sm:block border-l border-slate-200 pl-2">
+            <LanguageSwitcher variant="header" />
+          </div>
         </div>
       </div>
 
-      {/* 3. Category Strip (Soft Mint Neomorphic Shelf Strip) */}
-      <div className="hidden border-t border-emerald-100/60 bg-gradient-to-r from-emerald-50/50 via-white to-emerald-50/50 sm:block">
-        <div className="container mx-auto flex max-w-7xl scrollbar-none items-center gap-6 overflow-x-auto px-4 py-2.5 text-xs font-semibold text-slate-700 sm:px-6 lg:px-8">
-          <Link
-            href="/categories"
-            className="flex shrink-0 items-center gap-1.5 font-bold text-emerald-800 hover:text-emerald-600"
-          >
-            <Menu className="h-3.5 w-3.5 text-emerald-600" />
-            <span>{t.header.categories.all}</span>
-          </Link>
+      {/* 2. Sub-Nav Bar (Categories & Nav Links) */}
+      <div className="border-t border-slate-100 bg-white">
+        <div className="container mx-auto flex max-w-7xl items-center justify-between px-4 py-2 text-xs sm:px-6 lg:px-8">
+          <div className="flex items-center gap-6 overflow-x-auto scrollbar-none py-0.5">
+            {/* All Categories Dropdown Button */}
+            <Link
+              href="/categories"
+              className="flex shrink-0 items-center gap-2 rounded-lg bg-[#0c3823] hover:bg-[#124d31] px-3.5 py-2 font-bold text-white shadow-xs transition-colors"
+            >
+              <LayoutGrid className="h-4 w-4" />
+              <span>{locale === "bn" ? "সকল বিভাগ" : "All Categories"}</span>
+              <ChevronDown className="h-3.5 w-3.5 opacity-80" />
+            </Link>
 
-          <span className="text-emerald-200">|</span>
+            {/* Navigation Links */}
+            <nav className="flex items-center gap-6 font-semibold text-slate-600 shrink-0">
+              <Link
+                href="/"
+                className="text-emerald-800 font-bold hover:text-emerald-950 transition-colors"
+              >
+                {locale === "bn" ? "হোম" : "Home"}
+              </Link>
+              <Link
+                href="/books"
+                className="hover:text-emerald-800 transition-colors"
+              >
+                {locale === "bn" ? "আমাদের প্রকাশনা" : "Our Publication"}
+              </Link>
+              <Link
+                href="/vendors"
+                className="hover:text-emerald-800 transition-colors"
+              >
+                {locale === "bn" ? "সেলারগণ" : "Sellers"}
+              </Link>
+              <Link
+                href="/books?offer=true"
+                className="hover:text-emerald-800 transition-colors"
+              >
+                {locale === "bn" ? "অফার সমূহ" : "Offers"}
+              </Link>
+              <Link
+                href="/categories"
+                className="hover:text-emerald-800 transition-colors"
+              >
+                {locale === "bn" ? "আমাদের সম্পর্কে" : "About Us"}
+              </Link>
+              <Link
+                href="/buyer/orders"
+                className="hover:text-emerald-800 transition-colors"
+              >
+                {locale === "bn" ? "যোগাযোগ" : "Contact"}
+              </Link>
+            </nav>
+          </div>
 
-          <Link
-            href="/books?category=medical-engineering-admission"
-            className="shrink-0 font-bold text-emerald-700 transition-colors hover:text-emerald-900"
-          >
-            {t.header.categories.medical}
-          </Link>
-
-          <Link
-            href="/books?category=computer-science-engineering"
-            className="shrink-0 transition-colors hover:text-emerald-700"
-          >
-            {t.header.categories.engineering}
-          </Link>
-
-          <Link
-            href="/books?category=fiction-literature"
-            className="shrink-0 transition-colors hover:text-emerald-700"
-          >
-            {t.header.categories.fiction}
-          </Link>
-
-          <Link
-            href="/books?category=history-heritage"
-            className="shrink-0 transition-colors hover:text-emerald-700"
-          >
-            {t.header.categories.nonFiction}
-          </Link>
-
-          <Link
-            href="/books?category=islamic-theological"
-            className="shrink-0 transition-colors hover:text-emerald-700"
-          >
-            {t.header.categories.islamic}
-          </Link>
-
-          <Link
-            href="/books?category=philosophy-society"
-            className="shrink-0 transition-colors hover:text-emerald-700"
-          >
-            {t.header.categories.rare}
-          </Link>
-
-          <Link
-            href="/vendors"
-            className="ml-auto shrink-0 font-bold text-emerald-800 transition-colors hover:text-emerald-600"
-          >
-            {t.header.categories.verifiedShops}
-          </Link>
+          {/* Free Delivery Right Notice */}
+          <div className="hidden lg:flex items-center gap-1.5 font-bold text-slate-800 text-[11px] shrink-0 bg-slate-50 border border-slate-200/60 rounded-full px-3 py-1">
+            <Truck className="h-3.5 w-3.5 text-emerald-700" />
+            <span>
+              {locale === "bn" ? "ফ্রি ডেলিভারি ৳৩৯৯+" : "Free Delivery ৳399+"}
+            </span>
+          </div>
         </div>
       </div>
     </header>
